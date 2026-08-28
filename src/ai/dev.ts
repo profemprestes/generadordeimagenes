@@ -1,5 +1,6 @@
-import { config } from 'dotenv';
-config();
+try {
+  process.loadEnvFile?.();
+} catch {}
 
 import '@/ai/flows/summarize-testimonials.ts';
 import '@/ai/flows/generate-image-prompt.ts';

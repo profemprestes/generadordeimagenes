@@ -6,7 +6,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'zod';
+import { z } from 'genkit';
 
 const ComponentReplicationInputSchema = z.object({
   pagePath: z.string().describe("The original page path where the components reside."),

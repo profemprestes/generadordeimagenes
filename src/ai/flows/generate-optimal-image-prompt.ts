@@ -6,7 +6,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'zod';
+import { z } from 'genkit';
 import companyProfile from '@/lib/empresa.json';
 
 const GenerateOptimalImagePromptInputSchema = z.object({

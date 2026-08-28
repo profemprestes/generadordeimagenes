@@ -46,8 +46,8 @@ const serviceImagePromptSchema = z.object({
   visualStyle: z.string().min(1, 'El estilo visual es requerido.'),
   backgroundDetails: z.string().min(1, 'Los detalles del fondo son requeridos.'),
   contentDetails: z.string().min(1, 'Los detalles del contenido son requeridos.'),
-  includeText: z.boolean().default(true),
-  includeBrand: z.boolean().default(false),
+  includeText: z.boolean(),
+  includeBrand: z.boolean(),
 });
 
 type ServiceImagePromptValues = z.infer<typeof serviceImagePromptSchema>;

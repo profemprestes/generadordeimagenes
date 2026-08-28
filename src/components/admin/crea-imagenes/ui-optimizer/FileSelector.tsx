@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Loader2, FileCode } from 'lucide-react';
 import { getFileContentAction } from '@/app/ui-optimizer/actions';
+import { useToast } from '@/hooks/use-toast';
 
 
 export interface ComponentNode {

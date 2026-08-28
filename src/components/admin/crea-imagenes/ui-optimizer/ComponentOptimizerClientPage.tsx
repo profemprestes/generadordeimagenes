@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { FileCode, Copy, Check, FileSearch, Code, Wand2, Loader2, ListChecks } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { getComponentFilesContentAction } from '@/app/ui-optimizer/componentes/actions';
 import type { PageStructure } from "@/components/admin/crea-imagenes/ui-optimizer/FileSelector";
 

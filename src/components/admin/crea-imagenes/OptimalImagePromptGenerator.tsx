@@ -45,8 +45,8 @@ const optimalImagePromptSchema = z.object({
   customBackgroundDetails: z.string().optional(),
   contentDetailsOption: z.string().min(1, 'Debes seleccionar o escribir un detalle de contenido.'),
   customContentDetails: z.string().optional(),
-  includeText: z.boolean().default(true),
-  includeBrand: z.boolean().default(false),
+  includeText: z.boolean(),
+  includeBrand: z.boolean(),
   fontToInclude: z.string().optional(),
   additionalDetails: z.string().optional(),
 }).refine(data => data.backgroundDetailsOption !== CUSTOM_OPTION_VALUE || (data.customBackgroundDetails && data.customBackgroundDetails.length > 0), {
