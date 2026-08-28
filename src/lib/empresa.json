@@ -1,0 +1,69 @@
+{
+    "company_profile": {
+      "identity": {
+        "name": "EnviosDosRuedas",
+        "type": "LocalBusiness",
+        "slogan_principal": "Mensajería y Delivery Express en Mar del Plata",
+        "description": "Servicio confiable de mensajería y delivery en moto. Envíos express y low-cost para e-commerce, pymes y Mercado Libre Flex en Mar del Plata. Cotizá online."
+      },
+      "location_contact": {
+        "primary_city": "Mar del Plata",
+        "address": {
+          "street": "11 de setiembre",
+          "city": "Mar del Plata",
+          "postal_code": "B7600",
+          "country_code": "AR"
+        },
+        "locale": "es_AR",
+        "phone": "+5492236602699",
+        "website_url": "https://www.enviosdosruedas.com"
+      },
+      "business_details": {
+        "services_summary": [
+          "mensajeria",
+          "delivery",
+          "envios en moto",
+          "cadeteria",
+          "envios express",
+          "envios low-cost",
+          "e-commerce",
+          "pymes",
+          "Mercado Libre Flex"
+        ],
+        "price_range": "$$",
+        "opening_hours": {
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      },
+      "branding": {
+        "colors": {
+          "theme_primary": {
+            "hex": "#1E40AF",
+            "description": "Azul oscuro/medio (usado para el theme-color del viewport)"
+          },
+          "palette_contextual": "Basado en los banners e imágenes, la paleta de marca también utiliza de forma prominente azules cian, amarillos vibrantes y naranjas como colores de acento y para llamadas a la acción (CTAs)."
+        },
+        "font_family": "Orbitron",
+        "logo_url": "https://www.enviosdosruedas.com/icons/icon-512x512.png",
+        "keywords": [
+          "envios dos ruedas",
+          "mensajeria mar del plata",
+          "delivery mar del plata",
+          "envios en moto",
+          "cadeteria mar del plata",
+          "envios flex",
+          "envios low cost",
+          "mensajeria express"
+        ]
+      }
+    }
+  }

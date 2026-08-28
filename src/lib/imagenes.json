@@ -1,0 +1,291 @@
+{
+    "image_profiles": [
+      {
+        "name": "bannerenvios",
+        "description": "Una imagen de fondo gráfico abstracto con un degradado de azul a cian. Presenta formas geométricas simples, incluyendo un arco de círculo naranja/amarillo en la esquina superior izquierda, una forma redondeada naranja en el medio izquierdo, líneas blancas en zigzag y una cuadrícula de líneas finas en la parte superior derecha, una forma de esquina amarilla/blanca en la parte inferior central, y una forma triangular naranja/amarilla en la esquina inferior derecha. El estilo es moderno, minimalista y corporativo, comúnmente utilizado para banners web, fondos de presentación o material de marketing.",
+        "alt_text": "Fondo abstracto azul y naranja con formas geométricas minimalistas.",
+        "tags": [
+          "fondo",
+          "abstracto",
+          "geométrico",
+          "azul",
+          "naranja",
+          "diseño gráfico",
+          "moderno",
+          "minimalista",
+          "banner",
+          "web",
+          "presentación",
+          "corporativo",
+          "degradado"
+        ],
+        "source": "public/bannerenvios.webp",
+        "location": "public/bannerenvios.webp"
+      },
+      {
+        "name": "envios_express",
+        "description": "Imagen de un motociclista realizando una entrega nocturna en una ciudad, con una caja de reparto azul que dice 'ENVIOS EXPRESS'. La imagen utiliza larga exposición para crear estelas de luz dinámicas (azules y amarillas) que rodean la moto y el entorno urbano, enfatizando la velocidad. Las ruedas de la motocicleta también tienen un efecto de luz azul brillante.",
+        "alt_text": "Repartidor en motocicleta con caja de 'ENVIOS EXPRESS' moviéndose rápidamente por la ciudad de noche, rodeado de estelas de luz.",
+        "tags": [
+          "envios",
+          "express",
+          "delivery",
+          "motocicleta",
+          "noche",
+          "ciudad",
+          "velocidad",
+          "repartidor",
+          "luz",
+          "logística",
+          "transporte"
+        ],
+        "source": "public/servicios/envios_express.webp",
+        "location": "public/servicios/envios_express.webp"
+      },
+      {
+        "name": "envios_low_cost",
+        "description": "Un repartidor vistiendo chaqueta negra y casco conduce una motocicleta azul que tiene la inscripción 'ENVIOS LOW COST' en el lateral. Lleva una mochila de reparto amarilla. El fondo es un entorno urbano difuminado con una superposición gráfica de una red de nodos y conexiones, sugiriendo logística y conectividad.",
+        "alt_text": "Repartidor en motocicleta azul con mochila amarilla y el texto 'ENVIOS LOW COST', sobre un fondo con un gráfico de red.",
+        "tags": [
+          "envios",
+          "low cost",
+          "delivery",
+          "motocicleta",
+          "repartidor",
+          "logística",
+          "transporte",
+          "mochila amarilla",
+          "red",
+          "conectividad"
+        ],
+        "source": "public/servicios/envios_low_cost.webp",
+        "location": "public/servicios/envios_low_cost.webp"
+      },
+      {
+        "name": "enviosexpress",
+        "description": "Un repartidor con casco y chaqueta oscura conduce una motocicleta azul. En la parte trasera lleva una caja de reparto grande y amarilla con el logo 'E ENVIOS EXPRESS'. La imagen tiene superpuestas líneas abstractas azules y amarillas que sugieren movimiento y velocidad. En la parte superior, sobre un fondo gris, se lee el texto 'Envíos Express' en blanco.",
+        "alt_text": "Repartidor en moto con caja amarilla de 'ENVIOS EXPRESS' y líneas de velocidad azules y amarillas.",
+        "tags": [
+          "envios",
+          "express",
+          "delivery",
+          "motocicleta",
+          "repartidor",
+          "caja amarilla",
+          "logística",
+          "velocidad",
+          "transporte"
+        ],
+        "source": "public/servicios/enviosexpress.webp",
+        "location": "public/servicios/enviosexpress.webp"
+      },
+      {
+        "name": "moto_fija",
+        "description": "Vista trasera de una motocicleta de reparto azul y amarilla, estacionada en una calle de la ciudad por la noche. Tiene una gran caja de entrega azul en la parte trasera con el texto 'Moto Fija' impreso en blanco. El fondo está desenfocado, mostrando las luces de la ciudad (efecto bokeh). El texto 'Moto Fija' también aparece superpuesto en la esquina superior izquierda.",
+        "alt_text": "Motocicleta de reparto 'Moto Fija' estacionada en la ciudad de noche, con la caja de entrega azul.",
+        "tags": [
+          "moto fija",
+          "delivery",
+          "reparto",
+          "motocicleta",
+          "noche",
+          "ciudad",
+          "urbano",
+          "logística",
+          "transporte",
+          "bokeh"
+        ],
+        "source": "public/servicios/moto_fija.webp",
+        "location": "public/servicios/moto_fija.webp"
+      },
+      {
+        "name": "moto-cta",
+        "description": "Un repartidor sentado en su motocicleta, mirando de frente a la cámara. Viste un casco azul con gafas amarillas, una chaqueta azul y una mochila de reparto azul a la espalda. La moto es azul y amarilla y tiene el faro encendido. El fondo es una escena urbana nocturna con estelas de luz del tráfico.",
+        "alt_text": "Repartidor en motocicleta azul y amarilla de noche, mirando a la cámara, con una mochila de reparto azul.",
+        "tags": [
+          "repartidor",
+          "delivery",
+          "motocicleta",
+          "noche",
+          "urbano",
+          "ciudad",
+          "casco",
+          "transporte",
+          "logística",
+          "cta"
+        ],
+        "source": "public/servicios/moto-cta.webp",
+        "location": "public/servicios/moto-cta.webp"
+      },
+      {
+        "name": "repartidor",
+        "description": "Vista de perfil de un repartidor conduciendo una motocicleta azul y amarilla. El conductor lleva casco y ropa oscura. En la parte trasera de la moto hay una caja de reparto amarilla con el texto 'ENVIOS EXPRESS' en azul. La moto está en movimiento sobre asfalto, con un fondo degradado y minimalista de color azul.",
+        "alt_text": "Repartidor en motocicleta azul con caja amarilla de 'ENVIOS EXPRESS' sobre un fondo azul degradado.",
+        "tags": [
+          "repartidor",
+          "envios",
+          "express",
+          "motocicleta",
+          "delivery",
+          "transporte",
+          "caja amarilla",
+          "logística",
+          "movimiento",
+          "perfil"
+        ],
+        "source": "public/servicios/repartidor.webp",
+        "location": "public/servicios/repartidor.webp"
+      },
+      {
+        "name": "card1",
+        "description": "Una imagen digital sobre un fondo azul que muestra una gran flecha blanca apuntando hacia arriba y a la derecha. La flecha tiene un patrón de líneas similar a un circuito tecnológico. Detrás de la flecha principal, hay un gráfico de barras y otra línea de tendencia, ambos indicando crecimiento.",
+        "alt_text": "Gráfico de crecimiento digital con una flecha blanca ascendente sobre fondo azul.",
+        "tags": [
+          "crecimiento",
+          "tecnología",
+          "flecha",
+          "gráfico",
+          "digital",
+          "progreso",
+          "datos",
+          "finanzas",
+          "éxito",
+          "tendencia",
+          "azul"
+        ],
+        "source": "public/cards/card1.webp",
+        "location": "public/cards/card1.webp"
+      },
+      {
+        "name": "card2",
+        "description": "Ilustración vectorial de un repartidor con casco conduciendo una scooter blanca con una caja de entrega en la parte trasera. El fondo es un degradado de naranja a amarillo y presenta gráficos de líneas abstractas que sugieren datos, gráficos y un pin de ubicación, relacionados con la logística y el seguimiento.",
+        "alt_text": "Ilustración de un repartidor en scooter blanca sobre un fondo naranja con gráficos de logística.",
+        "tags": [
+          "delivery",
+          "repartidor",
+          "scooter",
+          "ilustración",
+          "vector",
+          "logística",
+          "seguimiento",
+          "envío",
+          "naranja",
+          "gráfico"
+        ],
+        "source": "public/cards/card2.webp",
+        "location": "public/cards/card2.webp"
+      },
+      {
+        "name": "card3",
+        "description": "Ilustración de arte lineal (line art) que muestra a un repartidor en una scooter sobre un fondo degradado de verde a azul. La imagen está rodeada de iconos relacionados con la logística, como un reloj, un satélite, pines de ubicación, flechas de crecimiento y rutas punteadas.",
+        "alt_text": "Icono de repartidor en scooter con símbolos de logística y seguimiento sobre fondo verde y azul.",
+        "tags": [
+          "delivery",
+          "repartidor",
+          "scooter",
+          "logística",
+          "seguimiento",
+          "GPS",
+          "icono",
+          "line art",
+          "tecnología",
+          "envío",
+          "ruta",
+          "verde",
+          "azul"
+        ],
+        "source": "public/cards/card3.webp",
+        "location": "public/cards/card3.webp"
+      },
+      {
+        "name": "Emprendedoresbanner",
+        "description": "Banner publicitario con un fondo de color teal. En el lado izquierdo, muestra el texto 'SERVICIOS EMPRENDEDORES CONSULTA'. En el centro, hay ilustraciones de una scooter naranja, pilas de cajas de cartón y dos pines de ubicación naranjas. En la esquina superior derecha, se encuentra el logo de 'Envios DosRuedas Mensajería y Delivery' con un número de teléfono. A la derecha, se ven las manos de una persona escribiendo en un cuaderno junto a un smartphone que muestra gráficos de negocios.",
+        "alt_text": "Banner de 'Envios DosRuedas' publicitando 'Servicios Emprendedores' con ilustraciones de una scooter y cajas.",
+        "tags": [
+          "banner",
+          "publicidad",
+          "emprendedores",
+          "servicios",
+          "envios",
+          "delivery",
+          "mensajería",
+          "logística",
+          "scooter",
+          "cajas",
+          "negocios",
+          "gráficos"
+        ],
+        "source": "public/Emprendedoresbanner.webp",
+        "location": "public/Emprendedoresbanner.webp"
+      },
+      {
+        "name": "Emprendedoresbannerrapidas",
+        "description": "Banner publicitario 3D sobre un fondo azul oscuro. Muestra el texto 'Entregas Rapidas Mar del Plata' y 'Servicio para Emprendedores'. La imagen central es una scooter celeste sobre la pantalla de un smartphone gigante, rodeada de cajas de cartón flotantes e iconos de ubicación. En la parte inferior se encuentra el logo y contacto de 'Envios DosRuedas Mensajería y Delivery'.",
+        "alt_text": "Banner de 'Envios DosRuedas' para 'Entregas Rapidas' en Mar del Plata, con una scooter 3D sobre un smartphone.",
+        "tags": [
+          "banner",
+          "publicidad",
+          "3D",
+          "entregas rapidas",
+          "emprendedores",
+          "Mar del Plata",
+          "envios",
+  
+          "delivery",
+          "mensajería",
+          "logística",
+          "scooter",
+          "smartphone",
+          "cajas",
+          "azul"
+        ],
+        "source": "public/Emprendedoresbannerrapidas.webp",
+        "location": "public/Emprendedoresbannerrapidas.webp"
+      },
+      {
+        "name": "Emprendedoresbannerrapidas2",
+        "description": "Banner publicitario 3D con un fondo azul oscuro. Muestra un repartidor de dibujos animados en una scooter celeste con una caja de entrega. El texto principal dice 'Servicios Entregas Rapidas Mar del Plata' y un subtítulo 'Pedidos de ultimo momento, tu solo encargate de las ventas'. Hay iconos flotantes como un corazón de 'me gusta' y un icono de casa. En la parte inferior se incluye el logo y contacto de 'Envios DosRuedas Mensajería y Delivery'.",
+        "alt_text": "Banner 3D de 'Envios DosRuedas' con un repartidor en scooter promocionando 'Entregas Rápidas' en Mar del Plata.",
+        "tags": [
+          "banner",
+          "publicidad",
+          "3D",
+          "entregas rapidas",
+          "emprendedores",
+          "Mar del Plata",
+          "envios",
+          "delivery",
+          "mensajería",
+          "logística",
+          "repartidor",
+          "scooter",
+          "azul",
+          "dibujos animados"
+        ],
+        "source": "public/Emprendedoresbannerrapidas2.webp",
+        "location": "public/Emprendedoresbannerrapidas2.webp"
+      },
+      {
+        "name": "Emprendedoresbannerrapidas3",
+        "description": "Banner publicitario con fondo azul y silueta de ciudad. El texto principal dice 'TU VENDES NOSOTROS LO LLEVAMOS'. Muestra un carrito de compras miniatura lleno de cajas con íconos de carrito, y en la esquina derecha, cajas de regalo. En la parte derecha se lee 'NUESTROS SERVICIOS SERVICIO EMPRENDEDORES' y se muestra el logo de 'Envios DosRuedas'.",
+        "alt_text": "Banner de 'Envios DosRuedas' para 'Servicio Emprendedores' con un carrito de compras y el lema 'Tu Vendes Nosotros Lo Llevamos'.",
+        "tags": [
+          "banner",
+          "publicidad",
+          "emprendedores",
+          "servicio",
+          "envios",
+          "delivery",
+          "mensajería",
+          "tu vendes",
+          "carrito de compras",
+          "cajas",
+          "logística",
+          "azul",
+          "negocios"
+        ],
+        "source": "public/Emprendedoresbannerrapidas3.webp",
+        "location": "public/Emprendedoresbannerrapidas3.webp"
+      }
+    ]
+  }

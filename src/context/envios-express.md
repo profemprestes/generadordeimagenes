@@ -1,0 +1,19 @@
+**Servicio: Envíos Express**
+
+**Enfoque Principal:**
+Este servicio está diseñado para situaciones donde la velocidad es la máxima prioridad. El objetivo es proporcionar entregas urgentes y garantizadas en el mismo día dentro de Mar del Plata.
+
+**Características Clave:**
+1.  **Velocidad Máxima:** Es el servicio más rápido. Las entregas se priorizan sobre todas las demás.
+2.  **Garantía Mismo Día:** Los pedidos realizados antes de las 15:00 se entregan el mismo día.
+3.  **Flexibilidad Horaria:** El cliente puede elegir un rango horario específico para la entrega, lo que lo hace ideal para situaciones con ventanas de tiempo limitadas.
+4.  **Seguimiento en Tiempo Real:** Permite monitorear el envío en vivo desde la recolección hasta la entrega.
+5.  **Soporte Prioritario:** Ofrece una línea de atención directa y con respuesta inmediata para los clientes de este servicio.
+
+**Casos de Uso Ideales:**
+*   **Documentos Urgentes:** Contratos, documentos legales, certificados que no pueden esperar.
+*   **Emergencias Médicas:** Medicamentos, resultados de laboratorio, suministros de salud.
+*   **Negocios Críticos:** Repuestos, muestras comerciales, productos que necesitan llegar rápido para no interrumpir operaciones.
+*   **Ocasiones Especiales:** Regalos, desayunos, sorpresas que deben llegar en un horario específico.
+
+**En resumen, el servicio Express es la solución premium para envíos urgentes, enfocada en la rapidez, la puntualidad y la garantía de entrega en plazos acotados.**

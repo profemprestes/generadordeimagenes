@@ -1,0 +1,1616 @@
+[
+  {
+    "page_path": "src/app/admin/clientes/[id]/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/clientes/EditClientForm.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/clientes/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/clientes/ClientsTable.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/admin/clientes/CreateClientForm.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/clientes/portal/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/clientes/portal/ClientPortal.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/clientes/portal/ClientEtiquetasTable.tsx",
+            "components": [
+              {
+                "component_path": "src/components/admin/etiquetas/EtiquetasTable.tsx",
+                "components": []
+              }
+            ]
+          },
+          {
+            "component_path": "src/components/admin/clientes/portal/ClientPortalSearchForm.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/admin/clientes/portal/ClientProfileCard.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/cotizaciones/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/cotizaciones/EditablePriceTable.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crea-imagenes/generales/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/ImagePromptGenerator.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crea-imagenes/hero/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/hero/HeroPromptGenerator.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crea-imagenes/optimas/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/OptimalImagePromptGenerator.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crea-imagenes/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crea-imagenes/servicios/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/ServiceImagePromptGenerator.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crea-imagenes/ui-optimizer/componentes/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/ComponentOptimizerClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crea-imagenes/ui-optimizer/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/UiOptimizerClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crear-base-de-datos/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crear-base-de-datos/DatabasePromptGenerator.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/crear-proyecto-nuevo/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/admin/crear-proyecto-nuevo/ProjectPromptGenerator.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/etiquetas/[id]/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/etiquetas/EtiquetaClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/etiquetas/EtiquetaForm.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/admin/etiquetas/EtiquetaPrintLayout.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/ordenes/ClientRegistrationForm.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/ordenes/ClientSearchForm.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/etiquetas/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/etiquetas/EtiquetasClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/etiquetas/EtiquetaPrintLayout.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/admin/etiquetas/EtiquetasTable.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/admin/etiquetas/EtiquetasToolbar.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/homenew/footer.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/layout/AdminHeader.tsx",
+            "components": [
+              {
+                "component_path": "src/components/admin/LogoutButton.tsx",
+                "components": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/login/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/LoginClientForm.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/ordenes/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/ordenes/OrdenesTable.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/AdminDashboard.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/project-structure/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/admin/project-structure/ProjectStructureExplorer.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/admin/repartidores/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/repartidores/RepartidoresClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/repartidores/RepartidorForm.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/admin/repartidores/RepartidoresTable.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/homenew/footer.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/layout/AdminHeader.tsx",
+            "components": [
+              {
+                "component_path": "src/components/admin/LogoutButton.tsx",
+                "components": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/comenzar/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/comenzar/ProjectReplicator.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/crea-imagenes/ui-optimizer/FileSelector.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/layout/AdminHeader.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/LogoutButton.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/contacto/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/contact/business-hours.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/contact/contact-form.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/contact/contact-hero.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/contact/contact-info.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/contact/contact-map.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/cotizar/express/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/cotizar-express/caracteristicas-mapa.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-express/consejos-cotizacion.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-express/contacto-cotizador.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-express/cotizador-wrapper.tsx",
+        "components": [
+          {
+            "component_path": "src/components/cotizar-express/cotizador-express.tsx",
+            "components": [
+              {
+                "component_path": "src/components/cotizar-express/mapa-ruta.tsx",
+                "components": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/cotizar-express/hero-cotizador.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-express/informacion-precios.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/cotizar/lowcost/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/cotizar-lowcost/calculadora-cotizador-wrapper.tsx",
+        "components": [
+          {
+            "component_path": "src/components/cotizar-lowcost/calculadora-cotizador.tsx",
+            "components": [
+              {
+                "component_path": "src/components/cotizar-express/mapa-ruta.tsx",
+                "components": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/cotizar-lowcost/caracteristicas-mapa.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-lowcost/consejos-cotizar.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-lowcost/contacto-casos-especiales.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-lowcost/hero-cotizador.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/cotizar-lowcost/informacion-precios.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/generacion/page.tsx",
+    "components": []
+  },
+  {
+    "page_path": "src/app/nosotros/nuestras-redes/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/nuestras-redes/beneficios-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/nuestras-redes/conexion-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/nuestras-redes/feed-publicaciones.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/nuestras-redes/hero-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/nuestras-redes/suscripcion-newsletter.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/nosotros/preguntas-frecuentes/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/preguntas-frecuentes/faq-categories.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/preguntas-frecuentes/faq-contact-cta.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/preguntas-frecuentes/faq-hero.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/nosotros/sobre-nosotros/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/sobre-nosotros/hero-nosotros.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/sobre-nosotros/historia-empresa.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/sobre-nosotros/mision-vision.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/sobre-nosotros/seccion-equipo.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/sobre-nosotros/seccion-quienes-somos.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/sobre-nosotros/valores-empresa.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/ordenes/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/ordenes/generar-envio-form-wrapper.tsx",
+        "components": [
+          {
+            "component_path": "src/components/ordenes/GenerarEnvioForm.tsx",
+            "components": [
+              {
+                "component_path": "src/components/ordenes/ClientRegistrationForm.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/ordenes/ClientSearchForm.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/ordenes/ShipmentCreationForm.tsx",
+                "components": [
+                  {
+                    "component_path": "src/components/calculator/route-map.tsx",
+                    "components": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/cta-section.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/emprendedores-home.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/hero-animado.tsx",
+        "components": [
+          {
+            "component_path": "src/components/homenew/rotating-card.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/services-overview.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/slider-servicios.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/vision-section.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/politica-de-privacidad/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/[id]/asignar/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/RepartidorAsignarDashboard.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/AssignEtiqueta.tsx",
+            "components": [
+              {
+                "component_path": "src/components/repartidor/BarcodeScanner.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/repartidor/EtiquetaSelector.tsx",
+                "components": []
+              }
+            ]
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+            "components": [
+              {
+                "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/repartidor/dashboard/Header.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+                "components": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/[id]/mapas/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Header.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/repartidor/mapa/RepartoMapClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/mapa/EtiquetaMapList.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/[id]/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/dashboard/DailyProgress.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/repartidor/dashboard/QuickActions.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/repartidor/dashboard/RecentActivity.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Header.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/repartidor/dashboard/WeatherWidget.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/[id]/perfil/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Header.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/repartidor/profile/ProfilePage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/profile/Achievements.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/profile/PerformanceChart.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/profile/ProfileForm.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/[id]/repartos/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Header.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/repartidor/repartos/RepartosClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/repartos/RepartosTable.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/[id]/ruta/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/RepartidorRutaDashboard.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/HojaDeRutaRepartidor.tsx",
+            "components": [
+              {
+                "component_path": "src/components/repartidor/ruta/DesktopEtiquetasTable.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/repartidor/ruta/MobileEtiquetaCard.tsx",
+                "components": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Header.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/entrega/[etiquetaId]/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Header.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/repartidor/entrega/SignatureForm.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/mapa/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Header.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/repartidor/mapa/RepartoMapClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/mapa/EtiquetaMapList.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/no-entregada/[etiquetaId]/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/no-entregada/NoEntregadaClientPage.tsx",
+        "components": [
+          {
+            "component_path": "src/components/repartidor/dashboard/RepartidorDashboardLayout.tsx",
+            "components": [
+              {
+                "component_path": "src/components/repartidor/dashboard/BottomNav.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/repartidor/dashboard/Header.tsx",
+                "components": []
+              },
+              {
+                "component_path": "src/components/repartidor/dashboard/Sidebar.tsx",
+                "components": []
+              }
+            ]
+          },
+          {
+            "component_path": "src/components/repartidor/no-entregada/NoEntregadaForm.tsx",
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/repartidor/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/repartidor/RepartidorSelection.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/seguimiento/[id]/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/tracking/driver-info.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/tracking/interactive-tracking-map.tsx",
+        "components": [
+          {
+            "component_path": "src/components/tracking/route-tracker.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/tracking/order-details.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/tracking/order-status.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/tracking/proof-of-delivery.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/tracking/updates-timeline.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/seguimiento/destinatarios/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/client/destinatarios/DestinatariosPage.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/tracking/PortalHeader.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/seguimiento/etiqueta/[id]/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/tracking/PortalHeader.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/seguimiento/etiquetaslote/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/client/etiquetaslote/BatchEtiquetasPage.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/tracking/PortalHeader.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/seguimiento/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/client/ClientPortal.tsx",
+        "components": [
+          {
+            "component_path": "src/components/admin/clientes/portal/ClientEtiquetasTable.tsx",
+            "components": [
+              {
+                "component_path": "src/components/admin/etiquetas/EtiquetasTable.tsx",
+                "components": []
+              }
+            ]
+          },
+          {
+            "component_path": "src/components/admin/etiquetas/EtiquetaPrintLayout.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/admin/etiquetas/EtiquetasToolbar.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/tracking/PortalHeader.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/tracking/PortalHeader.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/seguimiento/perfil/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/client/perfil/EditProfileForm.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/tracking/PortalHeader.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/servicios/delivery-gastronomico/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/delivery-gastronomico/beneficios-gastronomico.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/delivery-gastronomico/cta-gastronomico.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/delivery-gastronomico/diferencia-gastronomico.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/delivery-gastronomico/faq-gastronomico.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/delivery-gastronomico/hero-gastronomico.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/delivery-gastronomico/mision-gastronomico.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/servicios/envios-express/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/express/express-page-client.tsx",
+        "components": [
+          {
+            "component_path": "src/components/express/express-benefits.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/express/express-content.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/express/express-cta.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/express/express-pricing-ranges.tsx",
+            "components": []
+          },
+          {
+            "component_path": "src/components/express/urgent-scenarios.tsx",
+            "components": []
+          }
+        ]
+      },
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/servicios/envios-lowcost/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/envios-lowcost/beneficios-lowcost.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/envios-lowcost/como-funciona-lowcost.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/envios-lowcost/comparativa-precios.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/envios-lowcost/contenido-lowcost.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/envios-lowcost/cta-lowcost.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/envios-lowcost/hero-lowcost.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/servicios/enviosflex/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/mercado-libre-flex/beneficios-mercadolibre.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/mercado-libre-flex/como-funciona.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/mercado-libre-flex/contenido-envios-flex.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/mercado-libre-flex/cta-envios-flex.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/mercado-libre-flex/hero-envios-flex.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/mercado-libre-flex/requisitos.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/mercado-libre-flex/tarifas-flex.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/servicios/moto-fija/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/moto-fija/ideal-clients.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/moto-fija/moto-fija-content.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/moto-fija/moto-fija-cta.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/moto-fija/moto-fija-hero.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/moto-fija/pricing-plans.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/moto-fija/service-features.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/servicios/plan-emprendedores/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/plan-emprendedores/beneficios-emprendedor.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/plan-emprendedores/cta-emprendedor.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/plan-emprendedores/hero-emprendedor.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/plan-emprendedores/informacion-plan.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/plan-emprendedores/tarifas-emprendedor.tsx",
+        "components": []
+      }
+    ]
+  },
+  {
+    "page_path": "src/app/terminos-y-condiciones/page.tsx",
+    "components": [
+      {
+        "component_path": "src/components/homenew/carrusel-redes.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/footer.tsx",
+        "components": []
+      },
+      {
+        "component_path": "src/components/homenew/optimized-header.tsx",
+        "components": []
+      }
+    ]
+  }
+]

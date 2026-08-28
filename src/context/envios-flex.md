@@ -1,0 +1,22 @@
+**Servicio: Envíos Flex para MercadoLibre**
+
+**Enfoque Principal:**
+Este es un servicio especializado y diseñado exclusivamente para vendedores de MercadoLibre. El objetivo es ayudar a los vendedores a cumplir con los exigentes requisitos de "Mercado Envíos Flex", potenciar sus ventas y mejorar su reputación en la plataforma.
+
+**Modelo de Servicio:**
+Se integra directamente con la operatoria de MercadoLibre del vendedor. "Envios DosRuedas" actúa como el socio logístico que realiza las entregas rápidas que la plataforma exige para destacar las publicaciones.
+
+**Características Clave:**
+1.  **Entregas Rápidas Garantizadas:** Se cumplen los plazos de Envios Flex: entrega en el mismo día para ventas realizadas antes de las 15hs y al día siguiente para el resto.
+2.  **Mejora de Reputación:** Al cumplir con las entregas rápidas, la reputación del vendedor en MercadoLibre mejora, lo que se traduce en más visibilidad y confianza.
+3.  **Aumento de Ventas:** Los compradores en MercadoLibre prefieren y filtran por vendedores que ofrecen "Llega hoy", lo que aumenta directamente las oportunidades de venta.
+4.  **Integración Sencilla:** El servicio se adapta al flujo de trabajo del vendedor en MercadoLibre, simplificando la logística.
+5.  **Tarifas Competitivas:** Utiliza la estructura de precios de "Low Cost" para que los vendedores puedan ofrecer envíos rápidos sin sacrificar su margen de ganancia.
+6.  **Cobertura Amplia:** Cubre las zonas habilitadas para Envios Flex en Mar del Plata.
+
+**Requisitos para Vendedores:**
+*   Ser vendedor activo en MercadoLibre.
+*   Tener reputación Amarilla o superior.
+*   Tener los productos ubicados en Mar del Plata.
+
+**En resumen, el servicio de Envíos Flex es una herramienta estratégica para vendedores de MercadoLibre que buscan ser más competitivos, mejorar su reputación y aumentar sus ventas ofreciendo las entregas rápidas que los compradores demandan.**
