@@ -3,10 +3,9 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { View, Copy, Check, FileCode, Wand2 } from "lucide-react";
+import { Copy, Check, FileCode, Wand2, Sparkles, Layers } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { PageStructure } from "@/components/admin/crea-imagenes/ui-optimizer/FileSelector";
 
@@ -66,88 +65,99 @@ En resumen: toma el contenido de \`${finalTargetHeroPath}\` y aplícalo a un nue
   };
 
   return (
-    <>
-      <Card className="max-w-4xl mx-auto mb-8 bg-background shadow-lg">
-        <CardHeader className="text-center">
-          <div className="flex items-center justify-center gap-3">
-            <View className="w-7 h-7 text-primary" />
-            <CardTitle className="text-2xl sm:text-3xl font-bold text-primary">
-              Generador de Prompts para Refactorizar "Heros"
-            </CardTitle>
-          </div>
+    <div className="space-y-8 max-w-4xl mx-auto">
+      <Card className="shadow-lg border-border/80 rounded-2xl overflow-hidden">
+        <CardHeader className="border-b border-border/40 bg-muted/10">
+          <CardTitle className="flex items-center gap-2.5 text-lg font-bold text-foreground">
+            <FileCode className="w-5 h-5 text-primary" />
+            Paso 1: Seleccionar Páginas
+          </CardTitle>
           <CardDescription>
-            Selecciona las páginas para generar un prompt estandarizado y solicitar la refactorización a la IA.
+            Elige la página que contiene el Hero que quieres cambiar y la página que servirá como modelo visual de referencia.
           </CardDescription>
         </CardHeader>
-      </Card>
-
-      <Card className="max-w-4xl mx-auto shadow-lg">
-        <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-xl font-bold text-primary">
-                <FileCode className="w-6 h-6" />
-                Paso 1: Seleccionar Páginas
-            </CardTitle>
-            <CardDescription>
-                Elige la página que contiene el Hero que quieres cambiar y la página que servirá como modelo visual.
-            </CardDescription>
-        </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-                <label className="text-sm font-medium">Página a Modificar</label>
-                <Select onValueChange={setTargetPagePath} value={targetPagePath}>
-                    <SelectTrigger><SelectValue placeholder="Elige la página objetivo..." /></SelectTrigger>
-                    <SelectContent>
-                        {projectStructure.map(page => (
-                            <SelectItem key={page.page_path} value={page.page_path}>{page.page_path.replace('src/app/', '').replace('/page.tsx', '')}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
-            <div className="space-y-2">
-                <label className="text-sm font-medium">Página de Referencia (Modelo)</label>
-                <Select onValueChange={setReferencePagePath} value={referencePagePath}>
-                    <SelectTrigger><SelectValue placeholder="Elige la página de referencia..." /></SelectTrigger>
-                    <SelectContent>
-                        {projectStructure.map(page => (
-                            <SelectItem key={page.page_path} value={page.page_path}>{page.page_path.replace('src/app/', '').replace('/page.tsx', '')}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
+        <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-foreground">Página a Modificar (Objetivo)</label>
+            <Select onValueChange={setTargetPagePath} value={targetPagePath}>
+              <SelectTrigger className="rounded-xl">
+                <SelectValue placeholder="Elige la página objetivo..." />
+              </SelectTrigger>
+              <SelectContent>
+                {projectStructure.map(page => (
+                  <SelectItem key={page.page_path} value={page.page_path}>
+                    {page.page_path.replace('src/app/', '').replace('/page.tsx', '')}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-foreground">Página de Referencia (Modelo)</label>
+            <Select onValueChange={setReferencePagePath} value={referencePagePath}>
+              <SelectTrigger className="rounded-xl">
+                <SelectValue placeholder="Elige la página de referencia..." />
+              </SelectTrigger>
+              <SelectContent>
+                {projectStructure.map(page => (
+                  <SelectItem key={page.page_path} value={page.page_path}>
+                    {page.page_path.replace('src/app/', '').replace('/page.tsx', '')}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </CardContent>
-         <CardFooter>
-            <p className="text-xs text-muted-foreground">Solo se muestran las páginas que contienen un componente 'Hero' en su estructura.</p>
+        <CardFooter className="py-3 px-6 bg-muted/20 border-t border-border/40">
+          <p className="text-xs text-muted-foreground">
+            Solo se listan páginas que contienen una sección 'Hero' identificada en el proyecto.
+          </p>
         </CardFooter>
       </Card>
 
-      <Card className="max-w-4xl mx-auto shadow-lg mt-8">
-        <CardHeader>
-             <CardTitle className="flex items-center gap-3 text-xl font-bold text-primary"><Wand2 className="w-6 h-6"/> Paso 2: Copiar Prompt Generado</CardTitle>
-             <CardDescription>
-                Este es el prompt que debes pegar en el chat para solicitar la modificación.
-            </CardDescription>
+      <Card className="shadow-xl border-border/80 rounded-2xl overflow-hidden">
+        <CardHeader className="border-b border-border/40 bg-muted/10">
+          <CardTitle className="flex items-center gap-2.5 text-lg font-bold text-foreground">
+            <Wand2 className="w-5 h-5 text-primary" />
+            Paso 2: Prompt Generado para IA
+          </CardTitle>
+          <CardDescription>
+            Copia este prompt detallado y pégalo en tu asistente o IDE para ejecutar la refactorización.
+          </CardDescription>
         </CardHeader>
-        <CardContent>
-            <div className="relative">
-                <Textarea
-                    readOnly
-                    value={promptTemplate}
-                    className="h-96 font-mono text-xs bg-muted/50"
-                    aria-label="Prompt generado"
-                />
-                <Button
-                    size="sm"
-                    variant="secondary"
-                    className="absolute top-3 right-3"
-                    onClick={handleCopy}
-                    aria-label="Copiar prompt"
-                >
-                    {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                    <span className="ml-2 hidden sm:inline">Copiar</span>
-                </Button>
+        <CardContent className="p-6">
+          <div className="w-full rounded-xl border border-primary/20 bg-slate-950 text-slate-100 overflow-hidden shadow-xl">
+            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-amber-400" />
+                <span className="text-xs font-semibold text-slate-200 tracking-wide uppercase">Prompt de Refactor</span>
+              </div>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="h-8 gap-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700"
+                onClick={handleCopy}
+                type="button"
+              >
+                {copied ? (
+                  <>
+                    <Check className="h-3.5 w-3.5 text-emerald-400" />
+                    <span className="text-emerald-400">Copiado</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-3.5 w-3.5" />
+                    <span>Copiar Prompt</span>
+                  </>
+                )}
+              </Button>
             </div>
+            <div className="p-4 font-mono text-xs text-slate-300 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto select-all">
+              {promptTemplate}
+            </div>
+          </div>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }
