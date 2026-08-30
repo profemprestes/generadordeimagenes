@@ -23,6 +23,7 @@ interface StandaloneImageGeneratorProps {
 export function StandaloneImageGenerator({ initialPrompt = '' }: StandaloneImageGeneratorProps) {
   const [prompt, setPrompt] = useState(initialPrompt);
   const [aspectRatio, setAspectRatio] = useState<AspectRatio>(DEFAULT_ASPECT_RATIO);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   return (
     <Card>
@@ -43,13 +44,14 @@ export function StandaloneImageGenerator({ initialPrompt = '' }: StandaloneImage
             maxLength={4000}
             placeholder="Cinematic photo of a friendly courier on a blue and yellow motorbike riding along the Mar del Plata seaside..."
             className="font-mono text-sm"
+            disabled={isGenerating}
           />
-          <p className="text-xs text-muted-foreground text-right">{prompt.length}/4000</p>
+          <p className={`text-xs text-right ${isGenerating ? 'text-muted-foreground/50' : 'text-muted-foreground'}`}>{prompt.length}/4000</p>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="standalone-aspect-ratio">Relación de aspecto</Label>
-          <Select value={aspectRatio} onValueChange={(value) => setAspectRatio(value as AspectRatio)}>
+          <Select value={aspectRatio} onValueChange={(value) => setAspectRatio(value as AspectRatio)} disabled={isGenerating}>
             <SelectTrigger id="standalone-aspect-ratio" className="w-full sm:w-72">
               <SelectValue />
             </SelectTrigger>
@@ -63,7 +65,13 @@ export function StandaloneImageGenerator({ initialPrompt = '' }: StandaloneImage
           </Select>
         </div>
 
-        <ImageRenderer key={prompt} prompt={prompt} aspectRatio={aspectRatio} suggestedFileName="prompt-libre" />
+        <ImageRenderer
+          key={prompt}
+          prompt={prompt}
+          aspectRatio={aspectRatio}
+          suggestedFileName="prompt-libre"
+          onPendingChange={setIsGenerating}
+        />
       </CardContent>
     </Card>
   );

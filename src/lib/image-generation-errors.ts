@@ -13,7 +13,7 @@ export const IMAGE_MESSAGES = {
  */
 export function toUserFacingError(e: unknown): string {
   const raw = e instanceof Error ? e.message : e === undefined || e === null ? '' : String(e);
-  if (raw === IMAGE_MESSAGES.noImage) return raw;
+  if (raw.includes(IMAGE_MESSAGES.noImage)) return IMAGE_MESSAGES.noImage;
   if (/\b429\b|RESOURCE_EXHAUSTED|quota/i.test(raw)) return IMAGE_MESSAGES.quota;
   if (/API[_ ]key|GEMINI_API_KEY|\b401\b|\b403\b|PERMISSION_DENIED/i.test(raw)) return IMAGE_MESSAGES.apiKey;
   return `${IMAGE_MESSAGES.genericPrefix}${raw || 'Error desconocido.'}`;

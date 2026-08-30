@@ -6,6 +6,10 @@ describe('toUserFacingError', () => {
     expect(toUserFacingError(new Error(IMAGE_MESSAGES.noImage))).toBe(IMAGE_MESSAGES.noImage);
   });
 
+  it('detecta el mensaje de "no generó imagen" aunque venga envuelto', () => {
+    expect(toUserFacingError(new Error(`INTERNAL: ${IMAGE_MESSAGES.noImage}`))).toBe(IMAGE_MESSAGES.noImage);
+  });
+
   it('detecta cuota / rate limit', () => {
     expect(toUserFacingError(new Error('429 Too Many Requests'))).toBe(IMAGE_MESSAGES.quota);
     expect(toUserFacingError(new Error('RESOURCE_EXHAUSTED: quota exceeded'))).toBe(IMAGE_MESSAGES.quota);

@@ -16,7 +16,8 @@ interface GenerarImagenPageProps {
 
 export default async function GenerarImagenPage({ searchParams }: GenerarImagenPageProps) {
   const params = await searchParams;
-  const initialPrompt = Array.isArray(params.prompt) ? (params.prompt[0] ?? '') : (params.prompt ?? '');
+  const raw = Array.isArray(params.prompt) ? (params.prompt[0] ?? '') : (params.prompt ?? '');
+  const initialPrompt = raw.trim().slice(0, 4000);
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { IMAGE_MESSAGES } from '@/lib/image-generation-errors';
 
 vi.mock('@/ai/flows/generate-image', () => ({
@@ -14,6 +14,10 @@ describe('generateImageAction', () => {
   beforeEach(() => {
     generateImageMock.mockReset();
     vi.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('rechaza un prompt vacío sin llamar al flow', async () => {

@@ -28,19 +28,34 @@ function slugify(value: string): string {
   return slug || 'imagen';
 }
 
+function extensionForMimeType(mimeType: string): string {
+  switch (mimeType) {
+    case 'image/png':
+      return 'png';
+    case 'image/jpeg':
+      return 'jpg';
+    case 'image/webp':
+      return 'webp';
+    default:
+      return 'png';
+  }
+}
+
 interface GeneratedImage {
   dataUri: string;
   mimeType: string;
   fileName: string;
+  ratio: AspectRatio;
 }
 
 interface ImageRendererProps {
   prompt: string;
   aspectRatio?: string;
   suggestedFileName?: string;
+  onPendingChange?: (pending: boolean) => void;
 }
 
-export function ImageRenderer({ prompt, aspectRatio, suggestedFileName }: ImageRendererProps) {
+export function ImageRenderer({ prompt, aspectRatio, suggestedFileName, onPendingChange }: ImageRendererProps) {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [image, setImage] = useState<GeneratedImage | null>(null);
@@ -51,18 +66,24 @@ export function ImageRenderer({ prompt, aspectRatio, suggestedFileName }: ImageR
 
   const handleGenerate = () => {
     setError(null);
+    onPendingChange?.(true);
     startTransition(async () => {
-      const result = await generateImageAction({ prompt, aspectRatio: ratio });
-      if ('error' in result) {
-        setError(result.error);
-        toast({ title: 'No se pudo generar la imagen', description: result.error, variant: 'destructive' });
-        return;
+      try {
+        const result = await generateImageAction({ prompt, aspectRatio: ratio });
+        if ('error' in result) {
+          setError(result.error);
+          toast({ title: 'No se pudo generar la imagen', description: result.error, variant: 'destructive' });
+          return;
+        }
+        setImage({
+          dataUri: result.imageDataUri,
+          mimeType: result.mimeType,
+          ratio,
+          fileName: `envios-dosruedas-${slugify(suggestedFileName ?? 'imagen')}-${Date.now()}.${extensionForMimeType(result.mimeType)}`,
+        });
+      } finally {
+        onPendingChange?.(false);
       }
-      setImage({
-        dataUri: result.imageDataUri,
-        mimeType: result.mimeType,
-        fileName: `envios-dosruedas-${slugify(suggestedFileName ?? 'imagen')}-${Date.now()}.png`,
-      });
     });
   };
 
@@ -94,7 +115,7 @@ export function ImageRenderer({ prompt, aspectRatio, suggestedFileName }: ImageR
 
       {image && (
         <div className="rounded-xl border border-primary/20 overflow-hidden bg-muted shadow-xl">
-          <div className={`relative w-full ${ASPECT_CLASS[ratio]}`}>
+          <div className={`relative w-full ${ASPECT_CLASS[image.ratio]}`}>
             <Image
               src={image.dataUri}
               alt="Imagen generada con Nano Banana"
@@ -114,7 +135,7 @@ export function ImageRenderer({ prompt, aspectRatio, suggestedFileName }: ImageR
               {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
               <span>Regenerar</span>
             </Button>
-            <span className="text-xs text-muted-foreground ml-auto">{ratio} · {image.mimeType}</span>
+            <span className="text-xs text-muted-foreground ml-auto">{image.ratio} · {image.mimeType}</span>
           </div>
         </div>
       )}
