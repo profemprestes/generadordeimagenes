@@ -10,8 +10,8 @@ export async function getFileContentAction(filePath: string): Promise<{ success:
     }
 
     // Basic security check to prevent path traversal
-    const projectRoot = path.resolve(process.cwd());
-    const absolutePath = path.resolve(projectRoot, filePath);
+    const projectRoot = path.resolve(/*turbopackIgnore: true*/ process.cwd());
+    const absolutePath = path.resolve(/*turbopackIgnore: true*/ projectRoot, filePath);
 
     if (!absolutePath.startsWith(projectRoot)) {
         return { success: false, error: "Acceso no autorizado." };

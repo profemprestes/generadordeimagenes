@@ -33,7 +33,7 @@ export async function generateOptimalImagePrompt(input: z.infer<typeof GenerateO
   const flowInput = {
     ...input,
     aspectRatio,
-    company: companyProfile.company_profile,
+    company: companyProfile,
   };
 
   return generateOptimalImagePromptFlow(flowInput);
@@ -48,10 +48,10 @@ const promptTemplate = ai.definePrompt({
     Your task is to create a highly detailed, effective, and professional prompt in English based on the specific creative direction provided.
 
     **Brand Identity Context:**
-    - Company: {{company.identity.name}}, a logistics company from {{company.location_contact.primary_city}}, Argentina.
+    - Company: {{company.empresa.nombre_oficial}}, a logistics company from {{company.contacto_y_ubicacion.base_operativa.ciudad}}, Argentina.
     - Vibe: Professional, trustworthy, modern, and friendly.
-    - Location: The image must subtly evoke a coastal city like {{company.location_contact.primary_city}} (e.g., include "coastal roads", "sea in the background", specific architectural styles).
-    - Color Palette: The scene must prominently and naturally feature the brand's colors: a primary blue (like {{company.branding.colors.theme_primary.hex}}) and a secondary vibrant yellow/orange (like #FBBF24).
+    - Location: The image must subtly evoke a coastal city like {{company.contacto_y_ubicacion.base_operativa.ciudad}} (e.g., include "coastal roads", "sea in the background", specific architectural styles).
+    - Color Palette: The scene must prominently and naturally feature the brand's colors: a primary blue (like {{company.identidad_visual.colores.primary_brand}}) and a secondary vibrant yellow/orange (like {{company.identidad_visual.colores.conversion_accent}}).
 
     **Text & Branding Rules (Apply strictly):**
     {{#unless includeText}}
@@ -65,7 +65,7 @@ const promptTemplate = ai.definePrompt({
     {{/if}}
 
     {{#if includeBrand}}
-        **Brand Info Text:** Also include the brand name "{{company.identity.name}}" and phone "{{company.location_contact.phone}}" in a smaller, clean, sans-serif font, tastefully placed in a corner.
+        **Brand Info Text:** Also include the brand name "{{company.empresa.nombre_oficial}}" and phone "{{company.contacto_y_ubicacion.canales.telefono_whatsapp}}" in a smaller, clean, sans-serif font, tastefully placed in a corner.
     {{/if}}
 
     **Creative Direction for the Image:**

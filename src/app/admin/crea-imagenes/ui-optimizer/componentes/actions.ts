@@ -15,12 +15,12 @@ export async function getComponentFilesContentAction(paths: string[]): Promise<G
         return { success: false, error: "No se proporcionaron rutas de archivo." };
     }
 
-    const projectRoot = path.resolve(process.cwd());
+    const projectRoot = path.resolve(/*turbopackIgnore: true*/ process.cwd());
     const files: { path: string; content: string }[] = [];
     const errors: string[] = [];
 
     for (const relativePath of paths) {
-        const absolutePath = path.resolve(projectRoot, relativePath);
+        const absolutePath = path.resolve(/*turbopackIgnore: true*/ projectRoot, relativePath);
 
         // Security check
         if (!absolutePath.startsWith(projectRoot)) {
