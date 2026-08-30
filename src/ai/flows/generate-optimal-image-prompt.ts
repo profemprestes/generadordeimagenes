@@ -48,10 +48,10 @@ const promptTemplate = ai.definePrompt({
     Your task is to create a highly detailed, effective, and professional prompt in English based on the specific creative direction provided.
 
     **Brand Identity Context:**
-    - Company: {{company.empresa.nombre_oficial}}, a logistics company from {{company.contacto_y_ubicacion.base_operativa.ciudad}}, Argentina.
+    - Company: {{company.empresa.nombre_oficial}}, a logistics company from {{company.contacto_y_ubicacion.base_operativa.ciudad}}, Argentina. Base hub: {{company.contacto_y_ubicacion.base_operativa.direccion}}, {{company.contacto_y_ubicacion.base_operativa.barrio}}.
     - Vibe: Professional, trustworthy, modern, and friendly.
-    - Location: The image must subtly evoke a coastal city like {{company.contacto_y_ubicacion.base_operativa.ciudad}} (e.g., include "coastal roads", "sea in the background", specific architectural styles).
-    - Color Palette: The scene must prominently and naturally feature the brand's colors: a primary blue (like {{company.identidad_visual.colores.primary_brand}}) and a secondary vibrant yellow/orange (like {{company.identidad_visual.colores.conversion_accent}}).
+    - Location: The image must subtly evoke Mar del Plata landmarks (e.g., Chauvín, Güemes, Rambla, coastal roads, Friuli 1972 hub).
+    - Color Palette: Prominently feature the chromatic triad: Deep Cobalt (#0636A5), Lemon Yellow (#FFEC01), and Brand Ink (#00277C).
 
     **Text & Branding Rules (Apply strictly):**
     {{#unless includeText}}
@@ -84,7 +84,7 @@ const promptTemplate = ai.definePrompt({
     - Be specific: "a friendly male courier in his 20s wearing a branded helmet".
     - Use powerful adjectives: "dynamic", "serene", "professional", "vibrant".
     - Add quality enhancers: "hyper-detailed", "cinematic lighting", "sharp focus", "8k resolution".
-    - Seamlessly integrate the brand colors (blue and yellow/orange) into elements like vehicles, uniforms, or packages.
+    - Seamlessly integrate the brand colors (#0636A5 Deep Cobalt, #FFEC01 Lemon Yellow, #00277C Brand Ink) into elements like vehicles, uniforms, or packages.
 
     Generate the final, single-paragraph English prompt below.
   `,

@@ -7,10 +7,15 @@ export const enviosExpressContext = {
   anticipacion_minima: "2 horas",
   tarifas_2026: {
     base_hasta_3km: 3700,
-    rango_3_a_5km: 4600,
-    rango_5_a_7km: 6100,
-    rango_7_a_10km: 8200,
-    excedente_mas_10km: "1000 por km adicional (Math.ceil)"
+    excedente_km: 1000,
+    formula: "Math.ceil(distancia_km - 3) * 1000 + 3700",
+    zonas: {
+      z1_hasta_3km: 3700,
+      z2_3_a_5km: 5700,
+      z3_5_a_7km: 7700,
+      z4_7_a_10km: 10700,
+      z5_mas_10km: "Base $3.700 hasta 3km + $1.000/km excedente (Math.ceil)"
+    }
   },
   condiciones_adicionales: {
     bulto_excedente: "Mayor a 5kg o 40x40x30cm: adicional desde $1.800",

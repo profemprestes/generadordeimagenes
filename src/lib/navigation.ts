@@ -1,4 +1,3 @@
-
 import {
   Wand2,
   ImageIcon,
@@ -10,10 +9,9 @@ import {
   LayoutDashboard,
   Zap,
   DollarSign,
-  Bike,
-  Utensils,
   TrendingUp,
   ShoppingCart,
+  Box,
   type LucideIcon,
 } from "lucide-react";
 import type React from "react";
@@ -32,7 +30,7 @@ export interface NavGroup {
   basePath?: string;
 }
 
-// Services supported by the image generation suite
+// 5 Canonical Services supported by Envíos DosRuedas (2026)
 export const navGroups: NavGroup[] = [
   {
     label: "Servicios",
@@ -41,10 +39,9 @@ export const navGroups: NavGroup[] = [
     items: [
       { href: "/servicios", label: "Envíos Express", icon: Zap },
       { href: "/servicios", label: "Envíos LowCost", icon: DollarSign },
-      { href: "/servicios", label: "Moto Fija", icon: Bike },
-      { href: "/servicios", label: "Delivery Gastronómico", icon: Utensils },
+      { href: "/servicios", label: "Envíos Flex", icon: ShoppingCart },
       { href: "/servicios", label: "Plan Emprendedores", icon: TrendingUp },
-      { href: "/servicios", label: "Mercado Libre Flex", icon: ShoppingCart },
+      { href: "/servicios", label: "Fulfillment 3PL", icon: Box },
     ],
   },
 ];
@@ -109,4 +106,3 @@ export const toolsNavItems: ToolItem[] = [
     description: "Refactorización detallada de componentes específicos.",
   },
 ];
-

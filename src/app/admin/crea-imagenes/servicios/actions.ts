@@ -1,97 +1,169 @@
-// src/app/admin/crea-imagenes/servicios/actions.ts
+// src/app/admin/crea-imagenes/generales/actions.ts
 'use server';
 
 import { z } from 'zod';
-import { generateServiceImagePrompt } from '@/ai/flows/generate-service-image-prompt';
-import { suggestServiceImageDetails } from '@/ai/flows/suggest-service-image-details';
-import { getServiceContext } from '@/lib/context/get-service-context';
+import { generateImagePrompt } from '@/ai/flows/generate-image-prompt';
+import { suggestImageParams } from '@/ai/flows/suggest-image-params';
+import imageProfiles from '@/lib/imagenes.json';
+import { serviceContextMap, ServiceContextKey } from '@/lib/context/service-context-map';
+import { getServiceContextFromPath } from '@/lib/context/get-service-context';
 
-
-// Define the output type for suggestServiceImageDetailsAction within this file
-type SuggestServiceImageDetailsOutput = {
-    backgroundDetails: string;
-    contentDetails: string;
+const serviceNameToKeyMap: Record<string, ServiceContextKey> = {
+  "Envíos Express": "envios-express",
+  "Envíos LowCost": "envios-lowcost",
+  "Envíos Flex": "envios-flex",
+  "Plan Emprendedores": "plan-emprendedores",
+  "Fulfillment 3PL": "fulfillment-3pl",
+  "envios-express": "envios-express",
+  "envios-lowcost": "envios-lowcost",
+  "envios-flex": "envios-flex",
+  "plan-emprendedores": "plan-emprendedores",
+  "fulfillment-3pl": "fulfillment-3pl",
 };
-type GenerateServiceImagePromptInput = z.infer<typeof generateServiceImagePromptSchema>;
 
-
-// --- Action para obtener contexto de un servicio ---
-export async function getServiceContextAction(serviceName: string): Promise<{ success: boolean; context?: any; error?: string; }> {
-    try {
-        const context = getServiceContext(serviceName);
-        if (!context) {
-             return { success: false, error: `No se pudo cargar el contexto para ${serviceName}.` };
-        }
-        return { success: true, context };
-    } catch (e: unknown) {
-        console.error(`Error loading service context for ${serviceName}:`, e);
-        return { success: false, error: `No se pudo cargar el contexto para ${serviceName}.` };
-    }
-}
-
-// --- Action para sugerir detalles ---
-export async function suggestServiceImageDetailsAction(serviceContext: any): Promise<{ success: boolean; data?: SuggestServiceImageDetailsOutput; error?: string; }> {
-    try {
-        const result = await suggestServiceImageDetails({ serviceContext });
-        return { success: true, data: result };
-    } catch (e: unknown) {
-        console.error("Error suggesting image details:", e);
-        const errorMessage = e instanceof Error ? e.message : 'Error desconocido.';
-        return { success: false, error: `Hubo un error al obtener sugerencias de la IA: ${errorMessage}` };
-    }
-}
-
-
-// --- Action para generar el prompt final ---
-const generateServiceImagePromptSchema = z.object({
-  serviceName: z.string(),
-  serviceContext: z.string(),
+// Define types locally since they are not exported from 'use server' files.
+const GenerateImagePromptInputSchema = z.object({
   sectionType: z.string(),
-  visualStyle: z.string(),
-  backgroundDetails: z.string(),
-  contentDetails: z.string(),
-  includeText: z.boolean(),
-  includeBrand: z.boolean(),
+  serviceName: z.string(),
+  serviceContext: z.string().optional(),
+  aspectRatio: z.string(),
+  style: z.string(),
+  background: z.string().optional(),
+  additionalDetails: z.string().optional(),
+  inspirationImageName: z.string().optional(),
+  textToInclude: z.string().optional(),
+});
+export type GenerateImagePromptInput = z.infer<typeof GenerateImagePromptInputSchema>;
+
+const SuggestImageParamsOutputSchema = z.object({
+    sectionType: z.string(),
+    serviceName: z.string(),
+    aspectRatio: z.string(),
+    style: z.string(),
+    background: z.string(),
+    details: z.string(),
+});
+type SuggestImageParamsOutput = z.infer<typeof SuggestImageParamsOutputSchema>;
+
+// --- Action to generate the final prompt ---
+const generateImagePromptSchema = z.object({
+  sectionType: z.string().min(1, 'El tipo de sección es requerido.'),
+  service: z.string().min(1, 'El servicio es requerido.'),
+  serviceContext: z.string().optional(),
+  aspectRatio: z.string().min(1, 'La relación de aspecto es requerida.'),
+  style: z.string().min(1, 'El estilo visual es requerido.'),
+  background: z.string().optional(),
+  details: z.string().optional(),
+  inspirationImageName: z.string().optional(),
+  textToInclude: z.string().optional(),
 });
 
-export interface GenerateServiceImagePromptState {
+export interface GenerateImagePromptState {
   prompt?: string;
   error?: string;
 }
 
-export async function generateServiceImagePromptAction(
-  prevState: GenerateServiceImagePromptState,
+export async function generateImagePromptAction(
+  prevState: GenerateImagePromptState,
   formData: FormData
-): Promise<GenerateServiceImagePromptState> {
-    const rawData = {
-        serviceName: formData.get('serviceName'),
-        serviceContext: formData.get('serviceContext'),
-        sectionType: formData.get('sectionType'),
-        visualStyle: formData.get('visualStyle'),
-        backgroundDetails: formData.get('backgroundDetails'),
-        contentDetails: formData.get('contentDetails'),
-        includeText: formData.get('includeText') === 'true',
-        includeBrand: formData.get('includeBrand') === 'true',
-    };
-
-  const validatedFields = generateServiceImagePromptSchema.safeParse(rawData);
+): Promise<GenerateImagePromptState> {
+  const validatedFields = generateImagePromptSchema.safeParse({
+    sectionType: formData.get('sectionType'),
+    service: formData.get('service'),
+    serviceContext: formData.get('serviceContext'),
+    aspectRatio: formData.get('aspectRatio'),
+    style: formData.get('style'),
+    background: formData.get('background'),
+    details: formData.get('details'),
+    inspirationImageName: formData.get('inspirationImageName'),
+    textToInclude: formData.get('textToInclude'),
+  });
 
   if (!validatedFields.success) {
-    console.error(validatedFields.error);
     return {
       error: 'Por favor, completa todos los campos requeridos.',
     };
   }
 
   try {
-    const input: GenerateServiceImagePromptInput = validatedFields.data;
-    const result = await generateServiceImagePrompt(input);
+    const input: GenerateImagePromptInput = {
+      sectionType: validatedFields.data.sectionType,
+      serviceName: validatedFields.data.service,
+      serviceContext: validatedFields.data.serviceContext,
+      aspectRatio: validatedFields.data.aspectRatio,
+      style: validatedFields.data.style,
+      background: validatedFields.data.background,
+      additionalDetails: validatedFields.data.details || '',
+      inspirationImageName: validatedFields.data.inspirationImageName,
+      textToInclude: validatedFields.data.textToInclude,
+    };
+
+    const result = await generateImagePrompt(input);
+
     return { prompt: result.prompt };
   } catch (e: unknown) {
-    console.error("Error generating service image prompt:", e);
+    console.error("Error generating image prompt:", e);
     const errorMessage = e instanceof Error ? e.message : 'Error desconocido.';
     return {
       error: `Hubo un error al generar el prompt: ${errorMessage}`,
     };
+  }
+}
+
+// --- Action to get suggestions based on an inspiration image ---
+export async function suggestImageParamsAction(imageName: string, serviceContext?: string): Promise<{ success: boolean; data?: SuggestImageParamsOutput; error?: string; }> {
+    if (serviceContext) {
+         try {
+            const result = await suggestImageParams({ serviceContext });
+            return { success: true, data: result };
+        } catch (e: unknown) {
+            console.error("Error suggesting image params with service context:", e);
+            const errorMessage = e instanceof Error ? e.message : 'Error desconocido.';
+            return { success: false, error: `Hubo un error al obtener sugerencias: ${errorMessage}` };
+        }
+    }
+
+    if (!imageName || imageName === 'none') {
+        return { success: false, error: 'Nombre de imagen no válido.' };
+    }
+
+    const imageProfile = imageProfiles.image_profiles.find(img => img.name === imageName);
+
+    if (!imageProfile) {
+        return { success: false, error: `No se encontró el perfil para la imagen: ${imageName}` };
+    }
+
+    try {
+        const result = await suggestImageParams({
+            description: imageProfile.description,
+            tags: imageProfile.tags,
+        });
+        return { success: true, data: result };
+    } catch (e: unknown) {
+        console.error("Error suggesting image params:", e);
+        const errorMessage = e instanceof Error ? e.message : 'Error desconocido.';
+        return { success: false, error: `Hubo un error al obtener sugerencias: ${errorMessage}` };
+    }
+}
+
+// --- Action para obtener contexto de un servicio ---
+export async function getServiceContextAction(serviceName: string): Promise<{ success: boolean; summary?: string; error?: string }> {
+  const serviceKey = serviceNameToKeyMap[serviceName];
+  const pagePath = serviceKey ? serviceContextMap[serviceKey]?.path : undefined;
+  if (!pagePath) {
+    return { success: false, error: 'No se encontró una página para este servicio.' };
+  }
+
+  try {
+    const result = await getServiceContextFromPath(pagePath);
+    if (!result) {
+        return { success: false, error: `No se pudo encontrar contexto para ${serviceName}`};
+    }
+    const summary = Object.entries(result).map(([key, value]) => `${key.charAt(0).toUpperCase() + key.slice(1)}: ${typeof value === 'object' ? JSON.stringify(value, null, 2) : value}`).join('\n');
+    return { success: true, summary: summary };
+  } catch (error) {
+    console.error(`Error summarizing page for ${serviceName}:`, error);
+    const errorMessage = error instanceof Error ? error.message : "Error desconocido al procesar el contexto.";
+    return { success: false, error: `No se pudo cargar el contexto del servicio: ${errorMessage}` };
   }
 }

@@ -6,7 +6,7 @@ import { generateImagePrompt } from '@/ai/flows/generate-image-prompt';
 import { suggestImageParams } from '@/ai/flows/suggest-image-params';
 import imageProfiles from '@/lib/imagenes.json';
 import { summarizeServicePage } from '@/ai/flows/summarize-service-page';
-import { serviceContextMap } from '@/lib/context/service-context-map';
+import { serviceContextMap, ServiceContextKey } from '@/lib/context/service-context-map';
 import { getServiceContextFromPath } from '@/lib/context/get-service-context';
 
 
@@ -143,7 +143,7 @@ export async function suggestImageParamsAction(imageName: string, serviceContext
 
 // --- Action para obtener contexto de un servicio ---
 export async function getServiceContextAction(serviceName: string): Promise<{ success: boolean; summary?: string; error?: string }> {
-  const pagePath = serviceContextMap[serviceName]?.path;
+  const pagePath = serviceContextMap[serviceName as ServiceContextKey]?.path;
   if (!pagePath) {
     return { success: false, error: 'No se encontró una página para este servicio.' };
   }

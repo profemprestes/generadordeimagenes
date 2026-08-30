@@ -6,8 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useToast } from '@/hooks/use-toast';
-import { generateImagePromptAction, suggestImageParamsAction } from '@/app/generales/actions';
-import { summarizeServicePage } from '@/ai/flows/summarize-service-page';
+import { generateImagePromptAction, suggestImageParamsAction, getServiceContextAction } from '@/app/generales/actions';
 import type { GenerateImagePromptState } from '@/app/generales/actions';
 import { navGroups } from '@/lib/navigation';
 
@@ -20,7 +19,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ImageRenderer } from './ImageRenderer';
 import { Loader2, Wand2, Sparkles, Copy, Check, Image as ImageIcon, Pilcrow, BookText, Info } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface ImageProfile {
   name: string;
@@ -29,19 +27,9 @@ interface ImageProfile {
   tags: string[];
 }
 
-const services = navGroups.flatMap(group => group.items.map(item => item.label));
 const sections = ['Hero', 'Card', 'Banner', 'General', 'Ilustración'];
 const aspectRatios = ['16:9 (Panorámica)', '1:1 (Cuadrada)', '9:16 (Vertical)'];
 const styles = ['Fotografía Realista', 'Ilustración Digital', 'Arte 3D', 'Estilo Cinematográfico', 'Minimalista'];
-
-const serviceToPathMap: Record<string, string> = {
-  "Envíos Express": "src/app/servicios/envios-express/page.tsx",
-  "Envíos LowCost": "src/app/servicios/envios-lowcost/page.tsx",
-  "Moto Fija": "src/app/servicios/moto-fija/page.tsx",
-  "Delivery Gastronómico": "src/app/servicios/delivery-gastronomico/page.tsx",
-  "Plan Emprendedores": "src/app/servicios/plan-emprendedores/page.tsx",
-  "Mercado Libre Flex": "src/app/servicios/enviosflex/page.tsx",
-};
 
 const promptGeneratorSchema = z.object({
   sectionType: z.string().min(1, 'El tipo de sección es requerido.'),
@@ -108,17 +96,22 @@ export function ImagePromptGenerator() {
   const selectedService = form.watch('service');
 
   const loadServiceContext = useCallback(async (serviceName: string) => {
-    const path = serviceToPathMap[serviceName];
-    if (!path) {
+    if (!serviceName || serviceName === 'General') {
       setServiceContextContent('');
       form.setValue('serviceContext', '');
       return;
     }
     setIsContextLoading(true);
     try {
-      const result = await summarizeServicePage({ relativePath: path });
-      setServiceContextContent(result.summary);
-      form.setValue('serviceContext', result.summary);
+      const result = await getServiceContextAction(serviceName);
+      if (result.success && result.summary) {
+        setServiceContextContent(result.summary);
+        form.setValue('serviceContext', result.summary);
+      } else {
+        setServiceContextContent('');
+        form.setValue('serviceContext', '');
+        toast({ title: 'Error', description: result.error || `No se pudo cargar el contexto para ${serviceName}.`, variant: 'destructive'});
+      }
     } catch (error) {
       console.error("Failed to load service context:", error);
       setServiceContextContent('');

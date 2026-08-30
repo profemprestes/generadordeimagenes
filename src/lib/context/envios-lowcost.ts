@@ -4,6 +4,7 @@ export const enviosLowCostContext = {
   nombre_gbp: "Envíos Lowcost / Cadetería Programada",
   sla: "Entrega garantizada antes de las 19:00 hs",
   corte_pedido: "13:00 hs",
+  ruteo: "Ruteo agrupado Z1-Z5",
   anticipacion_minima: "2 horas para organización de hoja de ruta",
   tarifas_2026: {
     z1_hasta_3km: 3000,

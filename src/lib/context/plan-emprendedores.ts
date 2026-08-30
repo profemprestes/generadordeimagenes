@@ -2,6 +2,7 @@ export const planEmprendedoresContext = {
   id: "plan-emprendedores",
   nombre: "Plan Emprendedores & E-Commerce",
   nombre_gbp: "Plan Emprendedores / Reparto E-Commerce",
+  sla: "E-Commerce 24h por escalas",
   modalidades: {
     ecommerce_24hs: {
       descripcion: "Retiro hoy y entrega mañana en toda la ciudad (franja 9 a 20 hs)",
@@ -12,10 +13,10 @@ export const planEmprendedoresContext = {
         { nivel: "Partner (+2.000 envíos/mes)", valor: 3000 }
       ],
       retiro_diario: "Gratis superando 10 paquetes. Si es menor: $4.000",
-      opcion_dropoff: "20% de descuento directo despachando en depósito Friuli 1972"
+      opcion_dropoff: "-20% de descuento directo despachando en depósito Friuli 1972"
     },
     cuenta_corriente_flexible: {
-      descripcion: "Para PyMEs sin volumen fijo. Tarifa LowCost con beneficios de franja Express",
+      descripcion: "Cuenta Corriente para PyMEs sin volumen fijo. Tarifa LowCost con beneficios de franja Express",
       liquidacion: "Diaria, Semanal, Quincenal o Mensual con Factura C"
     }
   },

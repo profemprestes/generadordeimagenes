@@ -8,8 +8,8 @@
     "año_vigencia": 2026,
     "trayectoria_años": 7,
     "metricas_clave": {
-      "envios_realizados": "+50K",
-      "calificacion_google": 5,
+      "envios_realizados": "+50K envíos",
+      "calificacion_google": 5.0,
       "resenas_google": 15,
       "paquetes_extraviados": 0,
       "flota_propia": "100% motos propias sin tercerización"
@@ -21,7 +21,7 @@
       "barrio": "Chauvín",
       "ciudad": "Mar del Plata",
       "provincia": "Buenos Aires",
-      "codigo_postal": "B7608DEE",
+      "codigo_postal": "CP B7608DEE",
       "pais": "Argentina",
       "coordenadas": {
         "lat": -38.028406,

@@ -1,6 +1,7 @@
 import { z } from "genkit";
 import { ai } from "../genkit";
 import { BRAND_PHOTO_ANCHOR, BRAND_3D_ANCHOR } from "./brand-anchors";
+import { BRAND_STYLE } from "../../lib/brand-style";
 
 export const GenerateImagePromptInputSchema = z.object({
   sectionType: z.string().optional(),
@@ -40,7 +41,8 @@ export const generateImagePromptFlow = ai.defineFlow(
     const response = await ai.generate({
       system: `You are the lead visual art director for Envíos DosRuedas (Mar del Plata logistics company).
 Generate precise, high-conversion prompts for diffusion models (Imagen 3 / SDXL / Flux).
-- Include local Mar del Plata landmarks when relevant (Chauvín, Güemes, Rambla, Casino Central, Friuli 1972 hub).
+- Palette: Primary Deep Cobalt (${BRAND_STYLE.colors.primary.hex}), Safety-Yellow (${BRAND_STYLE.colors.accent.hex}), and Brand Ink (${BRAND_STYLE.colors.ink.hex}).
+- Local Mar del Plata landmarks when relevant (Chauvín, Güemes, Rambla, Casino Central, Friuli 1972 hub).
 - Uniforms: navy blue Deep Cobalt (#0636A5) with Lemon Yellow (#FFEC01) details and yellow cap.
 - Fleet: light-blue scooters with square delivery boxes.
 - No text overlays or artificial logos.`,

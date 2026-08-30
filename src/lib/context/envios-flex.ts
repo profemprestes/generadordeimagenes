@@ -2,7 +2,7 @@ export const enviosFlexContext = {
   id: "envios-flex",
   nombre: "Envíos Flex",
   nombre_gbp: "Envío Flex / Reparto E-Commerce",
-  sla: "Same-Day antes de las 20:00 hs (Ventas hasta las 15:00 hs)",
+  sla: "Same-Day antes de las 20:00 hs",
   niveles_flex: {
     nivel_1_inicial: {
       volumen: "1 a 4 envíos/día",
@@ -20,6 +20,6 @@ export const enviosFlexContext = {
       segunda_visita: "100% Bonificada / Sin Cargo en todas las zonas"
     }
   },
-  recargo_lluvia: "Reducido exclusivo para Flex al 30%",
+  recargo_lluvia: "30%",
   prompt_anchor_visual: "A smiling courier in navy polo and yellow cap handing a kraft parcel with marketplace shipping label to a customer at a residential front door in Mar del Plata."
 };
