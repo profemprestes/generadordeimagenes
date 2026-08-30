@@ -1,69 +1,63 @@
 {
-    "company_profile": {
-      "identity": {
-        "name": "EnviosDosRuedas",
-        "type": "LocalBusiness",
-        "slogan_principal": "Mensajería y Delivery Express en Mar del Plata",
-        "description": "Servicio confiable de mensajería y delivery en moto. Envíos express y low-cost para e-commerce, pymes y Mercado Libre Flex en Mar del Plata. Cotizá online."
-      },
-      "location_contact": {
-        "primary_city": "Mar del Plata",
-        "address": {
-          "street": "11 de setiembre",
-          "city": "Mar del Plata",
-          "postal_code": "B7600",
-          "country_code": "AR"
-        },
-        "locale": "es_AR",
-        "phone": "+5492236602699",
-        "website_url": "https://www.enviosdosruedas.com"
-      },
-      "business_details": {
-        "services_summary": [
-          "mensajeria",
-          "delivery",
-          "envios en moto",
-          "cadeteria",
-          "envios express",
-          "envios low-cost",
-          "e-commerce",
-          "pymes",
-          "Mercado Libre Flex"
-        ],
-        "price_range": "$$",
-        "opening_hours": {
-          "days": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-          ],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      },
-      "branding": {
-        "colors": {
-          "theme_primary": {
-            "hex": "#1E40AF",
-            "description": "Azul oscuro/medio (usado para el theme-color del viewport)"
-          },
-          "palette_contextual": "Basado en los banners e imágenes, la paleta de marca también utiliza de forma prominente azules cian, amarillos vibrantes y naranjas como colores de acento y para llamadas a la acción (CTAs)."
-        },
-        "font_family": "Orbitron",
-        "logo_url": "https://www.enviosdosruedas.com/icons/icon-512x512.png",
-        "keywords": [
-          "envios dos ruedas",
-          "mensajeria mar del plata",
-          "delivery mar del plata",
-          "envios en moto",
-          "cadeteria mar del plata",
-          "envios flex",
-          "envios low cost",
-          "mensajeria express"
-        ]
+  "empresa": {
+    "nombre_oficial": "Envíos DosRuedas",
+    "nombre_comercial": "Envíos DosRuedas | Logística E-commerce y Mensajería MDP",
+    "tagline": "El Motor de su Última Milla",
+    "categoria_gbp": "Servicio de mensajería y transporte",
+    "descripcion": "Somos tu aliado estratégico en logística urbana y mensajería de última milla con más de 7 años de trayectoria en Mar del Plata. Especialistas en soluciones E-commerce, MercadoLibre Flex y distribución urbana con flota propia de motos.",
+    "año_vigencia": 2026,
+    "trayectoria_años": 7,
+    "metricas_clave": {
+      "envios_realizados": "+50K",
+      "calificacion_google": 5,
+      "resenas_google": 15,
+      "paquetes_extraviados": 0,
+      "flota_propia": "100% motos propias sin tercerización"
+    }
+  },
+  "contacto_y_ubicacion": {
+    "base_operativa": {
+      "direccion": "Friuli 1972",
+      "barrio": "Chauvín",
+      "ciudad": "Mar del Plata",
+      "provincia": "Buenos Aires",
+      "codigo_postal": "B7608DEE",
+      "pais": "Argentina",
+      "coordenadas": {
+        "lat": -38.028406,
+        "lng": -57.5926499
       }
+    },
+    "canales": {
+      "telefono_whatsapp": "+54 223 660-2699",
+      "whatsapp_url": "https://wa.me/542236602699",
+      "email_comercial": "matiascejas@enviosdosruedas.com",
+      "website": "https://www.enviosdosruedas.com/",
+      "redes": {
+        "instagram": "https://instagram.com/enviosdosruedas",
+        "facebook": "https://www.facebook.com/enviosdosruedas"
+      }
+    },
+    "horarios_atencion": {
+      "lunes_a_viernes": "09:00 - 18:00 hs",
+      "sabados": "10:00 - 15:00 hs",
+      "domingos": "Cerrado"
+    },
+    "zona_cobertura": "Mar del Plata y Partido de General Pueyrredón completo (Centro, Chauvín, Güemes, Playa Grande, Mogotes, Batán, Camet, Puerto)"
+  },
+  "identidad_visual": {
+    "colores": {
+      "primary_brand": "#0636A5",
+      "brand_ink": "#00277C",
+      "conversion_accent": "#FFEC01",
+      "surface_white": "#FFFFFF",
+      "surface_tint": "#E6EEFE"
+    },
+    "tipografia": {
+      "display": "Anton",
+      "subheading": "Bebas Neue",
+      "body": "Outfit",
+      "mono": "Geist Mono"
     }
   }
+}
