@@ -13,4 +13,5 @@ import '@/ai/flows/generate-optimal-image-prompt.ts';
 import '@/ai/flows/generate-replication-prompt.ts';
 import '@/ai/flows/generate-replication-prompt-v2.ts';
 import '@/ai/flows/generate-component-prompt.ts';
+import '@/ai/flows/generate-image.ts';
 
