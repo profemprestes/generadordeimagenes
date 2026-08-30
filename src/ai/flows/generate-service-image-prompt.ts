@@ -13,13 +13,21 @@ export const GenerateServiceImagePromptInputSchema = z.object({
   contentDetails: z.string().optional(),
   includeText: z.boolean().optional(),
   includeBrand: z.boolean().optional(),
-  serviceId: z.string().optional(),
+  serviceId: z.enum([
+    "envios-express",
+    "envios-lowcost",
+    "envios-flex",
+    "plan-emprendedores",
+    "fulfillment-3pl"
+  ]).optional(),
   styleMode: z.string().optional(),
   targetLocationOrUse: z.string().optional()
 });
 
 export const GenerateServiceImagePromptOutputSchema = z.object({
-  prompt: z.string(),
+  prompt: z.string().describe("Structured visual prompt in English containing Subject, Action, Context MDQ, Composition, Lighting, and Camera style"),
+  alt_es: z.string().describe("Accessible Spanish alt text description"),
+  filename_kebab: z.string().describe("Kebab-case webp filename ending in .webp")
 });
 
 export type GenerateServiceImagePromptInput = z.infer<typeof GenerateServiceImagePromptInputSchema>;
@@ -59,15 +67,17 @@ export const generateServiceImagePromptFlow = ai.defineFlow(
     const response = await ai.generate({
       system: `You are the lead Art Director & Prompt Engineer for Envíos DosRuedas (Mar del Plata, Argentina).
 Brand Aesthetic Pillars:
-- High-Velocity Cobalt (#0636A5)
-- Safety-Yellow Impact (#FFEC01)
+- High-Velocity Cobalt (${BRAND_STYLE.colors.primary.hex})
+- Safety-Yellow Impact (${BRAND_STYLE.colors.accent.hex})
+- Brand Ink (${BRAND_STYLE.colors.ink.hex})
 - Kinetic Industrialism & Digital Dispatch Modernism
-- Data-Driven Efficiency & Local Reliability
+- Data-Driven Efficiency & Local MDQ Reliability (Chauvín, Güemes, Rambla, Friuli 1972 hub)
 
 Prompt Construction Rules:
-1. Prepend the specific brand anchor.
-2. Structure into Subject, Action, Mar del Plata Context, Angle/Framing, Lighting, Camera/Render specs.
-3. Keep surfaces clean, no fake logos on photos.`,
+1. Prepend the specific brand anchor: "${anchor}".
+2. Construct a prompt strictly structured into 6 parts in English: (Subject, Action, Mar del Plata Context, Composition/Framing, Lighting, Camera/Render specs).
+3. Do NOT include any text overlays or artificial text printed on the image unless explicitly requested.
+4. Output JSON with fields: 'prompt' (the full English prompt starting with the anchor), 'alt_es' (a descriptive alt text in Spanish), and 'filename_kebab' (a kebab-case filename ending with .webp).`,
       prompt: `Service: ${serviceName}
 Context Details: ${JSON.stringify(serviceContextObj || {})}
 Section Type: ${input.sectionType || input.targetLocationOrUse || "Service Hero Asset"}

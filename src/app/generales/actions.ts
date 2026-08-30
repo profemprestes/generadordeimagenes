@@ -5,8 +5,22 @@ import { z } from 'zod';
 import { generateImagePrompt } from '@/ai/flows/generate-image-prompt';
 import { suggestImageParams } from '@/ai/flows/suggest-image-params';
 import imageProfiles from '@/lib/imagenes.json';
-import { serviceContextMap } from '@/lib/context/service-context-map';
+import { serviceContextMap, ServiceContextKey } from '@/lib/context/service-context-map';
 import { getServiceContextFromPath } from '@/lib/context/get-service-context';
+
+// Map display names to ServiceContextKey
+const serviceNameToKeyMap: Record<string, ServiceContextKey> = {
+  "Envíos Express": "envios-express",
+  "Envíos LowCost": "envios-lowcost",
+  "Envíos Flex": "envios-flex",
+  "Plan Emprendedores": "plan-emprendedores",
+  "Fulfillment 3PL": "fulfillment-3pl",
+  "envios-express": "envios-express",
+  "envios-lowcost": "envios-lowcost",
+  "envios-flex": "envios-flex",
+  "plan-emprendedores": "plan-emprendedores",
+  "fulfillment-3pl": "fulfillment-3pl",
+};
 
 // Define types locally since they are not exported from 'use server' files.
 const GenerateImagePromptInputSchema = z.object({
@@ -135,7 +149,8 @@ export async function suggestImageParamsAction(imageName: string, serviceContext
 
 // --- Action para obtener contexto de un servicio ---
 export async function getServiceContextAction(serviceName: string): Promise<{ success: boolean; summary?: string; error?: string }> {
-  const pagePath = serviceContextMap[serviceName]?.path;
+  const serviceKey = serviceNameToKeyMap[serviceName];
+  const pagePath = serviceKey ? serviceContextMap[serviceKey]?.path : undefined;
   if (!pagePath) {
     return { success: false, error: 'No se encontró una página para este servicio.' };
   }
@@ -145,7 +160,7 @@ export async function getServiceContextAction(serviceName: string): Promise<{ su
     if (!result) {
       return { success: false, error: `No se pudo encontrar contexto para ${serviceName}`};
     }
-    const summary = Object.entries(result).map(([key, value]) => `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`).join('\n');
+    const summary = Object.entries(result).map(([key, value]) => `${key.charAt(0).toUpperCase() + key.slice(1)}: ${typeof value === 'object' ? JSON.stringify(value, null, 2) : value}`).join('\n');
     return { success: true, summary: summary };
   } catch (error) {
     console.error(`Error summarizing page for ${serviceName}:`, error);

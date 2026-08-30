@@ -34,16 +34,16 @@ export const BRAND_STYLE = {
       hex: "#00277C"
     },
     tint: {
-      name: "Soft Ice Blue",
+      name: "Soft Blue Tint",
       hex: "#E6EEFE"
     }
   },
 
   typography: {
-    display: "Anton (uppercase, tight tracking)",
-    subheading: "Bebas Neue (uppercase, tracking-widest)",
-    body: "Outfit (clean geometric sans-serif)",
-    technical: "Geist Mono (tabular figures, precise rates)"
+    display: "Anton (display H1/H2)",
+    subheading: "Bebas Neue (subheadings/badges)",
+    body: "Outfit (body)",
+    technical: "Geist Mono (métricas/precios)"
   },
 
   aesthetic: [

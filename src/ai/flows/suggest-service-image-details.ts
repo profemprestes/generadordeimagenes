@@ -1,9 +1,15 @@
 import { z } from "genkit";
 import { ai } from "../genkit";
-import { SERVICE_CONTEXT_MAP } from "../../lib/context/service-context-map";
+import { SERVICE_CONTEXT_MAP, ServiceContextKey } from "../../lib/context/service-context-map";
 
 export const SuggestServiceImageDetailsInputSchema = z.object({
-  serviceKey: z.string().optional(),
+  serviceKey: z.enum([
+    "envios-express",
+    "envios-lowcost",
+    "envios-flex",
+    "plan-emprendedores",
+    "fulfillment-3pl"
+  ]).optional(),
   serviceContext: z.any().optional(),
 });
 
@@ -28,7 +34,7 @@ export const suggestServiceImageDetailsFlow = ai.defineFlow(
   async (input) => {
     let service: any = input.serviceContext;
     if (!service && input.serviceKey) {
-      service = SERVICE_CONTEXT_MAP[input.serviceKey as keyof typeof SERVICE_CONTEXT_MAP];
+      service = SERVICE_CONTEXT_MAP[input.serviceKey as ServiceContextKey];
     }
 
     const response = await ai.generate({

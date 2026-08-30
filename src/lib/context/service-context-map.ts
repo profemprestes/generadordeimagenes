@@ -12,12 +12,12 @@ export const SERVICE_CONTEXT_MAP = {
   "fulfillment-3pl": fulfillment3plContext
 } as const;
 
-export const serviceContextMap: Record<string, { path?: string; context: any }> = {
+export type ServiceContextKey = keyof typeof SERVICE_CONTEXT_MAP;
+
+export const serviceContextMap: Record<ServiceContextKey, { path?: string; context: any }> = {
   "envios-express": { path: "src/app/servicios/envios-express/page.tsx", context: enviosExpressContext },
   "envios-lowcost": { path: "src/app/servicios/envios-lowcost/page.tsx", context: enviosLowCostContext },
   "envios-flex": { path: "src/app/servicios/envios-flex/page.tsx", context: enviosFlexContext },
   "plan-emprendedores": { path: "src/app/servicios/plan-emprendedores/page.tsx", context: planEmprendedoresContext },
   "fulfillment-3pl": { path: "src/app/servicios/fulfillment-3pl/page.tsx", context: fulfillment3plContext }
 };
-
-export type ServiceContextKey = keyof typeof SERVICE_CONTEXT_MAP;

@@ -3,12 +3,14 @@ export const fulfillment3plContext = {
   nombre: "E-Commerce & 3PL Fulfillment",
   nombre_gbp: "Servicio de logística",
   sla: "Same-Day (pedidos hasta las 15:00 hs se entregan en el día)",
+  almacenaje: "Almacenaje en Friuli 1972",
+  picking: "Picking QR y embalaje básico",
   ubicacion_stock: "Depósito central en Friuli 1972, Chauvín",
   tarifa_integral_plana: 6000,
   servicios_incluidos: [
-    "Almacenamiento y control de stock operativo",
+    "Almacenamiento y control de stock operativo en Friuli 1972",
     "Preparación (Picking QR) y embalaje básico (bolsa y film estándar)",
-    "Entrega Same Day en todo Mar del Plata (9 a 20 hs)",
+    "Entrega Same Day en todo Mar del Plata con tarifa plana $6.000 (9 a 20 hs)",
     "Cobranza contra entrega (contrareembolso) sin cargo",
     "2da visita 100% bonificada"
   ],
