@@ -1,29 +1,41 @@
-import { defineFlow } from "@genkit-ai/flow";
-import { z } from "zod";
+import { z } from "genkit";
 import { ai } from "../genkit";
 import { BRAND_PHOTO_ANCHOR, BRAND_3D_ANCHOR } from "./brand-anchors";
 
 export const GenerateImagePromptInputSchema = z.object({
-  topic: z.string(),
-  aspectRatio: z.enum(["16:9", "4:3", "1:1", "3:2"]).default("16:9"),
-  sceneType: z.enum(["editorial_photo", "product_3d", "social_media_action"]).default("editorial_photo")
+  sectionType: z.string().optional(),
+  serviceName: z.string().optional(),
+  topic: z.string().optional(),
+  aspectRatio: z.string().default("16:9"),
+  style: z.string().optional(),
+  sceneType: z.string().optional(),
+  background: z.string().optional(),
+  additionalDetails: z.string().optional(),
+  textToInclude: z.string().optional(),
 });
 
 export const GenerateImagePromptOutputSchema = z.object({
-  prompt_en: z.string(),
-  alt_es: z.string(),
-  target_aspect_ratio: z.string(),
-  recommended_resolution: z.string()
+  prompt: z.string(),
 });
 
-export const generateImagePromptFlow = defineFlow(
+export type GenerateImagePromptInput = z.infer<typeof GenerateImagePromptInputSchema>;
+export type GenerateImagePromptOutput = z.infer<typeof GenerateImagePromptOutputSchema>;
+
+export async function generateImagePrompt(input: GenerateImagePromptInput): Promise<GenerateImagePromptOutput> {
+  return generateImagePromptFlow(input);
+}
+
+export const generateImagePromptFlow = ai.defineFlow(
   {
-    name: "generateImagePrompt",
+    name: "generateImagePromptFlow",
     inputSchema: GenerateImagePromptInputSchema,
     outputSchema: GenerateImagePromptOutputSchema
   },
-  async ({ topic, aspectRatio, sceneType }) => {
-    const anchor = sceneType === "product_3d" ? BRAND_3D_ANCHOR : BRAND_PHOTO_ANCHOR;
+  async (input) => {
+    const topic = input.topic || input.serviceName || input.sectionType || "Envíos DosRuedas";
+    const aspectRatio = input.aspectRatio || "16:9";
+    const style = input.style || input.sceneType || "editorial_photo";
+    const anchor = style.includes("3d") || style.includes("3D") ? BRAND_3D_ANCHOR : BRAND_PHOTO_ANCHOR;
 
     const response = await ai.generate({
       system: `You are the lead visual art director for Envíos DosRuedas (Mar del Plata logistics company).
@@ -33,8 +45,11 @@ Generate precise, high-conversion prompts for diffusion models (Imagen 3 / SDXL 
 - Fleet: light-blue scooters with square delivery boxes.
 - No text overlays or artificial logos.`,
       prompt: `Create a visual prompt for the following topic: "${topic}".
+Section: ${input.sectionType || "General"}.
 Aspect ratio: ${aspectRatio}.
-Scene type: ${sceneType}.
+Style: ${style}.
+Background details: ${input.background || "none"}.
+Additional details: ${input.additionalDetails || "none"}.
 Anchor to prepend: ${anchor}`,
       output: {
         schema: GenerateImagePromptOutputSchema

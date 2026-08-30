@@ -21,7 +21,7 @@ type SuggestOptimalImageDetailsOutput = z.infer<typeof SuggestOptimalImageDetail
 export async function suggestOptimalImageDetails(input: z.infer<typeof SuggestOptimalImageDetailsInputSchema>): Promise<SuggestOptimalImageDetailsOutput> {
   return suggestOptimalImageDetailsFlow({
     ...input,
-    companyProfile: companyProfile.company_profile
+    companyProfile: companyProfile
   });
 }
 
@@ -35,8 +35,8 @@ const promptTemplate = ai.definePrompt({
     Your suggestions must be concise, inspiring, and align with a professional, modern brand.
 
     **Brand Identity:**
-    - City: {{companyProfile.location_contact.primary_city}}. Your suggestions should evoke a coastal city vibe (e.g., "rambla", "costanera", "mar de fondo").
-    - Colors: The brand uses a primary blue ({{companyProfile.branding.colors.theme_primary.hex}}) and a secondary yellow/orange (#FBBF24).
+    - City: {{companyProfile.contacto_y_ubicacion.base_operativa.ciudad}}. Your suggestions should evoke a coastal city vibe (e.g., "rambla", "costanera", "mar de fondo").
+    - Colors: The brand uses a primary blue ({{companyProfile.identidad_visual.colores.primary_brand}}) and a secondary yellow/orange ({{companyProfile.identidad_visual.colores.conversion_accent}}).
 
     **Service Context to Analyze:**
     '''
