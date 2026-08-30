@@ -20,6 +20,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDes
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { ImageRenderer } from './ImageRenderer';
 import { Loader2, Wand2, Sparkles, Copy, Check, BookText, Info, Bot } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -313,6 +314,14 @@ export function ServiceImagePromptGenerator() {
                   {state.prompt}
                 </div>
               </div>
+            )}
+            {state.prompt && (
+              <ImageRenderer
+                key={state.prompt}
+                prompt={state.prompt}
+                aspectRatio={form.watch('sectionType')}
+                suggestedFileName={form.watch('serviceName')}
+              />
             )}
           </CardFooter>
         </form>
