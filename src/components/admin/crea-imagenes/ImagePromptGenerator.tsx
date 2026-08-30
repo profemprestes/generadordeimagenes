@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { ImageRenderer } from './ImageRenderer';
 import { Loader2, Wand2, Sparkles, Copy, Check, Image as ImageIcon, Pilcrow, BookText, Info } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
@@ -464,6 +465,14 @@ export function ImagePromptGenerator() {
                   {state.prompt}
                 </div>
               </div>
+            )}
+            {state.prompt && (
+              <ImageRenderer
+                key={state.prompt}
+                prompt={state.prompt}
+                aspectRatio={form.watch('aspectRatio')}
+                suggestedFileName={form.watch('service')}
+              />
             )}
           </CardFooter>
         </form>

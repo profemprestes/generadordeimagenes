@@ -84,6 +84,13 @@ export const toolsNavItems: ToolItem[] = [
     badge: "Recomendado",
   },
   {
+    href: "/generar-imagen",
+    label: "Generar Imagen",
+    icon: ImageIcon,
+    description: "Renderizá cualquier prompt a imagen real con Nano Banana y descargala en PNG.",
+    badge: "Nano Banana",
+  },
+  {
     href: "/hero",
     label: "Refactor Hero",
     icon: View,
