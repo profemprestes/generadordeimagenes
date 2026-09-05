@@ -116,7 +116,7 @@ export const generateServiceImagePromptFlow = ai.defineFlow(
       "Banner": "Banner - horizontal panoramic format, wide environmental context",
       "General": "General purpose - versatile composition",
       "Ilustración": "Illustration - stylized artistic interpretation with brand aesthetic"
-    }[input.sectionType] || "General purpose";
+    }[input.sectionType ?? "General"] || "General purpose";
 
     const textGuidance = (input.includeText || input.includeBrand) ? 
       `Text to render: ${input.includeText ? `"${serviceName}"` : ''} ${input.includeBrand ? `"${BRAND_STYLE.name}" and phone` : ''}. Max 25 chars total. Specify font style (bold/sans-serif) and position (top/bottom/center).` : 

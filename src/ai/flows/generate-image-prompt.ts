@@ -37,7 +37,7 @@ export const generateImagePromptFlow = ai.defineFlow(
     const aspectRatio = input.aspectRatio || "16:9";
     const style = input.style || input.sceneType || "editorial_photo";
     
-    let anchor = BRAND_PHOTO_ANCHOR;
+    let anchor: typeof BRAND_PHOTO_ANCHOR | typeof BRAND_3D_ANCHOR | typeof BRAND_ISO_ANCHOR = BRAND_PHOTO_ANCHOR;
     let styleCategory = "photography";
     let shotType = "medium shot";
     let lens = "50mm";
@@ -90,7 +90,7 @@ export const generateImagePromptFlow = ai.defineFlow(
       Banner: "Banner - horizontal panoramic format, wide environmental context",
       General: "General purpose - versatile composition suitable for multiple uses",
       Ilustración: "Illustration - stylized artistic interpretation with brand aesthetic"
-    }[input.sectionType] || "General purpose";
+    }[input.sectionType ?? "General"] || "General purpose";
 
     const backgroundDesc = input.background ? `Background: ${input.background}. ` : "";
     const additionalDesc = input.additionalDetails ? `Additional scene details: ${input.additionalDetails}. ` : "";
