@@ -6,7 +6,7 @@ import { generateImagePrompt } from '@/ai/flows/generate-image-prompt';
 import { suggestImageParams } from '@/ai/flows/suggest-image-params';
 import imageProfiles from '@/lib/imagenes.json';
 import { serviceContextMap, ServiceContextKey } from '@/lib/context/service-context-map';
-import { getServiceContextFromPath } from '@/lib/context/get-service-context';
+import { getServiceContext, getServiceContextFromPath } from '@/lib/context/get-service-context';
 
 // Map display names to ServiceContextKey
 const serviceNameToKeyMap: Record<string, ServiceContextKey> = {
