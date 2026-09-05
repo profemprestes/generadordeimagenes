@@ -1,18 +1,36 @@
-export const ASPECT_RATIOS = ['16:9', '1:1', '9:16', '4:3', '3:4'] as const;
-export type AspectRatio = (typeof ASPECT_RATIOS)[number];
+import {
+  ALL_ASPECT_RATIOS,
+  STANDARD_ASPECT_RATIOS,
+  EXTREME_ASPECT_RATIOS,
+  type AspectRatio,
+  type StandardAspectRatio,
+  type ExtremeAspectRatio,
+} from '@/types/prompt';
+
+export {
+  ALL_ASPECT_RATIOS,
+  STANDARD_ASPECT_RATIOS,
+  EXTREME_ASPECT_RATIOS,
+  type AspectRatio,
+  type StandardAspectRatio,
+  type ExtremeAspectRatio,
+};
+
+export const ASPECT_RATIOS = ALL_ASPECT_RATIOS;
 export const DEFAULT_ASPECT_RATIO: AspectRatio = '1:1';
 
 function isAspectRatio(value: string): value is AspectRatio {
-  return (ASPECT_RATIOS as readonly string[]).includes(value);
+  return (ALL_ASPECT_RATIOS as readonly string[]).includes(value);
 }
 
 /**
- * Normaliza un label como '16:9 (Panorámica)' o 'Historia (9:16)' a un
+ * Normaliza un label como '16:9 (Panorámica)' o '4:1 (Ultra-Panorámica)' a un
  * AspectRatio soportado. Cualquier valor inválido o ausente cae a '1:1'.
  */
 export function parseAspectRatio(raw?: string | null): AspectRatio {
   if (!raw) return DEFAULT_ASPECT_RATIO;
   const match = raw.match(/\d+:\d+/);
   if (!match) return DEFAULT_ASPECT_RATIO;
-  return isAspectRatio(match[0]) ? match[0] : DEFAULT_ASPECT_RATIO;
+  return isAspectRatio(match[0]) ? (match[0] as AspectRatio) : DEFAULT_ASPECT_RATIO;
 }
+

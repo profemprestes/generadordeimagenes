@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { generateImage } from '@/ai/flows/generate-image';
 import { parseAspectRatio } from '@/lib/aspect-ratio';
 import { IMAGE_MESSAGES, toUserFacingError } from '@/lib/image-generation-errors';
+import { NANO_BANANA_2, NANO_BANANA_PRO } from '@/ai/models';
+import type { NanoBananaModel } from '@/types/prompt';
 
 export type GenerateImageResult =
   | { imageDataUri: string; mimeType: string }
@@ -16,6 +18,8 @@ const generateImageInputSchema = z.object({
     .min(1, IMAGE_MESSAGES.promptRequired)
     .max(4000, IMAGE_MESSAGES.promptTooLong),
   aspectRatio: z.string().optional(),
+  model: z.enum([NANO_BANANA_PRO, NANO_BANANA_2]).optional(),
+  useSearchGrounding: z.boolean().optional(),
 });
 
 /**
@@ -25,6 +29,8 @@ const generateImageInputSchema = z.object({
 export async function generateImageAction(input: {
   prompt: string;
   aspectRatio?: string;
+  model?: NanoBananaModel;
+  useSearchGrounding?: boolean;
 }): Promise<GenerateImageResult> {
   const validated = generateImageInputSchema.safeParse(input);
   if (!validated.success) {
@@ -35,6 +41,8 @@ export async function generateImageAction(input: {
     const result = await generateImage({
       prompt: validated.data.prompt,
       aspectRatio: parseAspectRatio(validated.data.aspectRatio),
+      model: validated.data.model,
+      useSearchGrounding: validated.data.useSearchGrounding,
     });
     return { imageDataUri: result.imageDataUri, mimeType: result.mimeType };
   } catch (e: unknown) {
@@ -42,3 +50,4 @@ export async function generateImageAction(input: {
     return { error: toUserFacingError(e) };
   }
 }
+

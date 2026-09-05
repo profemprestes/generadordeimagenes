@@ -2,6 +2,7 @@ import { z } from "genkit";
 import { ai } from "../genkit";
 import { getServiceContext } from "../../lib/context/get-service-context";
 import { BRAND_STYLE } from "../../lib/brand-style";
+import { sanitizePromptSegment } from "../../lib/prompt-compiler";
 
 export const GenerateServiceImagePromptInputSchema = z.object({
   serviceName: z.string().optional(),
@@ -24,7 +25,7 @@ export const GenerateServiceImagePromptInputSchema = z.object({
 });
 
 export const GenerateServiceImagePromptOutputSchema = z.object({
-  prompt: z.string().describe("Production-ready diffusion prompt following Nano Banana best practices: natural language sentences, 80-120 words, complete scene description with subject, action, environment, lighting, mood, camera specs, composition, aspect ratio"),
+  prompt: z.string().describe("Production-ready diffusion prompt following Prompt Architecture v2.0 for Nano Banana Pro"),
   alt_es: z.string().describe("Accessible Spanish alt text description"),
   filename_kebab: z.string().describe("Kebab-case webp filename ending in .webp")
 });
@@ -43,126 +44,107 @@ export const generateServiceImagePromptFlow = ai.defineFlow(
     outputSchema: GenerateServiceImagePromptOutputSchema
   },
   async (input) => {
-    const serviceName = input.serviceName || input.serviceId || "envios-express";
-    let serviceContextObj: any = null;
-    try {
-      if (input.serviceContext) {
-        serviceContextObj = typeof input.serviceContext === 'string' ? JSON.parse(input.serviceContext) : input.serviceContext;
-      } else if (input.serviceId) {
-        serviceContextObj = getServiceContext(input.serviceId);
-      }
-    } catch {
-      serviceContextObj = null;
-    }
-
-    const styleMode = input.visualStyle || input.styleMode || "photo";
+    const serviceName = input.serviceName || input.serviceId || "Envíos Express";
+    const styleMode = input.visualStyle || input.styleMode || "Fotografía Urbana y Cinematográfica";
     
-    // Map styleMode to technical specs
-    let styleCategory = "photography";
-    let shotType = "medium shot";
-    let lens = "50mm";
-    let lighting = "natural daylight";
-    let mood = "professional and trustworthy";
-    let composition = "rule of thirds";
-    let depthOfField = "shallow depth of field, f/2.8";
+    let styleCategory = "Cinematic photography";
+    let shotType = "cinematic wide shot";
+    let lens = "35mm anamorphic prime";
+    let lighting = "golden hour coastal sunlight with sharp rim lighting";
+    let mood = "high-velocity, trustworthy, and modern";
+    let composition = "rule of thirds with strong foreground presence";
+    let depthOfField = "shallow depth of field, f/2.0";
+    let pbrMaterials = "kraft cardboard parcels, glossy light-blue scooter bodywork, textured navy poly-cotton polo, asphalt";
 
-    if (styleMode.includes("3d") || styleMode.includes("render3d")) {
-      styleCategory = "3d render";
+    if (styleMode.includes("3d") || styleMode.includes("render3d") || styleMode.includes("Arte 3D")) {
+      styleCategory = "Glossy 3D product render";
       shotType = "product hero shot";
       lens = "100mm macro";
       lighting = "soft upper-left studio illumination with subtle contact shadows";
-      mood = "clean, modern, and premium";
+      mood = "clean, premium, and dynamic";
       composition = "centered with symmetrical framing";
       depthOfField = "deep focus, f/11";
-    } else if (styleMode.includes("isometric")) {
-      styleCategory = "isometric 3D illustration";
-      shotType = "isometric illustration";
-      lens = "30-degree isometric";
-      lighting = "clean clay-like shading";
-      mood = "clean, architectural, precise";
-      composition = "30-degree isometric grid, clean white background";
-      depthOfField = "N/A";
-    } else if (styleMode.includes("cinematic") || styleMode.includes("Cinematográfica")) {
-      styleCategory = "cinematic photography";
-      shotType = "cinematic wide shot";
-      lens = "35mm anamorphic";
-      lighting = "dramatic golden hour with rim lighting";
-      mood = "cinematic, epic, and immersive";
-      composition = "rule of thirds with foreground interest";
-      depthOfField = "shallow depth of field, f/2.0";
-    } else if (styleMode.includes("vector") || styleMode.includes("Vectorial")) {
-      styleCategory = "digital vector illustration";
-      shotType = "illustration";
-      lens = "vector art";
-      lighting = "clean flat lighting with subtle gradients";
+      pbrMaterials = "smooth matte polymer, glossy light-blue lacquer, satin Lemon Yellow accents, kraft cardboard";
+    } else if (styleMode.includes("vector") || styleMode.includes("Vectorial") || styleMode.includes("Ilustración")) {
+      styleCategory = "Digital vector illustration";
+      shotType = "graphic illustration";
+      lens = "vector precision";
+      lighting = "clean flat lighting with soft ambient gradients";
       mood = "friendly, approachable, and energetic";
       composition = "dynamic diagonal composition with leading lines";
-      depthOfField = "N/A";
+      depthOfField = "sharp edge clarity";
+      pbrMaterials = "matte vector textures with high-contrast boundaries";
     } else if (styleMode.includes("minimal") || styleMode.includes("Minimalista")) {
-      styleCategory = "minimalist photography";
-      shotType = "clean product shot";
-      lens = "85mm";
+      styleCategory = "Minimalist photography";
+      shotType = "clean product hero shot";
+      lens = "85mm prime";
       lighting = "soft diffused studio lighting";
-      mood = "clean, calm, and sophisticated";
+      mood = "calm, sophisticated, and trustworthy";
       composition = "centered with ample negative space";
       depthOfField = "deep focus, f/16";
+      pbrMaterials = "pure white studio surface, clean kraft cardboard, tactile debossed lettering";
     }
 
-    const brandContext = `Envíos DosRuedas (Mar del Plata logistics brand). Brand colors: Deep Cobalt #0636A5 (primary), Lemon Yellow #FFEC01 (accent), Brand Ink #00277C, Soft Blue Tint #E6EEFE. Uniforms: navy Deep Cobalt polos with Lemon Yellow trim and yellow caps. Fleet: light-blue scooters with square delivery boxes. Location: Mar del Plata landmarks (Chauvín, Güemes, Rambla, Casino Central, Friuli 1972 hub).`;
+    const brandContext = `Envíos DosRuedas (Mar del Plata logistics). Brand colors: Deep Cobalt #0636A5 (primary), Lemon Yellow #FFEC01 (accent), Brand Ink #00277C, Soft Blue Tint #E6EEFE. Uniforms: navy Deep Cobalt polos with Lemon Yellow trim, yellow cap, and safety helmet on couriers. Fleet: light-blue urban scooters with square top delivery boxes. Landmarks: Chauvín hub (Friuli 1972), Rambla, Casino Central, Mar del Plata coastal avenues.`;
 
-    const sectionGuidance = {
-      "Hero": "Hero banner - impactful, wide establishing shot with strong focal point",
-      "Card": "Card/thumbnail - compact, clear subject at smaller size",
-      "Banner": "Banner - horizontal panoramic format, wide environmental context",
-      "General": "General purpose - versatile composition",
-      "Ilustración": "Illustration - stylized artistic interpretation with brand aesthetic"
-    }[input.sectionType ?? "General"] || "General purpose";
+    const textRequirements = (input.includeText || input.includeBrand)
+      ? `Integrated Typography: The literal string "${input.includeText ? serviceName : BRAND_STYLE.name}" is rendered with modern bold sans-serif lettering in Lemon Yellow (#FFEC01), integrated seamlessly on the vehicle or delivery box.`
+      : "No artificial text overlays or watermarks.";
 
-    const textGuidance = (input.includeText || input.includeBrand) ? 
-      `Text to render: ${input.includeText ? `"${serviceName}"` : ''} ${input.includeBrand ? `"${BRAND_STYLE.name}" and phone` : ''}. Max 25 chars total. Specify font style (bold/sans-serif) and position (top/bottom/center).` : 
-      "No text overlays or artificial logos.";
+    const systemPrompt = `You are the Lead Multimodal Art Director for Envíos DosRuedas, writing prompts according to Prompt Architecture v2.0 for Nano Banana Pro (gemini-3-pro-image-preview).
 
-    const response = await ai.generate({
-      system: `You are the lead Art Director for Envíos DosRuedas, creating production-ready prompts for diffusion models (Imagen 3, Flux, SDXL) following Nano Banana best practices (Oct 2025).
+STRICT ARCHITECTURAL RULES:
+1. Write a SINGLE DENSE, COHESIVE NARRATIVE PARAGRAPH in natural English for the 'prompt' field.
+2. Target 80-120 words.
+3. Follow the 5-Layer Order:
+   - Layer 1: Subject & Action (identidad del servicio logístico, acción, conductor con casco si aplica).
+   - Layer 2: Environment & Staging (Mar del Plata o estudio controlado).
+   - Layer 3: Materials & Surface Physics (PBR: kraft cardboard, glossy lacquer, satin cobalt, polished metal).
+   - Layer 4: Integrated Typography (literal text in double quotes with style and placement).
+   - Layer 5: Optics, Lighting & Format (lens, aperture, lighting setup, aspect ratio, 2K/4K).
+4. ABSOLUTELY FORBIDDEN:
+   - Never output "Nano Banana", "photorealistic", "8k", "hyperrealistic", or "trending on artstation".
+   - Never output comma-separated keyword lists.
+5. Provide:
+   - 'prompt': Full English narrative prompt.
+   - 'alt_es': Spanish accessibility description.
+   - 'filename_kebab': Kebab-case .webp filename.`;
 
-CRITICAL RULES:
-- Write prompts as NATURAL LANGUAGE SENTENCES, not keyword lists
-- Target 80-120 words for optimal control
-- Describe scenes completely: subject, action, environment, lighting, mood, camera specs, composition, aspect ratio
-- Maintain STYLE CONSISTENCY - no conflicting instructions (never "photorealistic watercolor")
-- For text rendering: max 25 chars total, 2-3 phrases max, specify font style and position explicitly
-- Include specific technical details: lens, aperture, lighting type, composition rule
-- Brand details MUST be naturally woven into the scene, not just prepended
-- Output JSON with: 'prompt' (full English prompt), 'alt_es' (Spanish alt text), 'filename_kebab' (kebab-case .webp filename)`,
-      prompt: `Service: ${serviceName}
-Section Type: ${input.sectionType || input.targetLocationOrUse || "Service Hero Asset"} (${sectionGuidance})
-Style Mode: ${styleMode} → maps to ${styleCategory}
-Aspect Ratio: (inferred from sectionType or default 16:9)
+    const userPrompt = `Service: ${serviceName}
+Section/Placement: ${input.sectionType || "Service Hero Asset"}
+Style: ${styleMode} (${styleCategory})
 
-TECHNICAL SPECS TO INCLUDE:
-- Shot type: ${shotType}
-- Lens: ${lens}
+TECHNICAL DETAILS:
+- Shot: ${shotType}
+- Optics: ${lens}, ${depthOfField}
 - Lighting: ${lighting}
 - Mood/Atmosphere: ${mood}
 - Composition: ${composition}
-- Depth of field: ${depthOfField}
+- Surface Materials: ${pbrMaterials}
 
-BRAND CONTEXT: ${brandContext}
+BRAND CONTEXT:
+${brandContext}
 
-BACKGROUND CONCEPT: ${input.backgroundDetails || "N/A"}
-MAIN SUBJECT/ACTION: ${input.contentDetails || "N/A"}
-TEXT REQUIREMENTS: ${textGuidance}
+BACKGROUND CONCEPT: ${input.backgroundDetails || "Mar del Plata urban logistics corridor"}
+MAIN SUBJECT/ACTION: ${input.contentDetails || "Courier delivering parcel with speed and care"}
+TYPOGRAPHY: ${textRequirements}
 
-PROMPT STRUCTURE (follow exactly):
-"[Style Category] [Shot Type] of [Subject] [Action/Pose] in [Environment]. [Lighting Description] creates [Mood]. Captured with [Lens] at [Aperture/Depth of Field], [Composition Details]. [Brand-specific details naturally woven in]. [Aspect Ratio] format."
+Generate the v2.0 JSON output now:`;
 
-EXAMPLE OUTPUT:
-"Cinematic wide shot of an Envíos DosRuedas courier in navy Deep Cobalt polo (#0636A5) with Lemon Yellow trim (#FFEC01) and yellow cap, riding a light-blue electric scooter with square delivery box along the Mar del Plata Rambla at golden hour. Warm coastal sunlight creates dramatic rim lighting on the courier's silhouette, evoking energetic reliability. Captured with 35mm anamorphic f/2.0, shallow depth of field blurs the iconic Casino Central backdrop while keeping the courier and parcels in sharp focus. Rule of thirds composition places the rider entering from left third. 16:9 cinematic format."`,
+    const response = await ai.generate({
+      system: systemPrompt,
+      prompt: userPrompt,
       output: {
         schema: GenerateServiceImagePromptOutputSchema
       }
     });
 
-    return response.output!;
+    const output = response.output!;
+    return {
+      prompt: sanitizePromptSegment(output.prompt),
+      alt_es: output.alt_es,
+      filename_kebab: output.filename_kebab.endsWith('.webp') ? output.filename_kebab : `${output.filename_kebab}.webp`,
+    };
   }
 );
+

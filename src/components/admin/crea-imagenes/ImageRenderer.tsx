@@ -10,12 +10,19 @@ import { generateImageAction } from '@/app/actions/generate-image';
 import { parseAspectRatio, type AspectRatio } from '@/lib/aspect-ratio';
 import { AlertCircle, Download, Loader2, RefreshCw, Wand2 } from 'lucide-react';
 
+import type { NanoBananaModel } from '@/types/prompt';
+
 const ASPECT_CLASS: Record<AspectRatio, string> = {
   '16:9': 'aspect-video',
   '1:1': 'aspect-square',
   '9:16': 'aspect-[9/16]',
   '4:3': 'aspect-[4/3]',
   '3:4': 'aspect-[3/4]',
+  '21:9': 'aspect-[21/9]',
+  '1:4': 'aspect-[1/4]',
+  '4:1': 'aspect-[4/1]',
+  '1:8': 'aspect-[1/8]',
+  '8:1': 'aspect-[8/1]',
 };
 
 function slugify(value: string): string {
@@ -51,11 +58,20 @@ interface GeneratedImage {
 interface ImageRendererProps {
   prompt: string;
   aspectRatio?: string;
+  model?: NanoBananaModel;
+  useSearchGrounding?: boolean;
   suggestedFileName?: string;
   onPendingChange?: (pending: boolean) => void;
 }
 
-export function ImageRenderer({ prompt, aspectRatio, suggestedFileName, onPendingChange }: ImageRendererProps) {
+export function ImageRenderer({
+  prompt,
+  aspectRatio,
+  model,
+  useSearchGrounding,
+  suggestedFileName,
+  onPendingChange,
+}: ImageRendererProps) {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [image, setImage] = useState<GeneratedImage | null>(null);
@@ -69,7 +85,12 @@ export function ImageRenderer({ prompt, aspectRatio, suggestedFileName, onPendin
     onPendingChange?.(true);
     startTransition(async () => {
       try {
-        const result = await generateImageAction({ prompt, aspectRatio: ratio });
+        const result = await generateImageAction({
+          prompt,
+          aspectRatio: ratio,
+          model,
+          useSearchGrounding,
+        });
         if ('error' in result) {
           setError(result.error);
           toast({ title: 'No se pudo generar la imagen', description: result.error, variant: 'destructive' });
