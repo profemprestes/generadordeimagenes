@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: var(--font-display), system-ui, sans-serif;
+  --font-sans: var(--font-sans), Outfit, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: var(--font-display), Anton, sans-serif;
+  --font-subheading: var(--font-subheading), 'Bebas Neue', sans-serif;
+  --font-mono: var(--font-mono), 'Geist Mono', monospace;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -32,55 +34,66 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  /* Brand Palette Tokens */
+  --color-brand-blue: #0950F6;
+  --color-brand-blue-deep: #052C87;
+  --color-brand-yellow: #FFF12E;
+  --color-brand-yellow-hover: #FFF44A;
+  --color-brand-canvas: #F8FAFC;
+  --color-social-whatsapp: #25D366;
+  --color-social-facebook: #1877F2;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-full: 9999px;
 }
 
 @layer base {
   :root {
-    --background: 215 28% 98%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 40% 98%;
+    --foreground: 222 93% 27%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 93% 27%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 45 93% 47%;
-    --secondary-foreground: 26 83% 14%;
-    --muted: 214.3 31.8% 92%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 214.3 31.8% 94%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 88%;
-    --input: 214.3 31.8% 88%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.875rem;
+    --popover-foreground: 222 93% 27%;
+    --primary: 222 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 93% 27%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 222 30% 45%;
+    --accent: 56 100% 59%;
+    --accent-foreground: 222 93% 27%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 30% 88%;
+    --input: 220 30% 88%;
+    --ring: 222 95% 50%;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-    --card: 224 71% 7%;
-    --card-foreground: 213 31% 91%;
-    --popover: 224 71% 7%;
-    --popover-foreground: 213 31% 91%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 45 93% 47%;
-    --secondary-foreground: 26 83% 14%;
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-    --accent: 223 47% 13%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-    --ring: 217.2 91.2% 59.8%;
+    --background: 225 70% 8%;
+    --foreground: 210 40% 98%;
+    --card: 224 85% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 85% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 222 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 93% 27%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 224 60% 18%;
+    --muted-foreground: 215 25% 72%;
+    --accent: 56 100% 59%;
+    --accent-foreground: 222 93% 27%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 50% 25%;
+    --input: 222 50% 25%;
+    --ring: 56 100% 59%;
   }
 
   * {
@@ -91,7 +104,40 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-sans), Outfit, sans-serif;
   }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display), Anton, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-subheading {
+    font-family: var(--font-subheading), 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Custom glow utilities matching DESIGN.md */
+.shadow-glow-yellow {
+  box-shadow: 0 0 25px rgba(255, 241, 46, 0.40);
+}
+
+.shadow-glow-yellow-hover:hover {
+  box-shadow: 0 0 35px rgba(255, 244, 74, 0.60);
+}
+
+.shadow-glow-blue {
+  box-shadow: 0 0 30px rgba(9, 80, 246, 0.35);
+}
+
+/* Tactile button active state */
+.btn-tactile {
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-tactile:active {
+  transform: scale(0.96);
 }
 
 /* Custom scrollbar */
@@ -101,12 +147,12 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.5);
-  border-radius: 4px;
+  background: hsl(var(--primary) / 0.4);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

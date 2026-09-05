@@ -279,28 +279,34 @@ export function ServiceImagePromptGenerator() {
              <input type="hidden" {...form.register('serviceContext')} />
           </CardContent>
           <CardFooter className="flex flex-col gap-4 p-6 border-t border-border/40 bg-muted/10">
-            <Button type="submit" disabled={isPending || !selectedService} className="w-full">
-              {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Wand2 className="mr-2 h-4 w-4" />}
+            <Button
+              type="submit"
+              disabled={isPending || !selectedService}
+              variant="cta"
+              size="lg"
+              className="w-full rounded-full font-bold uppercase tracking-wider text-sm sm:text-base h-12 shadow-[0_0_20px_rgba(255,241,46,0.35)]"
+            >
+              {isPending ? <Loader2 className="mr-2 h-5 w-5 animate-spin text-[#052C87]" /> : <Wand2 className="mr-2 h-5 w-5 text-[#052C87]" />}
               {isPending ? 'Generando Prompt...' : 'Generar Prompt Final'}
             </Button>
             {state.prompt && (
-              <div className="w-full mt-4 rounded-xl border border-primary/20 bg-slate-950 text-slate-100 overflow-hidden shadow-xl">
-                <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800">
+              <div className="w-full mt-4 rounded-3xl border border-white/15 bg-[#031c59] text-white overflow-hidden shadow-2xl">
+                <div className="flex items-center justify-between px-5 py-3 bg-[#052C87] border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-amber-400" />
-                    <span className="text-xs font-semibold text-slate-200 tracking-wide uppercase">Prompt Listo para Usar</span>
+                    <Sparkles className="h-4 w-4 text-[#FFF12E]" />
+                    <span className="text-xs font-bold text-white tracking-wider uppercase font-subheading">Prompt Listo para Usar</span>
                   </div>
                   <Button
                     variant="secondary"
                     size="sm"
-                    className="h-8 gap-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700"
+                    className="h-8 gap-1.5 text-xs font-bold uppercase rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15"
                     onClick={handleCopy}
                     type="button"
                   >
                     {copied ? (
                       <>
-                        <Check className="h-3.5 w-3.5 text-emerald-400" />
-                        <span className="text-emerald-400">Copiado</span>
+                        <Check className="h-3.5 w-3.5 text-[#FFF12E]" />
+                        <span className="text-[#FFF12E]">Copiado</span>
                       </>
                     ) : (
                       <>
@@ -310,7 +316,7 @@ export function ServiceImagePromptGenerator() {
                     )}
                   </Button>
                 </div>
-                <div className="p-4 font-mono text-xs sm:text-sm text-slate-300 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto select-all">
+                <div className="p-5 font-mono text-xs sm:text-sm text-blue-100 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto select-all">
                   {state.prompt}
                 </div>
               </div>

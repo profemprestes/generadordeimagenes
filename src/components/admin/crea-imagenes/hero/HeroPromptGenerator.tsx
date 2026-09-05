@@ -126,23 +126,23 @@ En resumen: toma el contenido de \`${finalTargetHeroPath}\` y aplícalo a un nue
           </CardDescription>
         </CardHeader>
         <CardContent className="p-6">
-          <div className="w-full rounded-xl border border-primary/20 bg-slate-950 text-slate-100 overflow-hidden shadow-xl">
-            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800">
+          <div className="w-full rounded-3xl border border-white/15 bg-[#031c59] text-white overflow-hidden shadow-2xl">
+            <div className="flex items-center justify-between px-5 py-3 bg-[#052C87] border-b border-white/10">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-amber-400" />
-                <span className="text-xs font-semibold text-slate-200 tracking-wide uppercase">Prompt de Refactor</span>
+                <Sparkles className="h-4 w-4 text-[#FFF12E]" />
+                <span className="text-xs font-bold text-white tracking-wider uppercase font-subheading">Prompt de Refactor Hero</span>
               </div>
               <Button
                 variant="secondary"
                 size="sm"
-                className="h-8 gap-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700"
+                className="h-8 gap-1.5 text-xs font-bold uppercase rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15"
                 onClick={handleCopy}
                 type="button"
               >
                 {copied ? (
                   <>
-                    <Check className="h-3.5 w-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Copiado</span>
+                    <Check className="h-3.5 w-3.5 text-[#FFF12E]" />
+                    <span className="text-[#FFF12E]">Copiado</span>
                   </>
                 ) : (
                   <>
@@ -152,7 +152,7 @@ En resumen: toma el contenido de \`${finalTargetHeroPath}\` y aplícalo a un nue
                 )}
               </Button>
             </div>
-            <div className="p-4 font-mono text-xs text-slate-300 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto select-all">
+            <div className="p-5 font-mono text-xs text-blue-100 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto select-all">
               {promptTemplate}
             </div>
           </div>

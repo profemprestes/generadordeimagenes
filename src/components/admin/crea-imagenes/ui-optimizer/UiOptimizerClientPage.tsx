@@ -102,35 +102,35 @@ export function UiOptimizerClientPage({ projectStructure }: UiOptimizerClientPag
       {/* Grid for Steps 2 and 3 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
         {/* Step 2: AI Prompt */}
-        <Card className="shadow-lg border-border/80 rounded-2xl overflow-hidden">
+        <Card className="shadow-lg border-border/80 rounded-3xl overflow-hidden">
           <CardHeader className="border-b border-border/40 bg-muted/10">
-            <CardTitle className="flex items-center gap-2.5 text-lg font-bold text-foreground">
+            <CardTitle className="flex items-center gap-2.5 text-lg font-normal uppercase font-display text-foreground">
               <Wand2 className="w-5 h-5 text-primary" />
               Paso 2: Prompt Contextualizado
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="font-sans">
               Prompt generado listo para enviar a la IA.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4">
-            <div className="w-full rounded-xl border border-primary/20 bg-slate-950 text-slate-100 overflow-hidden shadow-xl">
-              <div className="flex items-center justify-between px-3.5 py-2 bg-slate-900 border-b border-slate-800">
+            <div className="w-full rounded-2xl border border-white/15 bg-[#031c59] text-white overflow-hidden shadow-xl">
+              <div className="flex items-center justify-between px-4 py-2.5 bg-[#052C87] border-b border-white/10">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-                  <span className="text-[11px] font-semibold text-slate-300 uppercase">Prompt UI/UX</span>
+                  <Sparkles className="h-3.5 w-3.5 text-[#FFF12E]" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-200 font-subheading">Prompt UI/UX</span>
                 </div>
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="h-7 gap-1 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700"
+                  className="h-7 gap-1 text-xs font-bold uppercase rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15"
                   onClick={handleCopy}
                   type="button"
                   disabled={selectedFiles.length === 0}
                 >
                   {copied ? (
                     <>
-                      <Check className="h-3 w-3 text-emerald-400" />
-                      <span className="text-emerald-400">Copiado</span>
+                      <Check className="h-3 w-3 text-[#FFF12E]" />
+                      <span className="text-[#FFF12E]">Copiado</span>
                     </>
                   ) : (
                     <>
@@ -140,7 +140,7 @@ export function UiOptimizerClientPage({ projectStructure }: UiOptimizerClientPag
                   )}
                 </Button>
               </div>
-              <div className="p-3.5 font-mono text-xs text-slate-300 whitespace-pre-wrap leading-relaxed h-80 overflow-y-auto select-all">
+              <div className="p-4 font-mono text-xs text-blue-100 whitespace-pre-wrap leading-relaxed h-80 overflow-y-auto select-all">
                 {promptTemplate}
               </div>
             </div>
@@ -148,13 +148,13 @@ export function UiOptimizerClientPage({ projectStructure }: UiOptimizerClientPag
         </Card>
 
         {/* Step 3: Source Code Viewer */}
-        <Card className="shadow-lg border-border/80 rounded-2xl overflow-hidden">
+        <Card className="shadow-lg border-border/80 rounded-3xl overflow-hidden">
           <CardHeader className="border-b border-border/40 bg-muted/10">
-            <CardTitle className="flex items-center gap-2.5 text-lg font-bold text-foreground">
+            <CardTitle className="flex items-center gap-2.5 text-lg font-normal uppercase font-display text-foreground">
               <Code className="w-5 h-5 text-primary" />
               Paso 3: Código Fuente Seleccionado
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="font-sans">
               Código fuente de los archivos seleccionados.
             </CardDescription>
           </CardHeader>
@@ -162,7 +162,7 @@ export function UiOptimizerClientPage({ projectStructure }: UiOptimizerClientPag
             <Textarea
               readOnly
               value={combinedContent}
-              className="h-[23rem] font-mono text-xs bg-slate-950 text-slate-300 border-slate-800 rounded-xl leading-relaxed resize-none p-3.5"
+              className="h-[23rem] font-mono text-xs bg-[#031c59] text-blue-100 border-white/10 rounded-2xl leading-relaxed resize-none p-4"
               aria-label="Código fuente del archivo seleccionado"
             />
           </CardContent>

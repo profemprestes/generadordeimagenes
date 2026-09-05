@@ -38,29 +38,29 @@ export function AdminHeader() {
       className={cn(
         "sticky top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-slate-950/85 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl"
-          : "bg-slate-950/95 backdrop-blur-md border-b border-slate-800/50"
+          ? "bg-[#052C87]/90 backdrop-blur-xl border-b border-white/15 shadow-2xl"
+          : "bg-[#052C87]/95 backdrop-blur-md border-b border-white/10"
       )}
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      <div className="container mx-auto flex h-18 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-18 items-center justify-between px-4 md:px-6 max-w-6xl">
         {/* Brand / Logo */}
         <Link href="/" className="flex items-center space-x-3 group">
-          <div className="p-2.5 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-xl shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-105">
-            <Sparkles className="w-5 h-5 text-amber-300 transition-transform duration-300 group-hover:rotate-12" />
+          <div className="p-2.5 bg-[#FFF12E] text-[#052C87] rounded-full shadow-[0_0_20px_rgba(255,241,46,0.35)] group-hover:shadow-[0_0_25px_rgba(255,241,46,0.55)] transition-all duration-300 group-hover:scale-105">
+            <Sparkles className="w-5 h-5 text-[#052C87] transition-transform duration-300 group-hover:rotate-12" />
           </div>
           <div className="flex flex-col">
-            <span className="text-base sm:text-lg font-extrabold text-white tracking-tight flex items-center gap-1.5 font-display">
-              ESTUDIO <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">IA</span>
+            <span className="text-base sm:text-lg font-normal text-white tracking-tight flex items-center gap-1.5 font-display uppercase">
+              ENVÍOS <span className="text-[#FFF12E]">DOSRUEDAS</span>
             </span>
-            <span className="text-[11px] text-slate-400 font-medium hidden sm:inline">Suite Visual & Prompts</span>
+            <span className="text-[10px] text-blue-200 uppercase tracking-widest font-subheading">Estudio de Imágenes IA</span>
           </div>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-1 bg-slate-900/60 p-1.5 rounded-xl border border-slate-800/70">
+        <nav className="hidden lg:flex items-center space-x-1.5 bg-[#031c59]/80 p-1.5 rounded-full border border-white/10">
           {toolsNavItems.map((item) => {
             const ItemIcon = item.icon;
             const active = isActive(item.href);
@@ -69,16 +69,21 @@ export function AdminHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200",
+                  "flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200",
                   active
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
-                    : "text-slate-300 hover:text-white hover:bg-slate-800/80"
+                    ? "bg-[#FFF12E] text-[#052C87] shadow-[0_0_15px_rgba(255,241,46,0.35)]"
+                    : "text-slate-200 hover:text-white hover:bg-white/10"
                 )}
               >
                 <ItemIcon className="h-3.5 w-3.5" />
                 <span>{item.label}</span>
                 {item.badge && (
-                  <span className="text-[9px] bg-amber-400 text-slate-950 font-bold px-1.5 py-0.2 rounded-full uppercase tracking-wider">
+                  <span className={cn(
+                    "text-[9px] font-extrabold px-1.5 py-0.2 rounded-full uppercase tracking-wider",
+                    active
+                      ? "bg-[#052C87] text-[#FFF12E]"
+                      : "bg-[#FFF12E] text-[#052C87]"
+                  )}>
                     {item.badge}
                   </span>
                 )}
@@ -92,23 +97,23 @@ export function AdminHeader() {
           <div className="lg:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-slate-200 hover:text-white hover:bg-slate-800/60 rounded-xl">
+                <Button variant="ghost" size="icon" className="text-white hover:text-white hover:bg-white/10 rounded-full">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Abrir menú</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[310px] bg-slate-950 text-slate-100 pt-10 border-slate-800">
+              <SheetContent side="right" className="w-[310px] bg-[#052C87] text-white pt-10 border-white/15">
                 <SheetHeader className="mb-6 flex flex-row items-center space-x-3 text-left">
-                  <div className="p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl">
-                    <Sparkles className="w-5 h-5 text-amber-300" />
+                  <div className="p-2.5 bg-[#FFF12E] text-[#052C87] rounded-full shadow-[0_0_15px_rgba(255,241,46,0.35)]">
+                    <Sparkles className="w-5 h-5 text-[#052C87]" />
                   </div>
                   <div>
-                    <SheetTitle className="text-white font-bold text-base font-display">Estudio de Imágenes IA</SheetTitle>
-                    <p className="text-xs text-slate-400">Herramientas de Creación Visual</p>
+                    <SheetTitle className="text-white font-normal text-base font-display uppercase tracking-wider">Envíos DosRuedas</SheetTitle>
+                    <p className="text-xs text-blue-200 font-subheading tracking-wider">Estudio de Imágenes IA</p>
                   </div>
                 </SheetHeader>
 
-                <div className="flex flex-col space-y-1.5 mt-4">
+                <div className="flex flex-col space-y-2 mt-4">
                   {toolsNavItems.map((item) => {
                     const ItemIcon = item.icon;
                     const active = isActive(item.href);
@@ -117,22 +122,27 @@ export function AdminHeader() {
                         <Link
                           href={item.href}
                           className={cn(
-                            "flex items-center justify-between py-3 px-3.5 rounded-xl transition-all duration-200 text-left",
+                            "flex items-center justify-between py-3 px-4 rounded-2xl transition-all duration-200 text-left uppercase text-xs font-bold tracking-wider",
                             active
-                              ? "bg-blue-600 text-white font-semibold shadow-lg shadow-blue-600/30"
-                              : "text-slate-300 hover:text-white hover:bg-slate-900"
+                              ? "bg-[#FFF12E] text-[#052C87] shadow-[0_0_20px_rgba(255,241,46,0.30)]"
+                              : "text-slate-100 hover:text-white hover:bg-white/10"
                           )}
                         >
                           <div className="flex items-center space-x-3">
                             <ItemIcon className="w-4 h-4" />
-                            <span className="text-sm font-medium">{item.label}</span>
+                            <span>{item.label}</span>
                           </div>
                           {item.badge ? (
-                            <span className="text-[10px] bg-amber-400 text-slate-950 font-bold px-1.5 py-0.5 rounded-full">
+                            <span className={cn(
+                              "text-[10px] font-extrabold px-2 py-0.5 rounded-full",
+                              active
+                                ? "bg-[#052C87] text-[#FFF12E]"
+                                : "bg-[#FFF12E] text-[#052C87]"
+                            )}>
                               {item.badge}
                             </span>
                           ) : (
-                            <ChevronRight className="w-4 h-4 opacity-40" />
+                            <ChevronRight className="w-4 h-4 opacity-50" />
                           )}
                         </Link>
                       </SheetClose>

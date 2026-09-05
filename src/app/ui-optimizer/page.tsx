@@ -30,22 +30,22 @@ export default async function UiOptimizerPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <AdminHeader />
-      <main className="flex-grow container mx-auto px-4 py-8 max-w-5xl">
+      <main className="flex-grow container mx-auto px-4 py-8 md:py-10 max-w-5xl">
         <div className="mb-8">
-          <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors mb-4">
+          <Link href="/" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-[#FFF12E] transition-colors mb-4 font-subheading">
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Volver al Dashboard</span>
           </Link>
-          <div className="flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 text-white rounded-2xl shadow-lg shadow-cyan-500/20">
+          <div className="flex items-center gap-4">
+            <div className="p-3.5 bg-[#0950F6] text-[#FFF12E] rounded-2xl shadow-[0_0_20px_rgba(9,80,246,0.35)]">
               <Palette className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-display">
+              <h1 className="text-3xl sm:text-4xl font-normal tracking-tight text-foreground font-display uppercase">
                 Optimizador UI de Páginas
               </h1>
-              <p className="text-sm text-muted-foreground mt-1">
-                Analiza la estructura de tus páginas y genera prompts de optimización estética y responsive.
+              <p className="text-sm text-muted-foreground mt-1 font-sans">
+                Analiza la estructura de tus páginas y genera prompts de optimización estética, responsive y accesibilidad.
               </p>
             </div>
           </div>

@@ -1,154 +1,137 @@
 ---
-name: "Envíos DosRuedas"
-description: "Sistema de diseño estricto y de alto impacto para logística urbana, e-commerce y mensajería en Mar del Plata. Basado en alternancia de contraste bimodal: Azul Eléctrico (#0950F6) y Blanco Canvas (#F8FAFC), con acento Amarillo Neón (#FFF12E) y Azul Marino (#052c87). Texto en negro estrictamente prohibido."
+name: https://www.enviosdosruedas.com/
 colors:
   primary: "#0950F6"
-  primary_dark: "#06349e"
-  primary_hover: "#0744d4"
-  surface_deep: "#052c87"
-  surface_light: "#F8FAFC"
-  surface_card_light: "#FFFFFF"
-  accent: "#FFF12E"
-  accent_hover: "#e8dc24"
-  text_primary: "#FFFFFF"
-  text_light_mode_primary: "#0950F6"
-  text_light_mode_secondary: "rgba(9, 80, 246, 0.85)"
-  border_subtle: "rgba(255, 255, 255, 0.20)"
-  border_light_subtle: "rgba(9, 80, 246, 0.20)"
-  social_facebook: "#1877F2"
-  social_instagram: "#E1306C"
-  social_whatsapp: "#25D366"
+  secondary: "#052C87"
+  surface: "#F8FAFC"
+  on-surface: "#052C87"
+  error: "#EF4444"
+  brand-blue: "#0950F6"
+  brand-blue-deep: "#052C87"
+  brand-yellow: "#FFF12E"
+  brand-yellow-hover: "#FFF44A"
+  brand-canvas: "#F8FAFC"
+  social-facebook: "#1877F2"
+  social-whatsapp: "#25D366"
+
 typography:
-  display: '"Bebas Neue", sans-serif'
-  subheading: '"Anton", sans-serif'
-  sans: '"Outfit", sans-serif'
-  mono: '"Geist Mono", monospace'
+  display-hero:
+    fontFamily: Anton, sans-serif
+    fontSize: 72px
+    fontWeight: "400"
+    lineHeight: "0.98"
+    letterSpacing: -0.04em
+  headline-section:
+    fontFamily: Anton, sans-serif
+    fontSize: 48px
+    fontWeight: "400"
+    lineHeight: "1.0"
+  subheading-badge:
+    fontFamily: Bebas Neue, sans-serif
+    fontSize: 18px
+    fontWeight: "400"
+    lineHeight: "1.0"
+    letterSpacing: 0.1em
+  body-main:
+    fontFamily: Outfit, sans-serif
+    fontSize: 16px
+    fontWeight: "400"
+    lineHeight: "1.6"
+  data-mono:
+    fontFamily: Geist Mono, monospace
+    fontSize: 14px
+    fontWeight: "600"
+    lineHeight: "1.2"
+
+rounded:
+  sm: 0.5rem
+  DEFAULT: 1rem
+  md: 1.5rem
+  lg: 2rem
+  full: 9999px
+
+spacing:
+  container-max: 1280px
+  gutter: 1.5rem
+  section-gap-md: 5rem
+  component-padding: 2rem
 ---
 
-# Design System: Envíos DosRuedas
+# Sistema de Diseño https://www.enviosdosruedas.com/
 
-## 1. Visual Theme & Atmosphere
+## Brand & Style / Overview
 
-El sistema de diseño de **Envíos DosRuedas** proyecta una estética enérgica, confiable, técnica y de alto impacto inspirada en la velocidad de la distribución de última milla y la logística urbana en Mar del Plata. El sistema opera bajo una **arquitectura cromática bimodal alternada**: secciones en **Azul Eléctrico (`#0950F6`)** intercaladas con secciones en **Blanco Canvas Claro (`#F8FAFC`)**, creando un ritmo visual nítido y moderno.
+- **Filosofía Visual:** Estilo _High-Velocity Industrial-Modern_ diseñado para la logística urbana rápida, confiable y moderna de https://www.enviosdosruedas.com/ en Mar del Plata[cite: 2].
+- **Pilares Estilísticos:**
+  - **Geometría Dinámica:** Inclinaciones leves (-1deg) y formas de píldora que comunican constante movimiento y dinamismo.
+  - **Contraste de Alta Visibilidad:** Fondos azules intensos e iluminaciones en amarillo neón eléctrico que simulan reflectivos de tránsito.
+  - **Claridad Operativa:** Datos críticos y métricas renderizados con tipografía monoespaciada para máxima legibilidad.
 
-### Regla Fundamental de Contraste
+## Colors
 
-- **Prohibición Total del Negro (`#000000` / `text-slate-900`)**: Tanto en fondos azules como en fondos blancos, la tipografía y los elementos gráficos se construyen exclusivamente mediante la vibración de **Azul Eléctrico (`#0950F6`)**, **Azul Marino (`#052c87`)** y **Amarillo Neón (`#FFF12E`)**, logrando identidad de marca pura y diferenciación absoluta.
-- **Asimetría Tipográfica Activa**: Los encabezados display incorporan pastillas rotadas (`transform -rotate-1`) con fondo azul y cápsula interior amarilla con texto azul (`bg-brand-yellow text-brand-blue font-black`) para romper la rigidez de grilla y elevar la tasa de lectura.
+- **Lógica de la Paleta:**
+  - `primary` (`#0950F6`): Fondo principal institucional y estructuración de la interfaz.
+  - `secondary` (`#052C87`): Contenedores elevados y tarjetas para generar profundidad.
+  - `brand-yellow` (`#FFF12E`): Color de acción principal para llamados a la acción (CTAs), badges y destacados.
+  - `surface` (`#F8FAFC`): Fondo claro alternativo para secciones de alta densidad de lectura.
+  - `on-surface` (`#052C87`): Color de texto sobre superficies claras.
+- **Jerarquía de Interacción:**
+  - **Reposo:** Botones principales en `brand-yellow` con texto en `brand-blue`.
+  - **Hover:** Transición a `brand-yellow-hover` (`#FFF44A`) acompañado de un resplandor `glow-yellow` (`0 0 25px rgba(255, 241, 46, 0.40)`).
+  - **Activo:** Escala sutil (`scale-95`) para respuesta táctil inmediata.
+- **Capa de Estados:**
+  - `social-whatsapp` (`#25D366`): Canal principal de conversión y soporte directo.
+  - `social-facebook` (`#1877F2`): Presencia institucional y prueba social.
+  - `error` (`#EF4444`): Notificaciones de fallo o validaciones en formularios.
 
----
+## Typography
 
-## 2. Color Palette & Roles
+- **Emparejamiento de Fuentes:**
+  - **Anton (Display):** Para títulos masivos e impactantes. Aporta un carácter robusto e industrial.
+  - **Bebas Neue (Subheadings):** Para badges, navegación y encabezados secundarios en mayúsculas.
+  - **Outfit (Body):** Fuente principal para lectura fluida, descripciones e instrucciones.
+  - **Geist Mono (Data):** Reservada para teléfonos, tarifas, direcciones (ej. Friuli 1972) y números de seguimiento.
+- **Reglas de Aplicación:**
+  - Encabezados principales y botones siempre en mayúsculas (`uppercase`).
+  - Utilizar alineación centrada para secciones destacadas (Hero) y alineación izquierda para componentes de datos/formularios.
 
-El proyecto aplica una **paleta calibrada de 3 pilares de marca** adaptada a ambos tipos de superficie:
+## Layout & Spacing
 
-### 1. Primary Foundations & Surfaces
+- **Estructura de Cuadrícula:**
+  - Grilla fluida de 12 columnas con arquitectura estilo _Bento Grid_ asimétrico para combinar métricas y narrativas visuales.
+- **Comportamiento Responsivo:**
+  - **Escritorio (1024px+):** Grillas multinivel con distribución asimétrica (ej. 7 cols / 5 cols).
+  - **Móvil (<768px):** Apilamiento vertical automático en 1 columna única y simplificación del menú de navegación.
 
-- **Electric Logistic Blue** (`#0950F6`): Fondo maestro de secciones impares (Hero, Servicios Overview, Emprendedores, Footer), botones secundarios en modo claro y bordes interactivos.
-- **Deep Slate / Marine Container** (`#052c87`): Superficie para tarjetas bento en fondo azul, modales técnicos y contenedores showcase.
-- **Canvas White / Light Surface** (`#F8FAFC`): Fondo maestro de secciones pares (Visión & Métricas, Slider de Industrias, Comunidad & Redes) para descanso visual y máxima legibilidad.
-- **Pure Surface Card** (`#FFFFFF`): Fondo de tarjetas en secciones claras con bordes calibrados `border-brand-blue/20` y sombras nítidas.
+## Elevation & Depth
 
-### 2. High-Visibility Accent & Interaction
+- **Capas Visuales:**
+  - **Fondo Base:** Azul institucional (`#0950F6`) con capa interactiva de partículas 3D en Canvas.
+  - **Tarjetas Elevadas:** Fondos oscuros (`#052C87`) con bordes semitransparentes (`border-brand-white/20`) y efectos de desenfoque (`backdrop-blur-md`).
+  - **Glow Effects:** Uso de sombras difusas iluminadas (`shadow-glow-yellow`) en componentes clave para simular resplandor neón.
 
-- **High-Vis Neon Yellow** (`#FFF12E`): Acento primario para badges clave, botones CTA de conversión inmediata, iconos de estado y pastillas de énfasis tipográfico.
-- **Deepened Yellow Hover** (`#E8DC24`): Estado `:hover` táctil de botones amarillos.
-- **Pure White** (`#FFFFFF`): Textos en modo oscuro, iconos y líneas divisorias translúcidas.
+## Shapes
 
-### 3. Dual-Surface Typography Rules
+- **Geometría y Curvatura:**
+  - **Píldoras (`rounded-full`):** Aplicado estrictamente en botones principales, badges y etiquetas de estado.
+  - **Tarjetas (`rounded-3xl` / `28px`):** Para contenedores _Bento_ y módulos de servicios.
+  - **Sub-elementos (`rounded-xl`):** Para iconos de fondo, inputs y contenedores internos.
 
-| Tipo de Sección        | Fondo          | Título Principal                   | Texto de Cuerpo / Párrafo                   | Badge / Pill                      |
-| :--------------------- | :------------- | :--------------------------------- | :------------------------------------------ | :-------------------------------- |
-| **Sección Modo Azul**  | `bg-[#0950F6]` | `text-brand-white`                 | `text-brand-white/85`                       | `bg-brand-yellow text-brand-blue` |
-| **Sección Modo Claro** | `bg-[#F8FAFC]` | `text-brand-blue` + cápsula rotada | `text-brand-blue/85` y `text-brand-blue/75` | `bg-brand-blue text-brand-yellow` |
+## Components
 
-### 4. Functional States & Social Channels
+- **Botones e Inputs:**
+  - **CTA Principal:** Fondo amarillo neón, bordes redondeados completos, tipografía `Bebas Neue` en azul, con icono circular de flecha que se desplaza al hacer hover.
+  - **Inputs:** Fondos semitransparentes con bordes de 1px en blanco/20, texto blanco y foco iluminado en amarillo.
+- **Contenedores y Tarjetas:**
+  - **Tarjetas de Servicio:** Contenedores `brand-blue-deep` con iconos traslúcidos gigantes en la esquina inferior derecha como marca de agua visual.
 
-- **WhatsApp Emerald** (`#25D366`): CTA de contacto directo y canal de atención inmediata. Sombra glow: `0 0 25px rgba(37, 211, 102, 0.75)`.
-- **Facebook Royal Blue** (`#1877F2`): Tarjeta social de comunidad. Sombra glow: `0 0 25px rgba(24, 119, 242, 0.75)`.
-- **Instagram Gradient** (`from #f97316 via #e11d48 to #9333ea`): Tarjeta de contenido visual. Sombra glow: `0 0 25px rgba(225, 48, 108, 0.75)`.
+## Do's and Don'ts (Buenas y Malas Prácticas)
 
----
-
-## 3. Typography Architecture
-
-El sistema tipográfico combina 4 familias estrictas:
-
-### 1. Display Headings (`Bebas Neue` / `sans-serif`)
-
-- **Uso**: Encabezados H1 y H2 de gran escala (`text-4xl` a `text-7xl`), nombres de tarjetas principales y marcas de agua.
-- **Estructura**: `uppercase`, `tracking-tight`, `leading-[0.95]`.
-- **Firma Visual**: Integración de cápsula asimétrica rotada para la palabra clave:
-  ```html
-  <span
-    class="relative inline-block bg-brand-blue px-3 py-1 my-1 transform -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl"
-  >
-    <span
-      class="relative z-10 bg-brand-yellow text-brand-blue px-3.5 py-0.5 inline-block font-display font-black rounded-lg"
-    >
-      [PALABRA CLAVE]
-    </span>
-  </span>
-  ```
-
-### 2. Subheadings & Action Labels (`Anton` / `sans-serif`)
-
-- **Uso**: Botones CTA, tabs de navegación, títulos de menú, encabezados H3/H4 (`text-sm` a `text-2xl`).
-- **Estilo**: `uppercase`, `tracking-wider` / `tracking-widest`, `font-bold`.
-
-### 3. Body & Editorial (`Outfit` / `sans-serif`)
-
-- **Uso**: Párrafos descriptivos, especificaciones técnicas de servicio y modales (`text-xs` a `text-lg`).
-- **Estilo**: `font-medium` o `font-light` con interlineado relajado (`leading-relaxed`).
-
-### 4. Technical & Metric (`Geist Mono` / `monospace`)
-
-- **Uso**: Direcciones operativas (`Friuli 1972`), números de teléfono, insignias SLA ("SLA: MÁXIMA VELOCIDAD"), contadores de slider (`1 / 6`).
-- **Estilo**: `tracking-widest`, `text-[10px]` a `text-xs`, alta precisión técnica.
-
----
-
-## 4. Component Stylings
-
-### 1. Buttons & Interactive Badges
-
-- **Primary CTA ("Cotizá tu envío / Cotizá Express")**:
-  - Forma: Píldora redondeada completa (`rounded-full`).
-  - Fondo: Amarillo Neón (`#FFF12E`) con texto en Azul Eléctrico (`#0950F6`).
-  - Resplandor: `shadow-glow-yellow` (`0 0 35px rgba(255, 241, 46, 0.45)`).
-- **Tab Pills (Slider por Industria)**:
-  - **Activo**: `bg-brand-blue text-brand-yellow border-brand-blue shadow-md scale-105`.
-  - **Inactivo (Fondo Claro)**: `bg-white text-brand-blue border-brand-blue/25 hover:bg-brand-yellow/20 hover:border-brand-blue`.
-  - **Inactivo (Fondo Azul)**: `bg-brand-white/10 text-brand-white border-brand-white/20 hover:bg-brand-white/20`.
-
-### 2. Cards & Containers
-
-- **Cards en Fondo Azul**:
-  - Superficie: `bg-[#052c87]/90` con borde translúcido `border-brand-white/20`.
-  - Marca de agua decorativa: Icono Phosphor masivo (`text-[13rem]` a `text-[18rem]`) con opacidad ultra sutil (`text-brand-white/[0.04]`).
-- **Cards en Fondo Claro**:
-  - Superficie: `bg-white` con borde azul tenue `border-brand-blue/20`, sombra `shadow-lg` y hover dinámico `hover:border-brand-blue hover:shadow-xl`.
-
----
-
-## 5. Layout Principles & Alternation Pattern
-
-### Ritmo Secuencial de la Landing Page
-
-1. **Hero Principal (`#hero-animado`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
-2. **Visión & Métricas Bento (`#vision-mar-del-plata`)**: Fondo Blanco Canvas (`bg-[#f8fafc]`)
-3. **Servicios Overview & Modales (`#servicios`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
-4. **Slider de Soluciones por Industria (`#slider-industrias`)**: Fondo Blanco Canvas (`bg-[#f8fafc]`)
-5. **Emprendedores & Marcas Locales (`#emprendedores-mdq`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
-6. **Comunidad Digital & Redes (`#carrusel-redes`)**: Fondo Blanco Canvas (`bg-[#f8fafc]`)
-7. **Footer Institucional (`#contacto`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
-
----
-
-## 6. Anti-Patterns (Banned Rules)
-
-- ❌ **NO usar texto en color negro (`#000000`, `text-black`, `text-slate-900`) en ninguna sección.**
-- ❌ **NO usar fuentes genéricas como Inter, Arial o Times New Roman.**
-- ❌ **NO usar emojis estándar; utilizar únicamente iconos vectoriales Phosphor.**
-- ❌ **NO centrar títulos principales en modo asimétrico salvo cuando se requiera intencionalmente en una sola fila (`flex-wrap justify-center`).**
-- ❌ **NO generar datos o métricas ficticias ajenas a la operación real de Mar del Plata.**
+- **Qué Hacer:**
+  - Mantener un alto contraste entre el texto y los fondos oscuros.
+  - Usar la tipografía `Geist Mono` para cualquier valor numérico, precio o dirección física para reforzar la precisión logística.
+  - Vincular siempre las llamadas a la acción relevantes hacia el sitio oficial https://www.enviosdosruedas.com/[cite: 2].
+- **Qué Evitar:**
+  - No combinar bordes rectos con componentes de píldora en la misma sección visual.
+  - Evitar el uso excesivo del amarillo neón en párrafos largos de texto; debe usarse exclusivamente para acentos y acciones.
+  - No utilizar imágenes genéricas de stock; priorizar elementos contextuales de logística de https://www.enviosdosruedas.com/[cite: 2].

@@ -107,13 +107,13 @@ export function HeroSection({
   ctaButtons,
   backgroundType = 'gradient',
   backgroundColor = 'bg-background',
-  backgroundGradient = 'bg-gradient-to-br from-primary to-primary/80',
+  backgroundGradient = 'bg-gradient-to-br from-[#0950F6] via-[#073ec2] to-[#052C87]',
   backgroundImageUrl,
   backgroundImageAlt = 'Hero background image',
   backgroundOverlayOpacity = 0,
-  textColorClassName = 'text-primary-foreground',
-  titleClassName = 'text-4xl sm:text-5xl lg:text-6xl font-bold font-display',
-  descriptionClassName = 'text-lg sm:text-xl lg:text-2xl opacity-90 leading-relaxed',
+  textColorClassName = 'text-white',
+  titleClassName = 'text-4xl sm:text-5xl lg:text-7xl font-normal font-display tracking-tight uppercase leading-[0.98]',
+  descriptionClassName = 'text-base sm:text-lg lg:text-xl text-blue-100/90 leading-relaxed font-sans',
   visualElement,
   layout = 'center-stacked',
   minHeight = 'min-h-[60vh] md:min-h-[70vh]',
@@ -148,7 +148,7 @@ export function HeroSection({
 
   const contentContainerClasses = cn(
     'relative z-10 container mx-auto px-4 w-full',
-    'py-12 sm:py-16 md:py-24 lg:py-32'
+    'py-12 sm:py-16 md:py-24 lg:py-28'
   );
 
   const textContentWrapper = (
@@ -166,17 +166,17 @@ export function HeroSection({
       {preTitle && (
         <motion.div variants={itemVariants}>
           {typeof preTitle === 'string' ? (
-            <Badge className="px-4 py-2 text-sm font-semibold" variant="secondary">{preTitle}</Badge>
+            <Badge className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider font-subheading" variant="yellow">{preTitle}</Badge>
           ) : preTitle}
         </motion.div>
       )}
 
-      <motion.div variants={itemVariants} className={cn(titleClassName, 'mt-4 leading-tight md:leading-tight')}>
+      <motion.div variants={itemVariants} className={cn(titleClassName, 'mt-4')}>
         {title}
       </motion.div>
 
       {description && (
-        <motion.div variants={itemVariants} className={cn('mt-6', descriptionClassName, 'max-w-xl', textAlignment === 'text-left' ? 'mr-auto' : textAlignment === 'text-right' ? 'ml-auto' : 'mx-auto')}>
+        <motion.div variants={itemVariants} className={cn('mt-5', descriptionClassName, 'max-w-xl', textAlignment === 'text-left' ? 'mr-auto' : textAlignment === 'text-right' ? 'ml-auto' : 'mx-auto')}>
             {description}
         </motion.div>
       )}
@@ -197,14 +197,14 @@ export function HeroSection({
           {ctaButtons.map((button, index) => {
             const IconComponent = button.icon ? iconMap[button.icon] : null;
             return (
-              <motion.div key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div key={index} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }}>
                 <Button
-                  variant={button.variant || 'default'}
+                  variant={button.variant || 'cta'}
                   size="lg"
                   asChild={!!button.href && !button.onClick}
                   onClick={button.onClick}
                   className={cn(
-                    'font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto',
+                    'font-bold text-sm sm:text-base rounded-full uppercase tracking-wider transition-all duration-300 w-full sm:w-auto',
                     button.className
                   )}
                 >

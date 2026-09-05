@@ -173,31 +173,31 @@ export function ComponentOptimizerClientPage({ projectStructure }: ComponentOpti
 
         {/* Step 3 & 4: Prompt and Code */}
         <div className="space-y-6">
-          <Card className="shadow-lg border-border/80 rounded-2xl overflow-hidden">
+          <Card className="shadow-lg border-border/80 rounded-3xl overflow-hidden">
             <CardHeader className="border-b border-border/40 bg-muted/10">
-              <CardTitle className="flex items-center gap-2.5 text-base font-bold text-foreground">
+              <CardTitle className="flex items-center gap-2.5 text-base font-normal uppercase font-display text-foreground">
                 <Wand2 className="w-5 h-5 text-primary" />
                 Paso 3: Prompt de Refactor
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              <div className="w-full rounded-xl border border-primary/20 bg-slate-950 text-slate-100 overflow-hidden shadow-xl">
-                <div className="flex items-center justify-between px-3.5 py-2 bg-slate-900 border-b border-slate-800">
+              <div className="w-full rounded-2xl border border-white/15 bg-[#031c59] text-white overflow-hidden shadow-xl">
+                <div className="flex items-center justify-between px-4 py-2 bg-[#052C87] border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-                    <span className="text-[11px] font-semibold text-slate-300 uppercase">Prompt IA</span>
+                    <Sparkles className="h-3.5 w-3.5 text-[#FFF12E]" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-200 font-subheading">Prompt IA</span>
                   </div>
                   <Button
                     size="sm"
                     variant="secondary"
-                    className="h-7 gap-1 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700"
+                    className="h-7 gap-1 text-xs font-bold uppercase rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15"
                     onClick={handleCopy}
                     disabled={selectedCount === 0}
                   >
                     {copied ? (
                       <>
-                        <Check className="h-3 w-3 text-emerald-400" />
-                        <span className="text-emerald-400">Copiado</span>
+                        <Check className="h-3 w-3 text-[#FFF12E]" />
+                        <span className="text-[#FFF12E]">Copiado</span>
                       </>
                     ) : (
                       <>
@@ -207,16 +207,16 @@ export function ComponentOptimizerClientPage({ projectStructure }: ComponentOpti
                     )}
                   </Button>
                 </div>
-                <div className="p-3.5 font-mono text-xs text-slate-300 whitespace-pre-wrap leading-relaxed h-44 overflow-y-auto select-all">
+                <div className="p-4 font-mono text-xs text-blue-100 whitespace-pre-wrap leading-relaxed h-44 overflow-y-auto select-all">
                   {promptTemplate}
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border-border/80 rounded-2xl overflow-hidden relative">
+          <Card className="shadow-lg border-border/80 rounded-3xl overflow-hidden relative">
             <CardHeader className="border-b border-border/40 bg-muted/10">
-              <CardTitle className="flex items-center gap-2.5 text-base font-bold text-foreground">
+              <CardTitle className="flex items-center gap-2.5 text-base font-normal uppercase font-display text-foreground">
                 <Code className="w-5 h-5 text-primary" />
                 Paso 4: Código Fuente
               </CardTitle>
@@ -225,11 +225,11 @@ export function ComponentOptimizerClientPage({ projectStructure }: ComponentOpti
               <Textarea
                 readOnly
                 value={combinedContent}
-                className="h-64 font-mono text-xs bg-slate-950 text-slate-300 border-slate-800 rounded-xl leading-relaxed resize-none p-3.5"
+                className="h-64 font-mono text-xs bg-[#031c59] text-blue-100 border-white/10 rounded-2xl leading-relaxed resize-none p-4"
               />
               {isLoading && (
-                <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center rounded-2xl">
-                  <Loader2 className="w-6 h-6 animate-spin text-primary"/>
+                <div className="absolute inset-0 bg-[#052C87]/70 backdrop-blur-xs flex items-center justify-center rounded-3xl">
+                  <Loader2 className="w-6 h-6 animate-spin text-[#FFF12E]"/>
                 </div>
               )}
             </CardContent>

@@ -26,11 +26,13 @@ export function StandaloneImageGenerator({ initialPrompt = '' }: StandaloneImage
   const [isGenerating, setIsGenerating] = useState(false);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Generar imagen con Nano Banana</CardTitle>
-        <CardDescription>
-          Pegá cualquier prompt en inglés, elegí la relación de aspecto y generá la imagen. No se guarda nada: descargá el PNG cuando te guste el resultado.
+    <Card className="shadow-xl rounded-3xl border-border/80 overflow-hidden">
+      <CardHeader className="border-b border-border/40 bg-muted/10">
+        <CardTitle className="text-xl sm:text-2xl font-normal font-display uppercase tracking-tight">
+          Generar imagen con Nano Banana
+        </CardTitle>
+        <CardDescription className="font-sans">
+          Pegá cualquier prompt en inglés, elegí la relación de aspecto y generá la imagen en tiempo real con Gemini 2.5 Flash Image.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">

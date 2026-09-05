@@ -88,17 +88,24 @@ export function ImageRenderer({ prompt, aspectRatio, suggestedFileName, onPendin
   };
 
   return (
-    <div className="w-full mt-4 space-y-3">
+    <div className="w-full mt-4 space-y-4">
       {!image && (
-        <Button type="button" onClick={handleGenerate} disabled={!canGenerate} className="w-full gap-2">
+        <Button
+          type="button"
+          variant="cta"
+          size="lg"
+          onClick={handleGenerate}
+          disabled={!canGenerate}
+          className="w-full gap-2 rounded-full font-bold uppercase tracking-wider text-sm sm:text-base h-12 shadow-[0_0_20px_rgba(255,241,46,0.35)]"
+        >
           {isPending ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Generando imagen… (10–20 s)</span>
+              <Loader2 className="h-5 w-5 animate-spin text-[#052C87]" />
+              <span>Generando imagen con Nano Banana… (10–20 s)</span>
             </>
           ) : (
             <>
-              <Wand2 className="h-4 w-4" />
+              <Wand2 className="h-5 w-5 text-[#052C87]" />
               <span>Generar imagen con Nano Banana</span>
             </>
           )}
@@ -106,16 +113,16 @@ export function ImageRenderer({ prompt, aspectRatio, suggestedFileName, onPendin
       )}
 
       {error && (
-        <Alert variant="destructive">
+        <Alert variant="destructive" className="rounded-2xl border-destructive/50">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>No se pudo generar la imagen</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
+          <AlertTitle className="font-bold">No se pudo generar la imagen</AlertTitle>
+          <AlertDescription className="text-xs">{error}</AlertDescription>
         </Alert>
       )}
 
       {image && (
-        <div className="rounded-xl border border-primary/20 overflow-hidden bg-muted shadow-xl">
-          <div className={`relative w-full ${ASPECT_CLASS[image.ratio]}`}>
+        <div className="rounded-3xl border border-white/15 overflow-hidden bg-[#052C87]/40 shadow-2xl backdrop-blur-md">
+          <div className={`relative w-full bg-slate-950/60 flex items-center justify-center ${ASPECT_CLASS[image.ratio]}`}>
             <Image
               src={image.dataUri}
               alt="Imagen generada con Nano Banana"
@@ -124,18 +131,27 @@ export function ImageRenderer({ prompt, aspectRatio, suggestedFileName, onPendin
               className="object-contain"
             />
           </div>
-          <div className="flex flex-wrap items-center gap-2 p-3 border-t border-border bg-background">
-            <Button asChild className="gap-2">
-              <a href={image.dataUri} download={image.fileName}>
-                <Download className="h-4 w-4" />
-                <span>Descargar PNG</span>
-              </a>
-            </Button>
-            <Button type="button" variant="outline" onClick={handleGenerate} disabled={isPending} className="gap-2">
-              {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
-              <span>Regenerar</span>
-            </Button>
-            <span className="text-xs text-muted-foreground ml-auto">{image.ratio} · {image.mimeType}</span>
+          <div className="flex flex-wrap items-center justify-between gap-3 p-4 border-t border-white/10 bg-[#052C87]">
+            <div className="flex flex-wrap items-center gap-2">
+              <Button asChild variant="cta" size="sm" className="rounded-full gap-1.5 font-bold uppercase tracking-wider text-xs">
+                <a href={image.dataUri} download={image.fileName}>
+                  <Download className="h-3.5 w-3.5 text-[#052C87]" />
+                  <span>Descargar PNG</span>
+                </a>
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                onClick={handleGenerate}
+                disabled={isPending}
+                className="rounded-full gap-1.5 font-bold uppercase tracking-wider text-xs bg-white/10 hover:bg-white/20 text-white"
+              >
+                {isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5 text-[#FFF12E]" />}
+                <span>Regenerar</span>
+              </Button>
+            </div>
+            <span className="text-xs font-mono text-blue-200 font-semibold">{image.ratio} · {image.mimeType}</span>
           </div>
         </div>
       )}
