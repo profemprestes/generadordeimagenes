@@ -1,6 +1,7 @@
 'use server';
 /**
  * @fileOverview Flow to suggest form parameters for image generation based on an existing image's profile or service context.
+ * Optimized with Nano Banana best practices (Oct 2025).
  *
  * - suggestImageParams - A function that suggests parameters.
  * - SuggestImageParamsInput - The input type for the function.
@@ -22,8 +23,8 @@ const SuggestImageParamsOutputSchema = z.object({
     serviceName: z.string().describe("A suggested service name like 'General', 'Envios Express', etc."),
     aspectRatio: z.string().describe("A suggested aspect ratio like '16:9 (Panorámica)', '1:1 (Cuadrada)', '9:16 (Vertical)'."),
     style: z.string().describe("A suggested visual style like 'Fotografía Realista', 'Ilustración Digital', 'Arte 3D'."),
-    background: z.string().describe("A concise suggestion for an improved or more professional version of the image background."),
-    details: z.string().describe("A concise suggestion for an improved or more professional version of the main content details."),
+    background: z.string().describe("A concise suggestion for an improved or more professional version of the image background. Use natural language, specific details (lighting, environment, landmarks)."),
+    details: z.string().describe("A concise suggestion for an improved or more professional version of the main content details. Use natural language: subject, action, pose, clothing, props. If delivery driver, always include helmet."),
 });
 type SuggestImageParamsOutput = z.infer<typeof SuggestImageParamsOutputSchema>;
 
@@ -36,36 +37,41 @@ const promptTemplate = ai.definePrompt({
   input: { schema: SuggestImageParamsInputSchema },
   output: { schema: SuggestImageParamsOutputSchema },
   prompt: `
-    You are an expert creative assistant. Your task is to analyze the provided information (either from an inspiration image or a service context) and suggest a set of parameters to create a new, professional, and visually appealing image. Your suggestions should be creative and aim for an improved version, not a direct copy. Be concise and direct.
+    You are an expert Creative Director for Envíos DosRuedas (Mar del Plata logistics brand). Analyze the provided information and suggest parameters for a new, professional, visually appealing image. Your suggestions should be creative improvements, not direct copies. Be concise but descriptive using NATURAL LANGUAGE SENTENCES.
+
+    BRAND CONTEXT: Envíos DosRuedas, Mar del Plata. Colors: Deep Cobalt #0636A5, Lemon Yellow #FFEC01, Brand Ink #00277C. Uniforms: navy polos with yellow trim/caps. Fleet: light-blue scooters with square boxes. Landmarks: Chauvín, Güemes, Rambla, Casino Central, Friuli 1972 hub.
 
     {{#if serviceContext}}
       **Mode: Service Context Analysis**
-      Analyze the following service context to generate creative suggestions for an image that visually represents this service.
-      - Service Context: "{{serviceContext}}"
-      
-      Based on this context:
-      1.  **sectionType**: Suggest a suitable section, e.g., 'Hero' for impact, 'Card' for details. Default to 'General' if unsure.
-      2.  **serviceName**: Extract the service name from the context.
-      3.  **aspectRatio**: Suggest '16:9 (Panorámica)' as a versatile default.
-      4.  **style**: Suggest 'Fotografía Realista' or 'Ilustración Digital' based on what would best represent the service's tone (e.g., professional vs. friendly).
-      5.  **background**: Propose a background that visually captures the essence of the service. For 'Envíos Express', suggest "fondo urbano dinámico con efecto bokeh y estelas de luz". For 'Plan Emprendedores', suggest "oficina moderna y luminosa con elementos de paquetería y gráficos de crecimiento".
-      6.  **details**: Describe a key scene or subject that embodies the service. For 'Envíos Express', suggest "repartidor en moto eléctrica moderna, entregando un paquete a un cliente sonriente". For 'Plan Emprendedores', suggest "emprendedor/a organizando paquetes para envío en un escritorio de trabajo creativo". Crucially, if a person is a delivery driver ('repartidor'), always suggest they wear a helmet ('con casco') to obscure their face.
+      Service Context: "{{serviceContext}}"
+
+      Based on this context, suggest IMPROVED parameters:
+      1. **sectionType**: 'Hero' for impact, 'Card' for details, 'Banner' for wide, 'General' if unsure, 'Ilustración' for artistic.
+      2. **serviceName**: Extract from context (e.g., 'Envíos Express', 'Plan Emprendedores').
+      3. **aspectRatio**: '16:9 (Panorámica)' versatile default; '1:1 (Cuadrada)' for social; '9:16 (Vertical)' for stories.
+      4. **style**: Match service tone: 'Fotografía Realista' (professional), 'Ilustración Digital' (friendly), 'Arte 3D' (premium/product), 'Estilo Cinematográfico' (epic), 'Estilo Minimalista' (clean).
+      5. **background**: Natural language scene description with specific lighting/environment. Examples:
+         - Envíos Express: "Dynamic urban coastal scene along the Mar del Plata Rambla at golden hour, warm sunlight creating long shadows and bokeh light trails from passing traffic."
+         - Plan Emprendedores: "Bright modern home office with ocean view, neatly stacked branded packages on a minimalist desk, soft morning light through large windows."
+      6. **details**: Natural language subject description with action/pose/clothing. Examples:
+         - Envíos Express: "Confident courier in navy Deep Cobalt polo with Lemon Yellow trim and yellow cap, wearing safety helmet, riding light-blue electric scooter with square delivery box, mid-turn on coastal road."
+         - Plan Emprendedores: "Smiling entrepreneur sealing a branded kraft box with tape, stacks of ready-to-ship packages beside laptop, natural window light illuminating face."
+
     {{else}}
       **Mode: Inspiration Image Analysis**
-      Analyze the following information from the inspiration image:
-      - Description: "{{description}}"
-      - Tags: [{{#each tags}}'{{this}}'{{#unless @last}}, {{/unless}}{{/each}}]
+      Description: "{{description}}"
+      Tags: [{{#each tags}}'{{this}}'{{#unless @last}}, {{/unless}}{{/each}}]
 
-      Based on this information:
-      1.  **sectionType**: Based on tags like 'banner', 'web', 'presentación', suggest 'Banner', 'Hero', or 'Card'. If it's a general image, suggest 'General'.
-      2.  **serviceName**: Infer the most relevant service. If tags mention 'envios', 'delivery', suggest a related service. If it's generic, suggest 'General'.
-      3.  **aspectRatio**: Infer from the description. If it mentions 'banner' or 'web', suggest '16:9 (Panorámica)'. If it seems square, suggest '1:1 (Cuadrada)'. Otherwise, default to '16:9 (Panorámica)'.
-      4.  **style**: Infer from tags like 'fotografía', 'digital', '3d'. Suggest 'Fotografía Realista', 'Ilustración Digital', or 'Arte 3D'. Default to 'Fotografía Realista' if unsure.
-      5.  **background**: Instead of just summarizing, suggest an **improvement**. For example, if the description says "fondo abstracto con degradado azul", suggest "fondo abstracto dinámico con degradado azul y brillos sutiles".
-      6.  **details**: Instead of just summarizing, suggest an **improvement or variation** of the main subject. For example, if it's "un repartidor en moto", suggest "repartidor amigable con casco en motocicleta eléctrica moderna, en una calle costera de la ciudad". If a person is a delivery driver ('repartidor'), always suggest they wear a helmet ('con casco').
+      Suggest IMPROVED parameters:
+      1. **sectionType**: From tags ('banner'→'Banner', 'web'→'Hero', 'card'→'Card', 'presentación'→'Banner'), else 'General'.
+      2. **serviceName**: Infer from tags ('envios'/'delivery'→relevant service), else 'General'.
+      3. **aspectRatio**: From description ('banner'/'web'→'16:9', 'square'→'1:1', 'story'/'vertical'→'9:16'), else '16:9 (Panorámica)'.
+      4. **style**: From tags ('fotografía'→'Fotografía Realista', 'digital'/'ilustración'→'Ilustración Digital', '3d'→'Arte 3D'), else 'Fotografía Realista'.
+      5. **background**: IMPROVE the background with natural language. Add specific lighting, landmarks, atmosphere. Example: if "fondo abstracto azul", suggest "fondo abstracto dinámico con degradado azul cobalto y amarillo limón, brillos sutiles evocando velocidad".
+      6. **details**: IMPROVE the subject with natural language. Add specific action, clothing, props, brand integration. If delivery driver, ALWAYS include helmet. Example: if "repartidor en moto", suggest "repartidor amigable con casco en motocicleta eléctrica moderna color azul claro con caja cuadrada, circulando por la Rambla de Mar del Plata al atardecer, estela de luz dinámica".
     {{/if}}
 
-    Provide your output in the required JSON format.
+    Output JSON format only.
   `,
 });
 

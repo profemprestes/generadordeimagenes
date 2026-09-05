@@ -1,6 +1,7 @@
 'use server';
 /**
  * @fileOverview Flow to suggest multiple creative details for a service-specific image.
+ * Optimized with Nano Banana best practices (Oct 2025).
  *
  * - suggestOptimalImageDetails: A function that analyzes a service's context and suggests visual details.
  */
@@ -13,8 +14,8 @@ const SuggestOptimalImageDetailsInputSchema = z.object({
 });
 
 const SuggestOptimalImageDetailsOutputSchema = z.object({
-    backgroundSuggestions: z.array(z.string()).describe("A list of 3-5 creative and contextually relevant suggestions for the image background."),
-    contentSuggestions: z.array(z.string()).describe("A list of 3-5 creative and detailed suggestions for the main subject and action of the image."),
+    backgroundSuggestions: z.array(z.string()).describe("A list of 3-5 creative background suggestions. Each must be a natural language sentence describing environment, lighting, landmarks, atmosphere. Target 20-40 words each."),
+    contentSuggestions: z.array(z.string()).describe("A list of 3-5 creative content suggestions. Each must be a natural language sentence describing subject, action, pose, clothing, props. If delivery driver, always include helmet. Target 25-50 words each."),
 });
 type SuggestOptimalImageDetailsOutput = z.infer<typeof SuggestOptimalImageDetailsOutputSchema>;
 
@@ -30,13 +31,11 @@ const promptTemplate = ai.definePrompt({
   input: { schema: z.any() },
   output: { schema: SuggestOptimalImageDetailsOutputSchema },
   prompt: `
-    You are an expert Creative Director for a logistics company in Mar del Plata, Argentina.
-    Your task is to analyze a service's context and propose a list of 3 to 5 distinct, creative, and visually compelling ideas for a promotional image. Provide separate lists for the background and the main content.
-    Your suggestions must be concise, inspiring, and align with a professional, modern brand.
-
-    **Brand Identity:**
-    - City: {{companyProfile.contacto_y_ubicacion.base_operativa.ciudad}}. Your suggestions should evoke a coastal city vibe (e.g., "rambla", "costanera", "mar de fondo").
-    - Colors: The brand uses a primary blue ({{companyProfile.identidad_visual.colores.primary_brand}}) and a secondary yellow/orange ({{companyProfile.identidad_visual.colores.conversion_accent}}).
+    You are an expert Creative Director for Envíos DosRuedas (Mar del Plata logistics brand).
+    Analyze the service context and propose 3-5 distinct, creative, visually compelling ideas for a promotional image.
+    Use NATURAL LANGUAGE SENTENCES, not keyword lists. Be specific: describe environment, lighting, subject, action, clothing, props.
+    Target 20-50 words per suggestion. Brand colors: Deep Cobalt #0636A5, Lemon Yellow #FFEC01, Brand Ink #00277C.
+    Landmarks: Chauvín, Güemes, Rambla, Casino Central, Friuli 1972 hub. Uniforms: navy polos, yellow trim/caps. Fleet: light-blue scooters, square boxes.
 
     **Service Context to Analyze:**
     '''
@@ -44,18 +43,30 @@ const promptTemplate = ai.definePrompt({
     '''
 
     **Your Task:**
-    Based *only* on the service context provided, generate two JSON arrays: 'backgroundSuggestions' and 'contentSuggestions'. Each array should contain 3 to 5 unique, descriptive strings.
+    Generate two JSON arrays: 'backgroundSuggestions' and 'contentSuggestions'. Each: 3-5 unique descriptive strings.
 
-    1.  **backgroundSuggestions**: Propose a list of varied backgrounds.
-        - **For Envíos Express:** Suggest dynamic scenes like "Fondo urbano con estelas de luz en la costanera de Mar del Plata al atardecer", "Mapa estilizado de la ciudad con una ruta brillante destacada", "Vista abstracta de alta velocidad con desenfoque de movimiento en tonos azules y amarillos".
-        - **For Plan Emprendedores:** Suggest professional/creative scenes like "Oficina de un emprendedor con vista al mar, paquetes listos para enviar", "Fondo con gráficos de crecimiento y logística sobre un mapa de la ciudad", "Taller de diseño con productos artesanales y packaging de la marca".
+    1. **backgroundSuggestions** - Natural language sentences describing:
+       - Environment/location (specific Mar del Plata landmarks when relevant)
+       - Lighting (golden hour, blue hour, studio, natural, dramatic)
+       - Atmosphere/mood (energetic, professional, calm, dynamic)
+       - Color palette integration (brand colors in environment)
+       Examples:
+       - "Dynamic urban coastal scene along the Mar del Plata Rambla at golden hour, warm sunlight creating long shadows and bokeh light trails from passing traffic, iconic Casino Central silhouette in distance."
+       - "Bright modern home office with panoramic ocean view, neatly stacked branded kraft packages on minimalist desk, soft morning light through floor-to-ceiling windows, subtle brand color accents in decor."
+       - "High-speed abstract motion blur in Deep Cobalt and Lemon Yellow streaks, evoking velocity and efficiency, clean Soft Blue Tint negative space for text overlay."
 
-    2.  **contentSuggestions**: Describe a list of key scenes or subjects.
-        - **For Envíos Express:** Suggest dynamic actions like "Repartidor en moto eléctrica moderna en una curva cerrada, dejando una estela de luz", "Primer plano de un paquete con la etiqueta 'URGENTE' siendo entregado en mano", "Dron de delivery futurista sobrevolando la playa con un paquete".
-        - **For Plan Emprendedores:** Suggest scenes of success like "Emprendedor/a sonriendo mientras sella una caja con su logo, lista para enviar", "Manos de un artesano terminando un producto con una pila de paquetes de Envios DosRuedas al fondo", "Collage de varios productos de emprendedores locales con el logo de la empresa".
-        - **Crucially, if a person is a delivery driver ('repartidor'), always suggest they wear a helmet ('con casco') to obscure their face and ensure a professional, uniform look.**
+    2. **contentSuggestions** - Natural language sentences describing:
+       - Subject (who: courier, entrepreneur, client, hands)
+       - Action/pose (what they're doing: riding, sealing box, receiving, organizing)
+       - Clothing/props (uniform details, helmet, packages, devices)
+       - Brand integration (colors on uniform, vehicle, packages)
+       - CRITICAL: If delivery driver ('repartidor'), ALWAYS include helmet ('con casco') for professional look
+       Examples:
+       - "Confident courier in navy Deep Cobalt polo with Lemon Yellow trim and yellow cap, wearing white safety helmet, riding light-blue electric scooter with square delivery box mid-turn on coastal road, dynamic motion blur on wheels."
+       - "Smiling entrepreneur sealing a branded kraft box with tape, stacks of ready-to-ship packages beside laptop, natural window light illuminating face, wearing casual professional attire."
+       - "Close-up of weathered hands fastening Lemon Yellow strap on a Deep Cobalt delivery box, parcels stacked in background, soft side lighting emphasizing texture and brand colors."
 
-    Provide your output in the required JSON format. Be creative and professional.
+    Provide JSON output only. Be creative, professional, and specific.
   `,
 });
 
