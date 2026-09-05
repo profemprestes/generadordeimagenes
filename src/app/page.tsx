@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AppDirectorySection } from "@/components/AppDirectorySection";
 import Link from "next/link";
 import {
   ImageIcon,
@@ -204,6 +205,9 @@ export default function HomePage() {
             );
           })}
         </div>
+
+        {/* Directorio Completo de Rutas y Páginas */}
+        <AppDirectorySection />
       </main>
 
       <Footer />
