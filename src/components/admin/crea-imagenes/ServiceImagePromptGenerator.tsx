@@ -27,9 +27,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 
 
 const serviceOptions = navGroups.flatMap(group =>
-  group.items
-    .filter(item => item.label !== "Envíos LowCost") // Example filter if needed
-    .map(item => item.label)
+  group.items.map(item => item.label)
 );
 
 const visualStyleOptions = [

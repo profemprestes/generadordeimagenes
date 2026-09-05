@@ -149,17 +149,27 @@ export async function suggestImageParamsAction(imageName: string, serviceContext
 
 // --- Action para obtener contexto de un servicio ---
 export async function getServiceContextAction(serviceName: string): Promise<{ success: boolean; summary?: string; error?: string }> {
-  const serviceKey = serviceNameToKeyMap[serviceName];
-  const pagePath = serviceKey ? serviceContextMap[serviceKey]?.path : undefined;
-  if (!pagePath) {
-    return { success: false, error: 'No se encontró una página para este servicio.' };
-  }
-  
   try {
-    const result = await getServiceContextFromPath(pagePath);
-    if (!result) {
-      return { success: false, error: `No se pudo encontrar contexto para ${serviceName}`};
+    const serviceKey = serviceNameToKeyMap[serviceName];
+    const pagePath = serviceKey ? serviceContextMap[serviceKey]?.path : undefined;
+    
+    let result = null;
+    if (pagePath) {
+      result = await getServiceContextFromPath(pagePath);
     }
+    
+    if (!result) {
+      try {
+        result = getServiceContext(serviceName);
+      } catch {
+        result = null;
+      }
+    }
+
+    if (!result) {
+      return { success: false, error: `No se pudo encontrar contexto para ${serviceName}` };
+    }
+
     const summary = Object.entries(result).map(([key, value]) => `${key.charAt(0).toUpperCase() + key.slice(1)}: ${typeof value === 'object' ? JSON.stringify(value, null, 2) : value}`).join('\n');
     return { success: true, summary: summary };
   } catch (error) {
