@@ -440,25 +440,38 @@ export function ImagePromptGenerator() {
                     <Sparkles className="h-4 w-4 text-[#FFF12E]" />
                     <span className="text-xs font-bold text-white tracking-wider uppercase font-subheading">Prompt Listo para Usar</span>
                   </div>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    className="h-8 gap-1.5 text-xs font-bold uppercase rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15"
-                    onClick={handleCopy}
-                    type="button"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="h-3.5 w-3.5 text-[#FFF12E]" />
-                        <span className="text-[#FFF12E]">Copiado</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-3.5 w-3.5" />
-                        <span>Copiar Prompt</span>
-                      </>
-                    )}
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="h-8 gap-1.5 text-xs font-bold uppercase rounded-full bg-white/5 hover:bg-white/15 text-white border border-white/20"
+                    >
+                      <a href={`/generar-imagen?prompt=${encodeURIComponent(state.prompt)}`}>
+                        <ImageIcon className="h-3.5 w-3.5 text-[#FFF12E]" />
+                        <span>Abrir en Estudio 4K</span>
+                      </a>
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="h-8 gap-1.5 text-xs font-bold uppercase rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15"
+                      onClick={handleCopy}
+                      type="button"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="h-3.5 w-3.5 text-[#FFF12E]" />
+                          <span className="text-[#FFF12E]">Copiado</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-3.5 w-3.5" />
+                          <span>Copiar Prompt</span>
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
                 <div className="p-5 font-mono text-xs sm:text-sm text-blue-100 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto select-all">
                   {state.prompt}
