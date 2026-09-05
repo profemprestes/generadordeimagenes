@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/generales',
     '/servicios',
     '/optimas',
+    '/generar-imagen',
     '/hero',
     '/ui-optimizer',
     '/ui-optimizer/componentes',

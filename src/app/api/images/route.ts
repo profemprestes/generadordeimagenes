@@ -1,19 +1,14 @@
 
 import { NextResponse } from 'next/server';
-import path from 'path';
-import { promises as fs } from 'fs';
+import imagesData from '@/lib/imagenes.json';
+
+export const dynamic = 'force-static';
+export const revalidate = 86400; // 24 hours static revalidation
 
 export async function GET() {
-  try {
-    // Construct the path to the JSON file
-    const jsonDirectory = path.join(process.cwd(), 'src', 'lib');
-    const fileContents = await fs.readFile(path.join(jsonDirectory, 'imagenes.json'), 'utf8');
-    
-    // Parse the JSON data and return it
-    const data = JSON.parse(fileContents);
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error('Error reading image profiles:', error);
-    return NextResponse.json({ error: 'Failed to load image profiles' }, { status: 500 });
-  }
+  return NextResponse.json(imagesData, {
+    headers: {
+      'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
+    },
+  });
 }
