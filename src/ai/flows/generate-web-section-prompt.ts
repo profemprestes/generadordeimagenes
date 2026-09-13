@@ -1,7 +1,5 @@
 import { z } from 'genkit';
 import { ai } from '../genkit';
-import { BRAND_STYLE } from '../../lib/brand-style';
-import companyProfile from '../../lib/empresa.json';
 import { sanitizePromptSegment } from '../../lib/prompt-compiler';
 
 export const GenerateWebSectionPromptInputSchema = z.object({
@@ -12,7 +10,7 @@ export const GenerateWebSectionPromptInputSchema = z.object({
   sectionDescription: z.string().describe("Descripción de la sección obtenida de la documentación o contexto"),
   componentName: z.string().optional().describe("Nombre del componente React asociado"),
   visualStyle: z.string().default("Mockup UI 3D Isométrico").describe("Estilo visual deseado"),
-  colorMode: z.string().default("Acentos Envíos DosRuedas").describe("Modo de color (Claro, Oscuro, Acentos de Marca)"),
+  colorMode: z.string().default("Acentos Envíos DosRuedas").describe("Modo de color (Tríada Estricta #0C59F2, #FFF12E, #FFFFFF)"),
   aspectRatio: z.string().default("16:9").describe("Aspect ratio para la generación"),
   brandEmphasis: z.boolean().default(true).describe("Incluir elementos oficiales y colores de Envíos DosRuedas"),
   customInstructions: z.string().optional().describe("Detalles o requerimientos personalizados adicionales"),
@@ -27,14 +25,10 @@ export const GenerateWebSectionPromptOutputSchema = z.object({
   suggestedSettings: z.object({
     aspectRatio: z.string(),
     recommendedModel: z.string(),
-    lighting: stringOrFallback(z.string()),
+    lighting: z.string().default("Iluminación de estudio con acento en llanta y contornos"),
     styleKeywords: z.array(z.string()),
   }).optional(),
 });
-
-function stringOrFallback(schema: z.ZodString) {
-  return schema.default("Iluminación de estudio con acento en llanta y contornos");
-}
 
 export type GenerateWebSectionPromptInput = z.infer<typeof GenerateWebSectionPromptInputSchema>;
 export type GenerateWebSectionPromptOutput = z.infer<typeof GenerateWebSectionPromptOutputSchema>;
@@ -59,47 +53,64 @@ Your objective is to take a web page section specification from the technical do
 - **Custom User Request:** {{customInstructions}}
 {{/if}}
 
-### BRAND PALETTE & IDENTITY (ENVÍOS DOSRUEDAS 2026)
-- **Primary Brand Color:** Deep Cobalt (#0636A5 / #052C87)
-- **High-Visibility Accent:** Safety Lemon Yellow (#FFEC01 / #FFF12E)
-- **Secondary Accent:** Electric Blue (#0950F6)
-- **Surface:** Pure White (#FFFFFF) or Soft Blue Tint (#E6EEFE)
-- **Fleet & Actors:** Light-blue delivery electric scooters with cubic yellow rear storage boxes, couriers wearing Deep Cobalt uniforms with yellow trims and safety helmets.
-- **Location Atmosphere:** Coastal Mar del Plata streets, modern urban logistics hub, clean studio cyclorama.
+### STRICT OFFICIAL DESIGN SYSTEM RULES (ENVÍOS DOSRUEDAS)
+1. **Strict 3-Color Triad (NO other blues or arbitrary hues):**
+   - **Primary Brand Blue:** #0C59F2 (Institutional Electric Blue) — The ONLY blue allowed in the entire system. Absolutely FORBIDDEN: navy blue, midnight blue, slate blue, cyan, or purple gradients.
+   - **High-Visibility Neon Yellow:** #FFF12E — The ONLY action accent. Used for pill CTAs, urgency badges (Express 30-90 min, Flex), reflective gear, and yellow-glow rims.
+   - **Pure Optical White:** #FFFFFF — Base surface for cards, modals, crisp contrast text on blue canvas, and clean divider borders (border-white/20).
+   - **Forbidden:** No absolute black (#000000). Contrast on white surfaces is strictly resolved with #0C59F2.
 
-### PROMPT GENERATION RULES
+2. **Typography System to Describe in Prompts:**
+   - **Headlines / Display:** Anton (all caps, ultra-tight tracking -0.04em, leading 0.98, compact impact).
+   - **Subheadings / Badges / Buttons:** Bebas Neue (all caps, expanded tracking 0.1em, crisp and technical).
+   - **Body:** Outfit (modern, clean geometric sans).
+   - **Technical Data & Numbers:** Geist Mono (fares in ARS $X.XXX, delivery ranges in 30-90 min, real Mar del Plata logistics data).
+
+3. **Layout & Architectural Composition:**
+   - **Asymmetric Bento Grid (12 columns, 7/5 or 8/4 splits).** Prohibit monotonous rows of 3 identical cards.
+   - **Surfaces:** Either Pure White (#FFFFFF) cards with #0C59F2 typography and subtle border (#0C59F2/10), or Glassmorphic floating cards (frosted translucent bg-white/10, backdrop blur, border-white/20, pure white typography).
+   - **Primary CTAs:** Pill-shaped (rounded-full) in vibrant #FFF12E with bold #0C59F2 uppercase lettering and soft yellow glow (shadow-glow-yellow).
+
+4. **Fleet, Couriers & Staging Atmosphere:**
+   - **Fleet:** High-velocity electric delivery scooters featuring clean bodywork with bright yellow (#FFF12E) rear cubic delivery boxes.
+   - **Couriers:** Professional riders wearing #0C59F2 Electric Blue uniforms with reflective #FFF12E trim and certified safety helmets.
+   - **Setting:** Authentic Mar del Plata urban coastal logistics context (Rambla, Casino Central, Friuli 1972 hub, clean asphalt) or high-tech minimalist studio cyclorama with sharp #0C59F2 and #FFF12E rim lighting.
+
+5. **ANTI-PATTERNS STRICTLY FORBIDDEN IN PROMPTS:**
+   - NEVER include emojis.
+   - NEVER use multiple tones of blue. Only #0C59F2.
+   - NEVER use generic buzzwords: "photorealistic", "8k", "hyperrealistic", "trending on artstation", "Nano Banana".
+   - NEVER output comma-separated keyword spam. Use coherent, dense narrative prose.
+
+### PROMPT GENERATION STRUCTURE
 1. **Natural Language Spanish Prompt (\`promptEs\`):**
-   - Provide a vivid, evocative, and detailed paragraph in natural Spanish describing the complete visual composition of the web component/mockup.
-   - Describe what is shown in the foreground, middle ground, lighting, UI floating cards or devices, 3D elements, typography accents, and background atmosphere.
+   - A vivid, evocative, and technically precise paragraph in natural Spanish describing the web component's visual mockup.
+   - Detail the asymmetric bento hierarchy, the electric blue (#0C59F2), white (#FFFFFF), and neon yellow (#FFF12E) triad, the floating cards, tactile materials, typography, and clean urban logistics ambiance of Mar del Plata.
 
 2. **Production English Prompt (\`promptEn\`):**
-   - Follow Prompt Architecture v2.0 for Nano Banana Pro / Midjourney:
-     * Write a SINGLE DENSE, COHESIVE NARRATIVE PARAGRAPH (80-130 words).
-     * Follow the 5-Layer structure:
-       Layer 1: Subject & UI Component Composition (e.g. Floating glassmorphic card, modern isometric web bento grid, hero scene with scooter).
-       Layer 2: Environment & Staging (clean architectural studio backdrop, subtle Mar del Plata coastal horizon reflection or neutral gradient canvas).
-       Layer 3: Materials & Physical Surfaces (frosted glass, tactile kraft paper parcels, polished aluminum frames, glossy cobalt enamel, matte polymer).
-       Layer 4: Integrated Brand Details & Typography (literal quotes "{{sectionName}}" or "Envíos DosRuedas" in clean geometric typography if applicable).
-       Layer 5: Optics, Lighting & Camera (e.g. soft daylight diffused studio lighting with vivid yellow rim glow, 50mm lens, shallow depth of field, sharp focus, 4K rendering).
-     * NEVER use forbidden buzzwords: "photorealistic", "8k", "hyperrealistic", "trending on artstation", "Nano Banana".
-     * NEVER output comma-separated keyword lists. Only natural narrative prose.
+   - Follow Prompt Architecture v2.0 (80-130 words in a single dense narrative paragraph):
+     * Layer 1: Subject & UI Layout (asymmetric 3D bento card, hero section, or interactive UI module).
+     * Layer 2: Environment & Staging (studio cyclorama or coastal Mar del Plata urban backdrop).
+     * Layer 3: Physical Materials (frosted glassmorphism, glossy #0C59F2 enamel, matte polymer, yellow #FFF12E reflective accents).
+     * Layer 4: Integrated Brand Details & Typography (literal clean typography "{{sectionName}}" or "Envíos DosRuedas" in Anton or Bebas Neue).
+     * Layer 5: Lighting, Optics & Camera (crisp studio softbox, neon yellow rim glow, 50mm prime lens, f/2.2, sharp focus, 4K rendering).
 
 3. **Design Rationale (\`designRationale\`):**
-   - Explain in 2-3 concise Spanish sentences why this composition, lighting, and style were chosen to represent this specific web section effectively.
+   - 2-3 concise sentences in Spanish explaining how this visual prompt strictly complies with the Envíos DosRuedas Design System (the 3-color triad #0C59F2 / #FFF12E / #FFFFFF, asymmetric bento layout, and typography).
 
 4. **Variants (\`variants\`):**
    {{#if generateVariants}}
-   - Provide 2 distinct alternative English prompts exploring:
-     * Variant 1: A dynamic isometric perspective / elevated 3D angle.
-     * Variant 2: A dramatic studio lighting / dark mode glassmorphism setup.
+   - Provide 2 distinct alternative English prompts:
+     * Variant 1: Elevated isometric perspective focusing on the 3D depth of the asymmetric bento cards.
+     * Variant 2: Clean studio cyclorama with high-contrast electric blue (#0C59F2) lighting and intense neon yellow rim illumination.
    {{else}}
-   - Provide an empty array or 1 subtle alternative.
+   - Provide an empty array.
    {{/if}}
 
 5. **Suggested Settings:**
-   - Include recommended aspect ratio, recommended model ("Nano Banana Pro (gemini-3-pro-image-preview)"), key lighting notes, and 4-6 style tags.
+   - Aspect ratio (e.g. {{aspectRatio}}), recommended model ("gemini-3-pro-image-preview"), key lighting notes, and 4-6 style tags.
 
-Generate the output JSON strictly according to the output schema.
+Output JSON strictly matching the schema.
 `,
 });
 
@@ -112,8 +123,6 @@ export const generateWebSectionPromptFlow = ai.defineFlow(
   async (input) => {
     const flowInput = {
       ...input,
-      company: companyProfile,
-      brand: BRAND_STYLE,
     };
 
     const { output } = await promptTemplate(flowInput);
@@ -133,8 +142,8 @@ export const generateWebSectionPromptFlow = ai.defineFlow(
       suggestedSettings: output.suggestedSettings || {
         aspectRatio: input.aspectRatio || "16:9",
         recommendedModel: "gemini-3-pro-image-preview",
-        lighting: "Studio softbox with yellow rim illumination",
-        styleKeywords: [input.visualStyle, "UI Mockup", "Envíos DosRuedas", "Clean Design"],
+        lighting: "Studio softbox with electric blue and neon yellow rim illumination",
+        styleKeywords: [input.visualStyle, "Envíos DosRuedas Triad", "Electric Blue #0C59F2", "Asymmetric Bento"],
       },
     };
   }
