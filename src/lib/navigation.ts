@@ -12,6 +12,7 @@ import {
   TrendingUp,
   ShoppingCart,
   Box,
+  LayoutTemplate,
   type LucideIcon,
 } from "lucide-react";
 import type React from "react";
@@ -104,5 +105,12 @@ export const toolsNavItems: ToolItem[] = [
     label: "Optimizador de Componentes",
     icon: FileCode,
     description: "Refactorización detallada de componentes específicos.",
+  },
+  {
+    href: "/crear-prompts-webs",
+    label: "Prompts Web",
+    icon: LayoutTemplate,
+    description: "Generá prompts visuales de secciones web a partir de docs/contenido.",
+    badge: "Nuevo",
   },
 ];

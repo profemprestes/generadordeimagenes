@@ -19,6 +19,7 @@ import {
   Cpu,
   CheckCircle2,
   ExternalLink,
+  LayoutTemplate,
 } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -88,6 +89,15 @@ const tools = [
     title: "Optimizador de Componentes",
     description: "Selecciona componentes específicos de tu código para recibir refactorizaciones y prompts precisos.",
     badge: "Código",
+    borderGlow: "hover:border-[#FFF12E]/60",
+    iconBg: "bg-[#052C87] text-[#FFF12E]",
+  },
+  {
+    href: "/crear-prompts-webs",
+    icon: LayoutTemplate,
+    title: "Prompts Web (docs/contenido)",
+    description: "Generá prompts visuales en lenguaje natural para componentes y secciones a partir de la documentación de cada página.",
+    badge: "Nuevo",
     borderGlow: "hover:border-[#FFF12E]/60",
     iconBg: "bg-[#052C87] text-[#FFF12E]",
   },
