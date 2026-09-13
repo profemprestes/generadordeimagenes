@@ -1,5 +1,3 @@
-'use server';
-
 import { z } from 'genkit';
 import { ai } from '../genkit';
 import { BRAND_STYLE } from '../../lib/brand-style';
