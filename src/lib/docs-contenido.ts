@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { cache } from 'react';
 
 export interface VisualSlotDoc {
   id: string;
@@ -365,7 +366,11 @@ export async function parseDocFile(fileName: string, content: string): Promise<W
   }
 }
 
-export async function getAllWebPagesDocs(): Promise<WebPageDoc[]> {
+/**
+ * Lee y parsea todos los docs de `docs/contenido`. Envuelto en `cache` de React
+ * para deduplicar llamadas dentro del mismo render/request (page + action).
+ */
+export const getAllWebPagesDocs = cache(async (): Promise<WebPageDoc[]> => {
   const docsDir = path.join(process.cwd(), 'docs', 'contenido');
   try {
     const files = await fs.readdir(docsDir);
@@ -398,20 +403,48 @@ export async function getAllWebPagesDocs(): Promise<WebPageDoc[]> {
       return a.localeCompare(b);
     });
 
-    const pagesDocs: WebPageDoc[] = [];
+    // Lectura en paralelo; Promise.all conserva el orden de mdFiles.
+    const parsedDocs = await Promise.all(
+      mdFiles.map(async (file) => {
+        const content = await fs.readFile(path.join(docsDir, file), 'utf-8');
+        return parseDocFile(file, content);
+      })
+    );
 
-    for (const file of mdFiles) {
-      const filePath = path.join(docsDir, file);
-      const content = await fs.readFile(filePath, 'utf-8');
-      const parsed = await parseDocFile(file, content);
-      if (parsed) {
-        pagesDocs.push(parsed);
-      }
-    }
-
-    return pagesDocs;
+    return parsedDocs.filter((doc): doc is WebPageDoc => doc !== null);
   } catch (error) {
     console.error('Error reading docs/contenido directory:', error);
     return [];
   }
+});
+
+/** Sección tal como viaja al cliente: sin `rawSnippet`, que solo usa el servidor. */
+export type ClientWebSectionDoc = Omit<WebSectionDoc, 'rawSnippet'>;
+export type ClientWebPageDoc = Omit<WebPageDoc, 'sections'> & { sections: ClientWebSectionDoc[] };
+
+/** Quita del payload los datos que el cliente nunca muestra. */
+export function toClientPagesDocs(docs: WebPageDoc[]): ClientWebPageDoc[] {
+  return docs.map((page) => ({
+    ...page,
+    sections: page.sections.map(({ rawSnippet: _rawSnippet, ...section }) => section),
+  }));
+}
+
+/** Snippet de código para el prompt: el del slot si existe; si no, el crudo de la sección. */
+export function resolveCodeSnippet(
+  section: Pick<WebSectionDoc, 'rawSnippet'>,
+  slot?: Pick<VisualSlotDoc, 'targetCodeSnippet'> | null
+): string | undefined {
+  return slot?.targetCodeSnippet || section.rawSnippet;
+}
+
+/** Resuelve en el servidor la página, sección y slot elegidos por id. */
+export async function findWebSectionContext(pageId: string, sectionId: string, slotId?: string) {
+  const docs = await getAllWebPagesDocs();
+  const page = docs.find((p) => p.id === pageId);
+  const section = page?.sections.find((s) => s.id === sectionId);
+  if (!page || !section) return null;
+
+  const slot = slotId ? section.visualSlots.find((s) => s.id === slotId) ?? null : null;
+  return { page, section, slot, codeSnippet: resolveCodeSnippet(section, slot) };
 }

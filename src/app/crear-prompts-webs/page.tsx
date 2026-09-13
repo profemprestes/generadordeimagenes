@@ -4,7 +4,10 @@ import { ArrowLeft, LayoutTemplate } from 'lucide-react';
 import { AdminHeader } from '@/components/layout/AdminHeader';
 import { Footer } from '@/components/layout/footer';
 import { WebPromptGenerator } from '@/components/admin/crea-imagenes/web-prompts/WebPromptGenerator';
-import { getAllWebPagesDocs } from '@/lib/docs-contenido';
+import { getAllWebPagesDocs, toClientPagesDocs } from '@/lib/docs-contenido';
+
+// docs/contenido se parsea en build; nunca en cada request.
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'Generador de Prompts Web (docs/contenido) | Estudio IA Envíos DosRuedas',
@@ -13,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CrearPromptsWebsPage() {
-  const pagesDocs = await getAllWebPagesDocs();
+  const pagesDocs = toClientPagesDocs(await getAllWebPagesDocs());
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">

@@ -13,7 +13,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { optimizeWebSectionPromptAction } from '@/app/crear-prompts-webs/actions';
-import type { WebPageDoc, WebSectionDoc, VisualSlotDoc } from '@/lib/docs-contenido';
+import type {
+  ClientWebPageDoc as WebPageDoc,
+  ClientWebSectionDoc as WebSectionDoc,
+  VisualSlotDoc,
+} from '@/lib/docs-contenido';
 import type { GenerateWebSectionPromptOutput } from '@/ai/flows/generate-web-section-prompt';
 import {
   Sparkles,
@@ -216,16 +220,10 @@ export function WebPromptGenerator({ initialPagesDocs }: WebPromptGeneratorProps
           : selectedSlot?.name || selectedSection.name;
 
       const res = await optimizeWebSectionPromptAction({
-        pageTitle: selectedPage.title,
-        pageUrl: selectedPage.url,
-        sectionName: selectedSection.name,
-        sectionType: selectedSection.type,
-        sectionDescription: selectedSection.description,
-        componentName: selectedSection.componentName,
+        pageId: selectedPage.id,
+        sectionId: selectedSection.id,
         slotId: selectedSlot?.id,
         slotName: slotFinalName,
-        slotType: selectedSlot?.type,
-        targetCodeSnippet: selectedSlot?.targetCodeSnippet || selectedSection.rawSnippet,
         visualStyle,
         colorMode,
         aspectRatio,
