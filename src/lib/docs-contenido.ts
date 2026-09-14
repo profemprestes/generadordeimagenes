@@ -442,7 +442,11 @@ function extractVisualSlots(
   return { slots, proceduralVariant, rawSnippet };
 }
 
-export async function parseDocFile(fileName: string, content: string): Promise<WebPageDoc | null> {
+export async function parseDocFile(
+  fileName: string,
+  content: string,
+  heroMap?: Map<string, HeroMigrationDoc>
+): Promise<WebPageDoc | null> {
   try {
     // Title
     const titleMatch = content.match(/^#\s*(?:📄\s*Nodo:\s*)?([^\r\n]+)/m);
