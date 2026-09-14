@@ -1,0 +1,641 @@
+{
+  "project": "Envíos DosRuedas",
+  "location": "Mar del Plata, Argentina",
+  "year": 2026,
+  "brand_palette": {
+    "primary_blue": "#0950F6",
+    "deep_blue": "#052C87",
+    "bright_yellow": "#FFEC01",
+    "ink_text": "#00277C",
+    "hub_address": "Friuli 1972, Mar del Plata"
+  },
+  "total_heros": 11,
+  "heros": [
+    {
+      "id": "hero-animado",
+      "section": "Home Principal",
+      "route": "/",
+      "tsx_component": "src/components/home/HeroAnimado.tsx",
+      "badge": "Tu Solución Confiable en Mar del Plata",
+      "title_display": "Mensajería y Logística E-Commerce en Mar del Plata",
+      "subtitle_lead": "Somos tu partner estratégico en mensajería urbana, envíos en el día y delivery de última milla. Flota propia de motos, cero tercerización y respuesta inmediata.",
+      "ctas": [
+        {
+          "text": "Cotizá Express",
+          "url": "/cotizar/express",
+          "type": "primary_yellow"
+        },
+        {
+          "text": "Mirá los Servicios",
+          "url": "/servicios/envios-express",
+          "type": "secondary_glass"
+        }
+      ],
+      "trust_badges": [
+        "+50k Envíos",
+        "Cobertura Total MDQ",
+        "Entregas en el Día"
+      ],
+      "right_column_visual": {
+        "concept": "Render 3D Isométrico de Mar del Plata + HUD GPS",
+        "generated_asset": "hero_home.png",
+        "telemetry_pill": "Ruteo Activo · MDQ (Friuli 1972)",
+        "feature_badges": [
+          "Envíos Same-Day",
+          "Flota Propia"
+        ],
+        "prompt_3d": "3D isometric stylized map of a coastal city inspired by Mar del Plata, Argentina, clean glassmorphism aesthetic. A modern electric delivery scooter in gloss royal blue (#0950F6) accelerating along a curved elevated highway, leaving an intense neon yellow (#FFEC01) kinetic light trail. Glowing yellow GPS pins marking key delivery zones (Chauvín, Centro, Güemes). A floating translucent frosted-glass HUD card on the side displays holographic live telemetry text 'Ruteo Activo · Friuli 1972'. Cinematic studio lighting, deep midnight navy blue (#021440 / #04236B) gradient backdrop, volumetric electric blue (#0950F6) rim light and soft ground reflection, raytraced reflections, Octane Render, 8k resolution.",
+        "prompt_3d_optimized": "3D isometric stylized map of a coastal city inspired by Mar del Plata, Argentina, clean glassmorphism aesthetic. A modern electric delivery scooter in gloss royal blue (#0950F6) accelerating along a curved elevated highway, leaving an intense neon yellow (#FFEC01) kinetic light trail. Glowing yellow GPS pins marking key delivery zones (Chauvín, Centro, Güemes). A floating translucent frosted-glass HUD card on the side displays holographic live telemetry text 'Ruteo Activo · Friuli 1972'. Cinematic studio lighting, deep midnight navy blue (#021440 / #04236B) gradient backdrop, volumetric electric blue (#0950F6) rim light and soft ground reflection, raytraced reflections, Octane Render, 8k resolution.",
+        "negative_prompt": "photorealistic messy traffic, cars, green colors, red elements, cartoonish characters, blurry textures, distorted geometry, low poly, text artifacts, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Isometric 45° angle, orthographic view, Cinema 4D + Octane Render, raytraced reflections, subsurface scattering",
+        "palette": [
+          "#0950F6",
+          "#0636A5",
+          "#FFEC01",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-about",
+      "section": "Sobre Nosotros",
+      "route": "/nosotros/sobre-nosotros",
+      "tsx_component": "src/components/nosotros/sobre-nosotros/AboutHero.tsx",
+      "badge": "LOGÍSTICA SOBERANA · MAR DEL PLATA 2026",
+      "title_display": "LÍDERES EN LOGÍSTICA DE ÚLTIMA MILLA",
+      "subtitle_lead": "Con más de 7 años de trayectoria en Mar del Plata, transformamos el despacho de tus productos en un motor de crecimiento para emprendedores, PyMEs y comercios locales con flota propia y compromiso humano.",
+      "ctas": [
+        {
+          "text": "COTIZÁ TU ENVÍO EN VIVO",
+          "url": "/cotizar/express",
+          "type": "primary_yellow"
+        }
+      ],
+      "purpose_callout": {
+        "title": "PROPÓSITO OPERATIVO 2026",
+        "description": "Conectamos tiendas online, PyMEs y emprendedores de General Pueyrredón mediante una flota motorizada 100% propia, soporte en tiempo real y cumplimiento estricto de horarios desde nuestro Hub Central en Friuli 1972."
+      },
+      "metrics": [
+        {
+          "label": "Años en MDQ",
+          "value": "+7"
+        },
+        {
+          "label": "Flota Propia",
+          "value": "100%"
+        },
+        {
+          "label": "Google Reviews",
+          "value": "5.0 ★"
+        }
+      ],
+      "right_column_visual": {
+        "concept": "Insignia de Confianza 3D + Widget de Reseñas de Google",
+        "generated_asset": "hero_nosotros.png",
+        "reviews_widget": {
+          "rating": "5.0 / 5",
+          "reviews": [
+            {
+              "author": "Sol R.",
+              "role": "Google Local Guide · Mar del Plata",
+              "text": "Matías de Envíos DosRuedas se convirtió en mi héroe logístico por segundo año consecutivo. Rapidez, comunicación clara y un embalaje impecable."
+            },
+            {
+              "author": "Karen H.",
+              "role": "Comercio Local · Mar del Plata",
+              "text": "Excelente servicio, rápidos, muy atentos, resolvieron mi problema con la mejor predisposición."
+            },
+            {
+              "author": "Agustín T.",
+              "role": "Tienda Online · Centro",
+              "text": "Lo usé varias veces para llevar pedidos a nuestros clientes. Impecable el servicio y la confianza de su flota propia."
+            }
+          ]
+        },
+        "prompt_3d": "3D luxury trust badge and social proof visual. An embossed metallic heraldic emblem sculpted in mirror-polished yellow gold (#FFEC01) and deep royal blue enamel, engraved with '+7 AÑOS EN MDQ' and '100% FLOTA PROPIA'. Floating adjacent in 3/4 perspective is a bezel-less smartphone made of frosted glass and brushed aluminum; the screen displays a verified Google Reviews card with five glowing golden stars (5.0 ★) and floating speech bubble testimonials with clean quotation marks. Deep navy blue (#052C87 / #021440) studio environment, warm golden key light, sharp specular reflections, Octane Render, ultra-clean commercial product photography, 8k.",
+        "prompt_3d_optimized": "3D luxury trust badge and social proof visual. An embossed metallic heraldic emblem sculpted in mirror-polished yellow gold (#FFEC01) and deep royal blue enamel, engraved with '+7 AÑOS EN MDQ' and '100% FLOTA PROPIA'. Floating adjacent in 3/4 perspective is a bezel-less smartphone made of frosted glass and brushed aluminum; the screen displays a verified Google Reviews card with five glowing golden stars (5.0 ★) and floating speech bubble testimonials with clean quotation marks. Deep navy blue (#052C87 / #021440) studio environment, warm golden key light, sharp specular reflections, Octane Render, ultra-clean commercial product photography, 8k.",
+        "negative_prompt": "green buttons, red accents, dull metals, scratches, noisy grain, distorted text, low resolution, cheap plastic look, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "3/4 perspective hero shot, 85mm lens, f/4 aperture, studio softbox lighting, Octane Render",
+        "palette": [
+          "#FFEC01",
+          "#0636A5",
+          "#0950F6",
+          "#052C87",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-networks",
+      "section": "Nuestras Redes",
+      "route": "/nosotros/nuestras-redes",
+      "tsx_component": "src/components/nosotros/nuestras-redes/NetworksHero.tsx",
+      "badge": "COMUNIDAD EN MOVIMIENTO · SOCIAL MEDIA 2026",
+      "title_display": "COMUNIDAD EN LÍNEA",
+      "subtitle_lead": "La logística también se vive en redes. Rutas en vivo, promos relámpago y la comunidad de repartidores más grande de Mar del Plata.",
+      "social_channels": [
+        {
+          "name": "Instagram Oficial",
+          "badge_status": "Último post: hace 18 min",
+          "description": "Rutas en vivo, fotos de la flota en MDQ y novedades de horarios.",
+          "url": "https://instagram.com/enviosdosruedas"
+        },
+        {
+          "name": "Facebook Comunidad",
+          "badge_status": "Video nuevo hoy",
+          "description": "El día a día de nuestros cadetes recorriendo calles y barrios de Mar del Plata.",
+          "url": "https://facebook.com/enviosdosruedas"
+        },
+        {
+          "name": "Canal de WhatsApp",
+          "badge_status": "Canal activo 24/7",
+          "description": "Avisos de cortes de tránsito, clima y códigos de descuento relámpago.",
+          "url": "https://wa.me/542236602699"
+        }
+      ],
+      "right_column_visual": {
+        "concept": "Smartphone Flotante + Burbujas Social Media 3D + Contador",
+        "generated_asset": "hero_redes.png",
+        "counter_value": "+5.200",
+        "counter_label": "MÁS DE 5.000 SEGUIDORES EN REDES",
+        "hashtags": [
+          "#RutasMDQ",
+          "#SameDayMDQ"
+        ],
+        "prompt_3d": "Dynamic 3D social media and community visual. A sleek modern smartphone suspended at an isometric 3/4 angle, displaying an energetic logistics social feed in vibrant royal blue (#0950F6) with high-contrast UI. Swirling around the phone are glossy dimensional social media icons: 3D translucent acrylic camera badges, notification bells, speech bubbles, and floating like hearts in electric yellow (#FFEC01) and blue. A prominent glowing pill badge reads '+5.200 SEGUIDORES' in bold typography with a neon yellow glow. Glossy claymorphism meets glassmorphism, crisp specular highlights, floating depth with subtle lens bokeh, dark navy blue (#04236B) background, Octane Render 8k.",
+        "prompt_3d_optimized": "Dynamic 3D social media and community visual. A sleek modern smartphone suspended at an isometric 3/4 angle, displaying an energetic logistics social feed in vibrant royal blue (#0950F6) with high-contrast UI. Swirling around the phone are glossy dimensional social media icons: 3D translucent acrylic camera badges, notification bells, speech bubbles, and floating like hearts in electric yellow (#FFEC01) and blue. A prominent glowing pill badge reads '+5.200 SEGUIDORES' in bold typography with a neon yellow glow. Glossy claymorphism meets glassmorphism, crisp specular highlights, floating depth with subtle lens bokeh, dark navy blue (#04236B) background, Octane Render 8k.",
+        "negative_prompt": "green whatsapp backgrounds, third-party social logos with incorrect colors, messy clutter, distorted fingers, low quality, pixelated, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Dynamic 3/4 floating perspective, 50mm lens, shallow depth of field, rim lighting, Cinema 4D",
+        "palette": [
+          "#0950F6",
+          "#FFEC01",
+          "#052C87",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-faq",
+      "section": "FAQ & Soporte",
+      "route": "/nosotros/preguntas-frecuentes",
+      "tsx_component": "src/components/nosotros/preguntas-frecuentes/FaqHero.tsx",
+      "badge": "CENTRO DE SOPORTE · MAR DEL PLATA 2026",
+      "title_display": "¿TENÉS DUDAS?",
+      "subtitle_lead": "Buscá por palabra clave o elegí una categoría. Si no está, te respondemos por WhatsApp en minutos.",
+      "search_categories": [
+        "EXPRESS",
+        "LOWCOST",
+        "FLEX",
+        "3PL",
+        "PAGOS"
+      ],
+      "right_column_visual": {
+        "concept": "Lupa Inteligente 3D + Acordeón de Respuestas Rápidas",
+        "generated_asset": "hero_faq.png",
+        "response_time": "Respuesta < 5 min",
+        "top_questions": [
+          {
+            "q": "¿Cuál es el horario de corte para Same-Day?",
+            "a": "Para envíos LowCost con entrega en el día, el corte es a las 13:00 hs. Para envíos Express (3 horas), tomamos pedidos antes de las 15:00 hs."
+          },
+          {
+            "q": "¿Cómo rastreo mi paquete en tiempo real?",
+            "a": "Ingresá el código en nuestro cotizador o envianos un WhatsApp para conectarte con el operador."
+          },
+          {
+            "q": "¿Qué pasa si no hay nadie en el domicilio?",
+            "a": "El repartidor llama por teléfono. Si no responde, regresa a base central en Friuli 1972 y reprogramamos visita sin recargo."
+          }
+        ],
+        "prompt_3d": "High-tech 3D customer support and instant assistance illustration. A precision-engineered 3D magnifying glass crafted from optical crystal and royal blue metal rim, focusing over a cascade of layered frosted-glass FAQ cards. Glowing holographic question marks and checkmark badges hover above the glass layers. On the right, a stylized 3D megaphone in vivid signal yellow (#FFEC01) and royal blue emits soft acoustic waves that form a floating badge reading 'RESPUESTA < 5 MIN'. Translucent glassmorphism, subsurface scattering, dramatic rim lighting on seamless dark navy blue (#021440) background, Octane Render 8k.",
+        "prompt_3d_optimized": "High-tech 3D customer support and instant assistance illustration. A precision-engineered 3D magnifying glass crafted from optical crystal and royal blue metal rim, focusing over a cascade of layered frosted-glass FAQ cards. Glowing holographic question marks and checkmark badges hover above the glass layers. On the right, a stylized 3D megaphone in vivid signal yellow (#FFEC01) and royal blue emits soft acoustic waves that form a floating badge reading 'RESPUESTA < 5 MIN'. Translucent glassmorphism, subsurface scattering, dramatic rim lighting on seamless dark navy blue (#021440) background, Octane Render 8k.",
+        "negative_prompt": "green accents, red warning marks, dark murky glass, scratched surfaces, cluttered composition, illegible icons, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Eye-level 30° perspective, 70mm lens, softbox lighting with yellow rim light, Octane Render",
+        "palette": [
+          "#0950F6",
+          "#FFEC01",
+          "#0636A5",
+          "#00277C",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-contact",
+      "section": "Contacto Comercial",
+      "route": "/contacto",
+      "tsx_component": "src/components/contacto/ContactHero.tsx",
+      "badge": "Conexión Directa Mar del Plata",
+      "title_display": "¿Hablamos ahora?",
+      "subtitle_lead": "Sin formularios complejos ni esperas. Elegí el canal que mejor se adapte al ritmo de tu e-commerce.",
+      "office_info": {
+        "central": "Friuli 1972, Mar del Plata",
+        "schedule": "Lunes a Sábado · Turnos 2026"
+      },
+      "contact_channels": [
+        {
+          "type": "WhatsApp Comercial",
+          "description": "Respuestas y cotizaciones de envíos en tiempo real.",
+          "action_url": "https://wa.me/542236602699"
+        },
+        {
+          "type": "Llamada de Coordinación",
+          "description": "Para hablar directamente con un coordinador logístico.",
+          "action_url": "tel:+542236602699"
+        },
+        {
+          "type": "Solicitar Cotización B2B",
+          "description": "Envianos tu base de envíos para un plan personalizado.",
+          "action_url": "mailto:matiascejas@enviosdosruedas.com"
+        }
+      ],
+      "b2b_form": {
+        "title": "Cotizá tu cuenta comercial",
+        "fields": [
+          "Nombre o Comercio",
+          "WhatsApp / Teléfono",
+          "Volumen Mensual (20-50, 50-200, 200-500, +500)",
+          "Modalidad (Express, LowCost, Flex, 3PL)"
+        ]
+      },
+      "right_column_visual": {
+        "concept": "Mockup de Teléfono con Llamada En Vivo 'Coordinador Logístico' + Botón WhatsApp",
+        "generated_asset": "hero_contacto.png",
+        "cta_button_text": "¡Hablamos ya!",
+        "prompt_3d": "Commercial 3D business communication mockup. A premium bezel-less smartphone floating in perspective, displaying an incoming call interface: 'COORDINADOR LOGÍSTICO · ENVÍOS DOSRUEDAS' with an active pulsating audio wave. Floating adjacent to the phone is a high-visibility 3D pill action button in electric brand yellow (#FFEC01) with a crisp white phone/chat icon and bold typography '¡HABLAMOS YA!'. Below it, floating frosted glass B2B corporate quote cards with royal blue (#0950F6) checkmarks. (Strict brand rule: button is yellow #FFEC01, NO green). Studio lighting, seamless navy blue (#052C87 / #021440) backdrop, glossy reflections, Octane Render 8k.",
+        "prompt_3d_optimized": "Commercial 3D business communication mockup. A premium bezel-less smartphone floating in perspective, displaying an incoming call interface: 'COORDINADOR LOGÍSTICO · ENVÍOS DOSRUEDAS' with an active pulsating audio wave. Floating adjacent to the phone is a high-visibility 3D pill action button in electric brand yellow (#FFEC01) with a crisp white phone/chat icon and bold typography '¡HABLAMOS YA!'. Below it, floating frosted glass B2B corporate quote cards with royal blue (#0950F6) checkmarks. (Strict brand rule: button is yellow #FFEC01, NO green). Studio lighting, seamless navy blue (#052C87 / #021440) backdrop, glossy reflections, Octane Render 8k.",
+        "negative_prompt": "green WhatsApp button, green icons, red colors, realistic human faces, ugly hands, low quality, blurred text, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Perspective product shot, 85mm macro lens, studio rim light, raytraced reflections, Cinema 4D",
+        "palette": [
+          "#FFEC01",
+          "#0950F6",
+          "#052C87",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-cotizar-express",
+      "section": "Cotizador Express",
+      "route": "/cotizar/express",
+      "tsx_component": "src/components/cotizar/express/CotizadorExpressHero.tsx",
+      "badge": "SERVICIO EXPRESS PRIORITARIO",
+      "title_display": "COTIZÁ TU ENVÍO EXPRESS",
+      "subtitle_lead": "Calculá el costo de tu envío prioritario al instante. Obtené la tarifa de entrega según la distancia y coordiná en el acto con nosotros por WhatsApp.",
+      "feature_pills": [
+        "Entrega en < 3 Horas",
+        "Ruta Optimizada",
+        "Tarifa 100% Precisa"
+      ],
+      "right_column_visual": {
+        "concept": "Consola Táctil 3D + Simulador de Rutas en Mar del Plata",
+        "generated_asset": "hero_cotizar_express.png",
+        "simulated_trips": [
+          {
+            "origin": "Terminal Ferroautomotora",
+            "dest": "B° Stella Maris",
+            "distance": "3.7 km",
+            "price": "$4.600 ARS"
+          },
+          {
+            "origin": "Av. Colón 1200",
+            "dest": "Zona Güemes",
+            "distance": "2.8 km",
+            "price": "$3.700 ARS"
+          },
+          {
+            "origin": "Av. Constitución 5500",
+            "dest": "Plaza Mitre",
+            "distance": "5.8 km",
+            "price": "$6.100 ARS"
+          },
+          {
+            "origin": "Puerto Mar del Plata",
+            "dest": "Punta Mogotes",
+            "distance": "7.4 km",
+            "price": "$8.200 ARS"
+          }
+        ],
+        "prompt_3d": "3D interactive delivery telemetry console and route calculator dashboard. A sleek dark-mode digital tablet console angled in 3/4 perspective, displaying an interactive GPS route across Mar del Plata (from Friuli 1972 along coastal boulevards) with glowing waypoint markers. A floating 3D holographic speedometer gauge glowing in neon yellow (#FFEC01) indicates '< 3 HORAS', flanked by a digital price tag card displaying '$4.600 ARS' in crisp tabular typography. Sci-fi HUD meets premium product render, glowing neon route vectors, dark carbon and frosted glass textures, deep blue (#021440) studio background, Octane Render 8k.",
+        "prompt_3d_optimized": "3D interactive delivery telemetry console and route calculator dashboard. A sleek dark-mode digital tablet console angled in 3/4 perspective, displaying an interactive GPS route across Mar del Plata (from Friuli 1972 along coastal boulevards) with glowing waypoint markers. A floating 3D holographic speedometer gauge glowing in neon yellow (#FFEC01) indicates '< 3 HORAS', flanked by a digital price tag card displaying '$4.600 ARS' in crisp tabular typography. Sci-fi HUD meets premium product render, glowing neon route vectors, dark carbon and frosted glass textures, deep blue (#021440) studio background, Octane Render 8k.",
+        "negative_prompt": "green colors, red signs, confusing messy maps, realistic satellite noise, low resolution, blurry numbers, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Isometric 3/4 perspective, 50mm lens, holographic neon glow, Octane Render",
+        "palette": [
+          "#FFEC01",
+          "#0950F6",
+          "#0636A5",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-cotizar-lowcost",
+      "section": "Cotizador LowCost",
+      "route": "/cotizar/lowcost",
+      "tsx_component": "src/components/cotizar/lowcost/CotizadorLowCostHero.tsx",
+      "badge": "SERVICIO ECONÓMICO Y PROGRAMADO",
+      "title_display": "COTIZÁ TU ENVÍO LOWCOST",
+      "subtitle_lead": "Eficiencia y rentabilidad. Calculá tu envío con entrega garantizada en el día si es solicitado antes de 13hs.",
+      "feature_pills": [
+        "Hasta 40% de Ahorro",
+        "Entrega Same-Day",
+        "Tarifa Plana PyME"
+      ],
+      "right_column_visual": {
+        "concept": "Lote de Cajas E-Commerce 3D + Balanza Digital + Sello de Ahorro",
+        "generated_asset": "hero_cotizar_lowcost.png",
+        "savings_badge": "Hasta 40% de Ahorro · Same-Day",
+        "prompt_3d": "3D e-commerce parcel shipping and cost-efficiency composition. A neat geometric pyramid stack of premium kraft cardboard delivery boxes, sealed with customized royal blue (#0950F6) branded adhesive tape. Beside the packages sits a high-precision digital parcel platform scale with an illuminated LED readout. Floating above is a shiny dimensional discount badge in vivid yellow (#FFEC01) reading 'HASTA 40% DE AHORRO · SAME-DAY', accompanied by floating golden percentage coins. Photorealistic 3D studio still life, tactile paper textures, soft directional studio lighting, deep navy (#052C87) background, Octane Render 8k.",
+        "prompt_3d_optimized": "3D e-commerce parcel shipping and cost-efficiency composition. A neat geometric pyramid stack of premium kraft cardboard delivery boxes, sealed with customized royal blue (#0950F6) branded adhesive tape. Beside the packages sits a high-precision digital parcel platform scale with an illuminated LED readout. Floating above is a shiny dimensional discount badge in vivid yellow (#FFEC01) reading 'HASTA 40% DE AHORRO · SAME-DAY', accompanied by floating golden percentage coins. Photorealistic 3D studio still life, tactile paper textures, soft directional studio lighting, deep navy (#052C87) background, Octane Render 8k.",
+        "negative_prompt": "damaged boxes, torn cardboard, messy tape, green stickers, red elements, low quality textures, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Eye-level 3/4 still life, 85mm portrait lens, f/5.6 aperture, softbox studio light, Cinema 4D",
+        "palette": [
+          "#FFEC01",
+          "#0950F6",
+          "#052C87",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-servicios-express",
+      "section": "Servicio Envíos Express",
+      "route": "/servicios/envios-express",
+      "tsx_component": "src/components/servicios/express/ExpressHero.tsx",
+      "badge": "MENSAJERÍA EN MOTO Y ENTREGAS INMEDIATAS · MDQ 2026",
+      "title_display": "MENSAJERÍA EN MOTO Y ENVÍOS EXPRESS ENTREGAS INMEDIATAS EN MAR DEL PLATA",
+      "subtitle_lead": "Especialistas en mensajería en moto y envíos express prioritarios. Asignación de rango horario de entrega de 3 horas (solicitud con 2 hs de anticipación antes de las 15:00 hs). Todo lo que entre en moto (hasta 5 kg y 40x30 cm).",
+      "ctas": [
+        {
+          "text": "Cotizá tu envío Express",
+          "url": "/cotizar/express",
+          "type": "primary_yellow"
+        },
+        {
+          "text": "Hablar por WhatsApp",
+          "url": "https://wa.me/542236602699",
+          "type": "secondary_glass"
+        }
+      ],
+      "kpi_chips": [
+        {
+          "value": "3 Horas",
+          "label": "Rango de Entrega"
+        },
+        {
+          "value": "15:00 hs",
+          "label": "Corte Solicitud"
+        },
+        {
+          "value": "Hasta 5 kg",
+          "label": "40x30 cm Límite"
+        }
+      ],
+      "right_column_visual": {
+        "concept": "Render Dinámico de Repartidor en Moto + Radar HUD de Telemetría",
+        "generated_asset": "hero_servicios_express.png",
+        "hud_telemetry": {
+          "status": "TELEMETRÍA EN VIVO · MDQ",
+          "priority": "PRIORIDAD 1",
+          "eta_range": "3 HS RANGO",
+          "metrics": [
+            "RUTEO DIRECTO",
+            "CUSTODIA 100% EXCLUSIVA",
+            "CONFIRMACIÓN AL INSTANTE"
+          ]
+        },
+        "prompt_3d": "Cinematic dynamic action shot of a professional delivery courier riding a modern, sleek motorcycle along the coastal boulevard of Mar del Plata (Cabo Corrientes coastline). The rider wears a matte royal blue (#0636A5) helmet with dark visor and a branded logistics jacket with high-visibility yellow (#FFEC01) reflective stripes, carrying an aerodynamic thermal delivery box. Floating over the vehicle is a 3D circular heads-up display (HUD) radar tracking ring with route telemetry and an illuminated neon yellow badge '3 HS RANGO GARANTIZADO'. High-speed motion blur on the road, frozen sharp focus on the motorcycle, twilight sunset lighting reflecting on wet asphalt and the Atlantic Ocean, 8k resolution.",
+        "prompt_3d_optimized": "Cinematic dynamic action shot of a professional delivery courier riding a modern, sleek motorcycle along the coastal boulevard of Mar del Plata (Cabo Corrientes coastline). The rider wears a matte royal blue (#0636A5) helmet with dark visor and a branded logistics jacket with high-visibility yellow (#FFEC01) reflective stripes, carrying an aerodynamic thermal delivery box. Floating over the vehicle is a 3D circular heads-up display (HUD) radar tracking ring with route telemetry and an illuminated neon yellow badge '3 HS RANGO GARANTIZADO'. High-speed motion blur on the road, frozen sharp focus on the motorcycle, twilight sunset lighting reflecting on wet asphalt and the Atlantic Ocean, 8k resolution.",
+        "negative_prompt": "pedestrians, chaotic traffic, green vests, red traffic lights, low poly motorcycle, distorted helmet, blurry rider, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Low-angle dynamic tracking shot, 35mm lens, f/2.8, high shutter speed, cinematic color grading, Unreal Engine 5 render aesthetic",
+        "palette": [
+          "#0636A5",
+          "#0950F6",
+          "#FFEC01",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-servicios-lowcost",
+      "section": "Servicio Envíos LowCost",
+      "route": "/servicios/envios-lowcost",
+      "tsx_component": "src/components/servicios/lowcost/LowCostHero.tsx",
+      "badge": "PAQUETERÍA E-COMMERCE Y CADETERÍA ECONÓMICA · MDQ 2026",
+      "title_display": "PAQUETERÍA E-COMMERCE Y ENCOMIENDAS LOWCOST EL SERVICIO DE CADETERÍA MÁS RENTABLE",
+      "subtitle_lead": "Solución en paquetería e-commerce, servicio de cadetería y servicio de encomiendas programadas en Mar del Plata. Pedidos solicitados antes de las 13:00 hs se entregan en el día antes de las 19:00 hs.",
+      "ctas": [
+        {
+          "text": "Cotizá tu lote LowCost",
+          "url": "/cotizar/lowcost",
+          "type": "primary_yellow"
+        },
+        {
+          "text": "Hablar por WhatsApp",
+          "url": "https://wa.me/542236602699",
+          "type": "secondary_glass"
+        }
+      ],
+      "kpi_chips": [
+        {
+          "value": "$3.000",
+          "label": "Base 0-3 km 2026"
+        },
+        {
+          "value": "13:00 hs",
+          "label": "Horario de Corte"
+        },
+        {
+          "value": "Antes 19:00 hs",
+          "label": "Entrega Misma Jornada"
+        }
+      ],
+      "right_column_visual": {
+        "concept": "Lote de Encomiendas 3D + Reloj Digital 13:00 hs + Pestañas de Beneficios",
+        "generated_asset": "hero_servicios_lowcost.png",
+        "tabs": [
+          {
+            "name": "Ventajas Ahorro",
+            "points": [
+              "Paquetería E-Commerce Rentable",
+              "Servicio de Cadetería Flexible",
+              "Seguimiento y Notificaciones Vía WhatsApp"
+            ]
+          },
+          {
+            "name": "Horario y Corte",
+            "points": [
+              "Corte Solicitud 13:00 hs Límite",
+              "Entrega Antes de 19:00 hs",
+              "Cobertura 100% Mar del Plata"
+            ]
+          }
+        ],
+        "prompt_3d": "3D automated logistics batching and dispatch concept. A modern industrial conveyor belt in brushed dark steel, transporting neatly organized e-commerce shipping packages of various standard sizes with crisp barcodes and royal blue (#0950F6) shipping labels. Suspended above the belt is an oversized 3D digital LED flip clock displaying the cutoff deadline '13:00 HS' in glowing yellow (#FFEC01) numerals. Beside it floats an embossed golden ribbon seal with the text 'ENTREGA MISMO DÍA'. Clean industrial fulfillment aesthetic, specular highlights on metal rollers, midnight blue (#021440) background, warm yellow task lighting, Octane Render 8k.",
+        "prompt_3d_optimized": "3D automated logistics batching and dispatch concept. A modern industrial conveyor belt in brushed dark steel, transporting neatly organized e-commerce shipping packages of various standard sizes with crisp barcodes and royal blue (#0950F6) shipping labels. Suspended above the belt is an oversized 3D digital LED flip clock displaying the cutoff deadline '13:00 HS' in glowing yellow (#FFEC01) numerals. Beside it floats an embossed golden ribbon seal with the text 'ENTREGA MISMO DÍA'. Clean industrial fulfillment aesthetic, specular highlights on metal rollers, midnight blue (#021440) background, warm yellow task lighting, Octane Render 8k.",
+        "negative_prompt": "dirty warehouse, messy boxes, broken conveyor, green lights, red alarms, low poly models, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "3/4 isometric perspective, 50mm lens, studio industrial lighting, ambient occlusion, Octane Render",
+        "palette": [
+          "#FFEC01",
+          "#0950F6",
+          "#052C87",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-servicios-flex",
+      "section": "Servicio Envíos Flex",
+      "route": "/servicios/enviosflex",
+      "tsx_component": "src/components/servicios/flex/FlexHero.tsx",
+      "badge": "ENVÍOS FLEX Y REPARTO MERCADOLIBRE · MDQ 2026",
+      "title_display": "ENVÍOS FLEX Y REPARTO MERCADOLIBRE LOGÍSTICA FLEX CON 100% CUMPLIMIENTO",
+      "subtitle_lead": "Líderes en envíos flex, reparto MercadoLibre y logística flex en Mar del Plata. SLA real con 100% de entregas en el día antes de las 20:00 hs para proteger la reputación de MercadoLíder. Horario de corte 15:00 hs y múltiples retiros diarios sin mínimos de paquetes.",
+      "ctas": [
+        {
+          "text": "Activar Envíos Flex",
+          "url": "/cotizar/lowcost",
+          "type": "primary_yellow"
+        },
+        {
+          "text": "Contactar Asesor Flex",
+          "url": "https://wa.me/542236602699",
+          "type": "secondary_glass"
+        }
+      ],
+      "kpi_chips": [
+        {
+          "value": "15:00 hs",
+          "label": "Horario de Corte"
+        },
+        {
+          "value": "100%",
+          "label": "Entregas en el Día"
+        },
+        {
+          "value": "Sin Mínimos",
+          "label": "Retiros Múltiples"
+        }
+      ],
+      "right_column_visual": {
+        "concept": "Escaneo QR de Etiqueta Flex + Medalla MercadoLíder Gold 3D",
+        "generated_asset": "hero_servicios_flex.png",
+        "tabs": [
+          {
+            "name": "Ventajas MercadoLíder",
+            "points": [
+              "Corte a las 15:00 hs",
+              "Protección de Reputación SLA 100%",
+              "Sin Mínimos y Múltiples Retiros"
+            ]
+          },
+          {
+            "name": "Proceso QR",
+            "points": [
+              "1. Imprimís tus etiquetas Flex",
+              "2. Escaneo en mano al retirar",
+              "3. Entrega Same-Day antes de 20:00 hs"
+            ]
+          }
+        ],
+        "prompt_3d": "Close-up 3D operational scene of MercadoLibre Flex delivery logistics. Stylized courier hands in sleek dark technical gloves holding an ergonomic wireless laser barcode scanner, actively projecting a razor-sharp yellow (#FFEC01) laser line onto a shipping label's QR code on a neat package. Floating adjacent is a gleaming 3D medallion in mirror-polished yellow gold with embossed text 'MERCADOLÍDER GOLD · 100% CUMPLIMIENTO', with subtle golden sparkle particles. Macro product photography perspective, shallow depth of field (f/2.8), sharp focus on the laser beam and QR code, glowing royal blue (#0950F6) rim light on deep navy (#021440) backdrop, 8k.",
+        "prompt_3d_optimized": "Close-up 3D operational scene of MercadoLibre Flex delivery logistics. Stylized courier hands in sleek dark technical gloves holding an ergonomic wireless laser barcode scanner, actively projecting a razor-sharp yellow (#FFEC01) laser line onto a shipping label's QR code on a neat package. Floating adjacent is a gleaming 3D medallion in mirror-polished yellow gold with embossed text 'MERCADOLÍDER GOLD · 100% CUMPLIMIENTO', with subtle golden sparkle particles. Macro product photography perspective, shallow depth of field (f/2.8), sharp focus on the laser beam and QR code, glowing royal blue (#0950F6) rim light on deep navy (#021440) backdrop, 8k.",
+        "negative_prompt": "ugly distorted hands, missing fingers, green lasers, red errors, blurry label, low poly, noisy background, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Macro 100mm lens, shallow depth of field (f/2.8), precision laser glow, Cinema 4D + Octane Render",
+        "palette": [
+          "#FFEC01",
+          "#0950F6",
+          "#0636A5",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "hero-servicios-emprendedores",
+      "section": "Servicios Plan Emprendedores / 3PL",
+      "route": "/servicios/plan-emprendedores",
+      "tsx_component": "src/components/servicios/emprendedores/EmprendedoresHero.tsx",
+      "badge": "PAQUETERÍA E-COMMERCE Y LOGÍSTICA 3PL · FRIULI 1972 MDQ",
+      "title_display": "PAQUETERÍA Y ENVÍOS E-COMMERCE LOGÍSTICA 3PL EN MAR DEL PLATA",
+      "subtitle_lead": "Solución en paquetería e-commerce, envíos e-commerce y logística 3PL en Mar del Plata. Ofrecemos E-Commerce Same Day desde nuestro depósito en Friuli 1972 con picking QR, E-Commerce Next Day (24hs), Opción DropOFF (-20% OFF) y Contrareembolso sin cargo extra.",
+      "ctas": [
+        {
+          "text": "Solicitar Plan Corporativo",
+          "url": "/contacto",
+          "type": "primary_yellow"
+        },
+        {
+          "text": "Agendar Asesoría 3PL",
+          "url": "https://wa.me/542236602699",
+          "type": "secondary_glass"
+        }
+      ],
+      "kpi_chips": [
+        {
+          "value": "Same Day",
+          "label": "Stock Friuli 1972"
+        },
+        {
+          "value": "-20% OFF",
+          "label": "Opción DropOFF"
+        },
+        {
+          "value": "$0 Comis.",
+          "label": "Contrareembolso Gratis"
+        }
+      ],
+      "right_column_visual": {
+        "concept": "Hub Logístico 3D (Friuli 1972) + Estanterías + Picking QR",
+        "generated_asset": "hero_servicios_emprendedores.png",
+        "tabs": [
+          {
+            "name": "Modalidades",
+            "points": [
+              "E-Commerce Same Day",
+              "Opción DropOFF (-20% OFF)",
+              "Contrareembolso Sin Cargo Extra"
+            ]
+          },
+          {
+            "name": "Flujo Operativo",
+            "points": [
+              "1. Recepción en Friuli 1972",
+              "2. Picking por QR & Packing",
+              "3. Entrega Same Day / 24hs"
+            ]
+          }
+        ],
+        "prompt_3d": "3D isometric cutaway view of a state-of-the-art e-commerce fulfillment warehouse hub (representing the Friuli 1972 Central Hub in Mar del Plata). Heavy-duty industrial metal racking in royal blue (#0950F6) filled with neatly organized inventory bins and labeled cardboard boxes. A compact autonomous electric pallet jack rests on the glossy polished concrete floor. Hovering in the air is an interactive translucent glass tablet displaying a live QR picking interface, flanked by a glowing yellow (#FFEC01) badge highlighting 'DROPOFF -20% OFF'. Clean architectural 3D cutaway, Cinema 4D, softbox illumination, deep navy (#04236B) border framing, 8k resolution.",
+        "prompt_3d_optimized": "3D isometric cutaway view of a state-of-the-art e-commerce fulfillment warehouse hub (representing the Friuli 1972 Central Hub in Mar del Plata). Heavy-duty industrial metal racking in royal blue (#0950F6) filled with neatly organized inventory bins and labeled cardboard boxes. A compact autonomous electric pallet jack rests on the glossy polished concrete floor. Hovering in the air is an interactive translucent glass tablet displaying a live QR picking interface, flanked by a glowing yellow (#FFEC01) badge highlighting 'DROPOFF -20% OFF'. Clean architectural 3D cutaway, Cinema 4D, softbox illumination, deep navy (#04236B) border framing, 8k resolution.",
+        "negative_prompt": "messy warehouse, debris, dark shadowy corners, green machinery, red hazard signs, low poly, watermark",
+        "aspect_ratio": "1:1",
+        "camera_and_render": "Isometric 45° cutaway angle, orthographic projection, soft studio lighting, Octane Render",
+        "palette": [
+          "#0950F6",
+          "#FFEC01",
+          "#052C87",
+          "#021440",
+          "#FFFFFF"
+        ]
+      }
+    }
+  ]
+}

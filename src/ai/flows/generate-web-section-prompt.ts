@@ -2,6 +2,19 @@ import { z } from 'genkit';
 import { ai } from '../genkit';
 import { sanitizePromptSegment } from '../../lib/prompt-compiler';
 
+export const HeroMigrationContextSchema = z.object({
+  heroId: z.string().optional(),
+  concept: z.string().optional(),
+  generatedAsset: z.string().optional(),
+  prompt3D: z.string().optional(),
+  negativePrompt: z.string().optional(),
+  cameraAndRender: z.string().optional(),
+  badge: z.string().optional(),
+  titleDisplay: z.string().optional(),
+  subtitleLead: z.string().optional(),
+  keyPillsOrKpis: z.array(z.string()).optional(),
+});
+
 export const GenerateWebSectionPromptInputSchema = z.object({
   pageTitle: z.string().describe("Título de la página (ej: Contacto, Home, Servicios Express)"),
   pageUrl: z.string().optional().describe("URL de la página (ej: /contacto)"),
@@ -19,6 +32,7 @@ export const GenerateWebSectionPromptInputSchema = z.object({
   brandEmphasis: z.boolean().default(true).describe("Incluir elementos oficiales y colores de Envíos DosRuedas"),
   customInstructions: z.string().optional().describe("Detalles o requerimientos personalizados adicionales"),
   generateVariants: z.boolean().default(true).describe("Si se deben generar variantes alternativas"),
+  heroMigrationContext: HeroMigrationContextSchema.optional().describe("Contexto específico de migración de Hero desde docs/contenido/heros_migracion_adaptado.json"),
 });
 
 export const GenerateWebSectionPromptOutputSchema = z.object({
@@ -161,6 +175,33 @@ Expected improvedCodeSnippet:
 \`\`\`
 </few_shot_exemplar>
 
+{{#if heroMigrationContext}}
+<hero_migration_adaptation>
+CATALOG SPECIFICATION (from docs/contenido/heros-migracion.html & heros_migracion_adaptado.json):
+This component represents one of the 11 official Hero sections of Envíos DosRuedas:
+- **Hero Identifier:** {{heroMigrationContext.heroId}}
+- **Documented Visual Concept:** {{heroMigrationContext.concept}}
+- **Target Asset File:** {{heroMigrationContext.generatedAsset}}
+- **Official Headline:** "{{heroMigrationContext.titleDisplay}}" (Badge: "{{heroMigrationContext.badge}}")
+- **Lead Subtitle:** "{{heroMigrationContext.subtitleLead}}"
+{{#if heroMigrationContext.keyPillsOrKpis}}
+- **Documented Trust Badges / KPIs:** {{#each heroMigrationContext.keyPillsOrKpis}}"{{this}}" {{/each}}
+{{/if}}
+- **Reference 3D Art Direction from Catalog:**
+"""{{heroMigrationContext.prompt3D}}"""
+- **Reference Camera & Optics:** {{heroMigrationContext.cameraAndRender}}
+{{#if heroMigrationContext.negativePrompt}}
+- **Catalog Negative Exclusions:** {{heroMigrationContext.negativePrompt}}
+{{/if}}
+
+HERO ADAPTATION RULES:
+1. When generating `promptEn`, synthesize the documented 3D concept into Prompt Architecture v2.0 (5 sequential layers: Subject, Mar del Plata staging, PBR materials, typography & branding, optics & lighting). Harmonize any legacy shades into the strict official triad (#0C59F2 Electric Blue, #FFF12E Neon Yellow, #FFFFFF Optical White, on dark #021440 navy backdrop).
+2. For `suggestedSettings`, set `suggestedFileName` to "{{heroMigrationContext.generatedAsset}}" (or with .webp extension) and use the recommended aspect ratio from the catalog.
+3. For `improvedCodeSnippet`, provide the exact TSX code for this Hero component, importing `Image` from 'next/image' and inserting the asset with Next.js 15 best practices (`fill`, `priority`, responsive `sizes`, dark gradient veil scrim for contrast, and hover micro-interaction).
+4. For `variants`, generate 3 alternative artistic variations directly derived from this specific hero's theme (e.g. macro prop detail, wide-angle environmental street scene in MDQ, or dynamic high-velocity telemetry perspective).
+</hero_migration_adaptation>
+{{/if}}
+
 Generate the final JSON object now strictly matching the output schema.
 `,
 });
@@ -185,7 +226,9 @@ export const generateWebSectionPromptFlow = ai.defineFlow(
     const cleanEn = sanitizePromptSegment(output.promptEn);
     const cleanVariants = (output.variants || []).map(v => sanitizePromptSegment(v));
 
-    const defaultFileName = input.componentName
+    const defaultFileName = input.heroMigrationContext?.generatedAsset
+      ? input.heroMigrationContext.generatedAsset.replace('.png', '.webp')
+      : input.componentName
       ? `${input.componentName.toLowerCase().replace('.tsx', '')}-${(input.slotId || 'hero').toLowerCase()}.webp`
       : 'hero-visual-asset.webp';
 

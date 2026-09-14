@@ -446,8 +446,11 @@ export function WebPromptGenerator({ initialPagesDocs }: WebPromptGeneratorProps
                               <div className="p-2 rounded-xl bg-background border border-border shadow-xs text-primary">
                                 <Icon className="w-4 h-4 text-[#0C59F2]" />
                               </div>
-                              <div className="flex items-center gap-1.5">
-                                {hasProcedural ? (
+                                {section.heroMigration ? (
+                                  <Badge className="text-[9px] bg-[#FFF12E] text-[#0C59F2] border-none font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(255,241,46,0.3)]">
+                                    Hero 2026
+                                  </Badge>
+                                ) : hasProcedural ? (
                                   <Badge className="text-[9px] bg-[#FFF12E] text-[#0950F6] border-none font-bold uppercase">
                                     Hero BG
                                   </Badge>
@@ -533,6 +536,43 @@ export function WebPromptGenerator({ initialPagesDocs }: WebPromptGeneratorProps
               <span>Cambiar Componente</span>
             </Button>
           </div>
+
+          {/* Hero Migration Context Card */}
+          {selectedSection?.heroMigration ? (
+            <div className="p-4 rounded-3xl bg-gradient-to-r from-[#0C59F2]/10 via-[#FFF12E]/10 to-transparent border border-[#0C59F2]/30 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <div className="p-2.5 rounded-2xl bg-[#0C59F2] text-[#FFF12E] font-display text-sm tracking-wider font-bold shrink-0 shadow-sm">
+                  HERO
+                </div>
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs font-bold text-foreground uppercase tracking-wider font-subheading">
+                      {selectedSection.heroMigration.section} · {selectedSection.heroMigration.badge}
+                    </span>
+                    <Badge className="text-[10px] bg-[#FFF12E] text-[#0C59F2] border-none font-bold uppercase">
+                      Asset: {selectedSection.heroMigration.generatedAsset}
+                    </Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground font-sans">
+                    Concepto 3D Oficial: <strong className="text-foreground">{selectedSection.heroMigration.concept}</strong>
+                  </p>
+                  {selectedSection.heroMigration.keyPillsOrKpis?.length ? (
+                    <p className="text-[11px] text-[#0C59F2] font-mono">
+                      {selectedSection.heroMigration.keyPillsOrKpis.join(' · ')}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+              <div className="text-right shrink-0">
+                <span className="text-[10px] font-mono text-muted-foreground block">
+                  Documentado en
+                </span>
+                <span className="text-xs font-bold text-[#0C59F2] font-mono">
+                  heros-migracion.html
+                </span>
+              </div>
+            </div>
+          ) : null}
 
           {/* Slots Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

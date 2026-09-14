@@ -13,6 +13,25 @@ export interface VisualSlotDoc {
   slotBadge?: string;
 }
 
+export interface HeroMigrationDoc {
+  id: string;
+  section: string;
+  route: string;
+  tsxComponent: string;
+  badge: string;
+  titleDisplay: string;
+  subtitleLead: string;
+  concept: string;
+  generatedAsset: string;
+  prompt3D: string;
+  prompt3DOptimized: string;
+  negativePrompt: string;
+  aspectRatio: string;
+  cameraAndRender: string;
+  palette: string[];
+  keyPillsOrKpis: string[];
+}
+
 export interface WebSectionDoc {
   id: string;
   name: string;
@@ -23,6 +42,7 @@ export interface WebSectionDoc {
   proceduralVariant?: string;
   rawSnippet?: string;
   visualSlots: VisualSlotDoc[];
+  heroMigration?: HeroMigrationDoc;
 }
 
 export interface WebPageDoc {
@@ -65,14 +85,83 @@ function cleanMarkdownText(str: string): string {
   return str.replace(/\*\*/g, '').replace(/`/g, '').trim();
 }
 
+interface RawHeroMigrationItem {
+  id: string;
+  section: string;
+  route: string;
+  tsx_component: string;
+  badge: string;
+  title_display: string;
+  subtitle_lead: string;
+  trust_badges?: string[];
+  kpi_chips?: Array<{ label: string; value: string }>;
+  feature_pills?: string[];
+  search_categories?: string[];
+  right_column_visual: {
+    concept: string;
+    generated_asset: string;
+    prompt_3d: string;
+    prompt_3d_optimized?: string;
+    negative_prompt: string;
+    aspect_ratio: string;
+    camera_and_render: string;
+    palette: string[];
+  };
+}
+
+export const getHeroMigrationCatalog = cache(async (): Promise<Map<string, HeroMigrationDoc>> => {
+  const map = new Map<string, HeroMigrationDoc>();
+  try {
+    const jsonPath = path.join(process.cwd(), 'docs', 'contenido', 'heros_migracion_adaptado.json');
+    const content = await fs.readFile(jsonPath, 'utf-8');
+    const data: { heros: RawHeroMigrationItem[] } = JSON.parse(content);
+
+    for (const hero of data.heros || []) {
+      const compName = path.basename(hero.tsx_component, path.extname(hero.tsx_component));
+      const pills: string[] = [
+        ...(hero.trust_badges || []),
+        ...(hero.feature_pills || []),
+        ...(hero.kpi_chips?.map((k) => `${k.label}: ${k.value}`) || []),
+        ...(hero.search_categories || []),
+      ];
+      const doc: HeroMigrationDoc = {
+        id: hero.id,
+        section: hero.section,
+        route: hero.route,
+        tsxComponent: hero.tsx_component,
+        badge: hero.badge,
+        titleDisplay: hero.title_display,
+        subtitleLead: hero.subtitle_lead,
+        concept: hero.right_column_visual.concept,
+        generatedAsset: hero.right_column_visual.generated_asset,
+        prompt3D: hero.right_column_visual.prompt_3d,
+        prompt3DOptimized: hero.right_column_visual.prompt_3d_optimized || hero.right_column_visual.prompt_3d,
+        negativePrompt: hero.right_column_visual.negative_prompt,
+        aspectRatio: hero.right_column_visual.aspect_ratio || '1:1',
+        cameraAndRender: hero.right_column_visual.camera_and_render,
+        palette: hero.right_column_visual.palette || [],
+        keyPillsOrKpis: pills,
+      };
+      map.set(compName.toLowerCase(), doc);
+      map.set(hero.id.toLowerCase(), doc);
+      map.set(hero.route.toLowerCase(), doc);
+    }
+  } catch (err) {
+    console.error('Error reading heros_migracion_adaptado.json:', err);
+  }
+  return map;
+});
+
 /**
- * Builds smart visual slots for a component based on its code content and role.
+ * Builds smart visual slots for a component based on its code content, role,
+ * and official hero migration specifications (heros-migracion.html & heros_migracion_adaptado.json).
  */
 function extractVisualSlots(
   componentFileName: string,
   sectionType: WebSectionDoc['type'],
   componentCode: string,
-  pageTitle: string
+  pageTitle: string,
+  heroDoc?: HeroMigrationDoc
 ): { slots: VisualSlotDoc[]; proceduralVariant?: string; rawSnippet?: string } {
   const slots: VisualSlotDoc[] = [];
   let proceduralVariant: string | undefined;
@@ -83,9 +172,33 @@ function extractVisualSlots(
     proceduralVariant = proceduralMatch[1];
   }
 
-  // 2. Specialized extraction for ContactHero.tsx
-  if (componentFileName === 'ContactHero') {
-    const hudSnippet = `<div className="relative w-full h-[220px] rounded-2xl overflow-hidden shadow-xl border border-white/20 bg-gradient-to-br from-[#052C87] via-[#04236B] to-[#021440] p-6 flex flex-col justify-between">
+  // 2. HERO SPECIALIZED ADAPTATION (11 Heros Catalog)
+  if (heroDoc) {
+    // Slot A: Official 3D Asset documented for the Hero's Right Column
+    slots.push({
+      id: 'hero-right-visual',
+      name: `Asset 3D Columna Derecha: ${heroDoc.concept} (${heroDoc.generatedAsset})`,
+      type: 'card-asset',
+      slotBadge: 'Asset Hero Oficial',
+      description: `Asset 3D visual oficial para la columna derecha de ${heroDoc.section} (${heroDoc.generatedAsset}). Concepto: ${heroDoc.concept}.`,
+      suggestedAspectRatio: heroDoc.aspectRatio || '1:1',
+      suggestedPromptFocus: heroDoc.prompt3DOptimized || heroDoc.prompt3D,
+    });
+
+    // Slot B: Full 3D Hero Mockup Composition
+    slots.push({
+      id: 'hero-full-composition',
+      name: `Composición Completa ${heroDoc.section} (Mockup 3D Hero)`,
+      type: 'hero-full',
+      slotBadge: 'Mockup 3D Hero',
+      description: `Render editorial 3D de la cabecera completa: titular monumental "${heroDoc.titleDisplay}", badge "${heroDoc.badge}", CTAs y elementos interactivos en display flotante.`,
+      suggestedAspectRatio: '16:9',
+      suggestedPromptFocus: `High-end 3D isometric asymmetric bento UI mockup of ${heroDoc.section} header for Envíos DosRuedas. Featuring bold headline "${heroDoc.titleDisplay}", glowing high-visibility yellow (#FFF12E) badge ("${heroDoc.badge}"), floating cards in electric blue (#0C59F2) and optical white (#FFFFFF), subtle frosted bevels, and dual studio rim lighting. 16:9 cinematic aspect ratio.`,
+    });
+
+    // Slot C: Specific Hero Props & HUD Telemetry Cards
+    if (componentFileName === 'ContactHero' || heroDoc.id === 'hero-contact') {
+      const hudSnippet = `<div className="relative w-full h-[220px] rounded-2xl overflow-hidden shadow-xl border border-white/20 bg-gradient-to-br from-[#052C87] via-[#04236B] to-[#021440] p-6 flex flex-col justify-between">
   <HeroProceduralBackground variant="contact" />
   <div className="relative z-10 flex justify-between items-start">
     <div>
@@ -112,51 +225,144 @@ function extractVisualSlots(
     <span className="w-3 h-3 rounded-full bg-[#FFF12E] animate-pulse shadow-[0_0_8px_#FFF12E]" />
   </div>
 </div>`;
+      slots.push({
+        id: 'hud-dispatch-moto',
+        name: 'Tarjeta HUD de Despacho & Moto (Reemplazo HeroProceduralBackground)',
+        type: 'image-replacement',
+        slotBadge: 'Reemplazo en Código',
+        description: 'Tarjeta HUD de 220px en la columna izquierda. Reemplaza el fondo procedimental plano por un asset visual cinematográfico de moto eléctrica, rider y telemetría GPS activa en Mar del Plata.',
+        targetCodeSnippet: hudSnippet,
+        suggestedAspectRatio: '16:9',
+        suggestedPromptFocus: 'Modern high-end urban delivery electric scooter stationed on clean wet asphalt outside the Friuli 1972 logistics dispatch hub in Mar del Plata, captured from a dynamic low three-quarter angle. Matte electric blue (#0C59F2) aerodynamic bodywork with glowing neon yellow (#FFF12E) rear cubic cargo box branded with bold optical white (#FFFFFF) typography reading "ENVÍOS DOSRUEDAS". Floating semi-transparent holographic GPS telemetry HUD with route coordinates in General Pueyrredón. Dual studio lighting with intense #0C59F2 key and #FFF12E neon rim glow, 50mm f/2.8 lens, cinematic volumetric depth, 16:9 aspect ratio.',
+      });
+    } else if (componentFileName === 'HeroAnimado' || heroDoc.id === 'hero-animado') {
+      slots.push({
+        id: 'hud-telemetry-gps',
+        name: 'Módulo HUD de Ruteo Activo MDQ (Friuli 1972)',
+        type: 'image-replacement',
+        slotBadge: 'HUD Telemetría',
+        description: 'HUD holográfico con mapa GPS de Mar del Plata, rutas activas desde Friuli 1972 y micro-badges de Same-Day y Flota Propia.',
+        suggestedAspectRatio: '16:9',
+        suggestedPromptFocus: '3D isometric stylized map of Mar del Plata with clean glassmorphism aesthetic. Electric delivery scooter in electric blue (#0C59F2) accelerating along coastal boulevard leaving vibrant neon yellow (#FFF12E) kinetic light trail. Glowing yellow GPS markers in Chauvín, Centro and Güemes, translucent HUD card reading "Ruteo Activo · Friuli 1972", 16:9 ratio.',
+      });
+    } else if (componentFileName === 'AboutHero' || heroDoc.id === 'hero-about') {
+      slots.push({
+        id: 'trust-reviews-badge',
+        name: 'Insignia de Confianza 3D + Widget Google Reviews 5.0 ★',
+        type: 'card-asset',
+        slotBadge: 'Social Proof 3D',
+        description: 'Emblema heráldico 3D en oro amarillo #FFF12E grabado "+7 AÑOS EN MDQ" y "100% FLOTA PROPIA" junto a smartphone con widget de reseñas 5.0 ★.',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: '3D luxury trust badge and social proof visual. Embossed metallic heraldic emblem in mirror-polished yellow #FFF12E and deep electric blue #0C59F2 enamel engraved with "+7 AÑOS EN MDQ" and "100% FLOTA PROPIA". Floating smartphone with verified 5.0 ★ Google Reviews card, deep navy backdrop.',
+      });
+    } else if (componentFileName === 'NetworksHero' || heroDoc.id === 'hero-networks') {
+      slots.push({
+        id: 'social-3d-bubbles',
+        name: 'Smartphone 3D + Burbujas Social Media + Contador +5.200',
+        type: 'card-asset',
+        slotBadge: 'Social Media 3D',
+        description: 'Feed social en smartphone 3D flotante con burbujas tridimensionales de cámara, notificaciones y pill badge "+5.200 SEGUIDORES".',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: 'Dynamic 3D social media and community visual. Sleek smartphone suspended at 3/4 angle with energetic feed in electric blue #0C59F2, floating dimensional social badges, and glowing yellow #FFF12E pill badge "+5.200 SEGUIDORES", Octane render.',
+      });
+    } else if (componentFileName === 'FaqHero' || heroDoc.id === 'hero-faq') {
+      slots.push({
+        id: 'support-magnifier-megaphone',
+        name: 'Lupa 3D de Cristal Óptico + Megáfono "Respuesta < 5 min"',
+        type: 'card-asset',
+        slotBadge: 'Soporte 3D',
+        description: 'Lupa de precisión en cristal óptico enfocando sobre tarjetas FAQ traslúcidas con megáfono amarillo #FFF12E y badge "RESPUESTA < 5 MIN".',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: 'High-tech 3D customer support illustration. Precision-engineered magnifying glass crafted from optical crystal with electric blue #0C59F2 rim over frosted-glass FAQ cards, floating yellow #FFF12E megaphone emitting sound waves with "RESPUESTA < 5 MIN" badge.',
+      });
+    } else if (componentFileName === 'CotizadorExpressHero' || heroDoc.id === 'hero-cotizar-express') {
+      slots.push({
+        id: 'route-telemetry-console',
+        name: 'Consola Táctil 3D + Velocímetro "< 3 Horas"',
+        type: 'card-asset',
+        slotBadge: 'Consola HUD',
+        description: 'Consola digital con simulador de rutas GPS en Mar del Plata, velocímetro holográfico en amarillo #FFF12E y badge de tarifa en vivo.',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: '3D interactive delivery telemetry console and route calculator dashboard. Sleek dark tablet console in 3/4 perspective displaying GPS route across Mar del Plata, floating holographic speedometer in neon yellow #FFF12E indicating "< 3 HORAS", digital price tag card in crisp typography.',
+      });
+    } else if (componentFileName === 'CotizadorLowCostHero' || heroDoc.id === 'hero-cotizar-lowcost') {
+      slots.push({
+        id: 'parcel-pyramid-scale',
+        name: 'Pirámide de Cajas Kraft 3D + Balanza Digital + Sello 40% Ahorro',
+        type: 'card-asset',
+        slotBadge: 'Bodegón E-Commerce',
+        description: 'Pila geométrica de cajas kraft con cinta adhesiva #0C59F2, balanza de paquetería digital y medalla "HASTA 40% DE AHORRO".',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: '3D e-commerce parcel shipping composition. Neat geometric pyramid stack of kraft cardboard delivery boxes sealed with electric blue #0C59F2 branded tape, precision digital parcel scale with illuminated LED, floating shiny yellow #FFF12E discount badge "HASTA 40% DE AHORRO · SAME-DAY".',
+      });
+    } else if (componentFileName === 'ExpressHero' || heroDoc.id === 'hero-servicios-express') {
+      slots.push({
+        id: 'courier-radar-ring',
+        name: 'Rider en Moto Eléctrica MDQ + Radar HUD "3 HS RANGO"',
+        type: 'card-asset',
+        slotBadge: 'Acción Cinemática',
+        description: 'Toma dinámica de courier en moto eléctrica por Cabo Corrientes con anillo radar holográfico y badge "3 HS RANGO GARANTIZADO".',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: 'Cinematic dynamic action shot of professional courier riding modern electric motorcycle along the coastal boulevard of Mar del Plata (Cabo Corrientes). Matte electric blue #0C59F2 helmet and jacket with yellow #FFF12E reflective stripes, floating circular HUD radar ring with route telemetry and neon yellow badge "3 HS RANGO GARANTIZADO".',
+      });
+    } else if (componentFileName === 'LowCostHero' || heroDoc.id === 'hero-servicios-lowcost') {
+      slots.push({
+        id: 'conveyor-dispatch-clock',
+        name: 'Cinta Transportadora + Reloj Digital 13:00 hs + Sello Mismo Día',
+        type: 'card-asset',
+        slotBadge: 'Fulfillment Industrial',
+        description: 'Cinta transportadora industrial con paquetes de paquetería e-commerce, reloj LED "13:00 HS" y sello dorado "ENTREGA MISMO DÍA".',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: '3D automated logistics batching concept. Modern industrial conveyor belt in brushed dark steel transporting e-commerce packages with electric blue #0C59F2 shipping labels, oversized 3D digital LED clock displaying cutoff deadline "13:00 HS" in glowing yellow #FFF12E numerals, embossed golden ribbon "ENTREGA MISMO DÍA".',
+      });
+    } else if (componentFileName === 'FlexHero' || heroDoc.id === 'hero-servicios-flex') {
+      slots.push({
+        id: 'laser-qr-scanner-medal',
+        name: 'Escaneo Láser QR en Paquete + Medallón MercadoLíder Gold',
+        type: 'card-asset',
+        slotBadge: 'Operación Flex 3D',
+        description: 'Primer plano de scanner inalámbrico proyectando láser amarillo #FFF12E sobre etiqueta QR y medalla "MERCADOLÍDER GOLD · 100% CUMPLIMIENTO".',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: 'Close-up 3D operational scene of MercadoLibre Flex delivery logistics. Stylized courier hands holding ergonomic wireless scanner projecting sharp yellow #FFF12E laser line onto shipping label QR code on package, gleaming 3D medallion in yellow gold with embossed "MERCADOLÍDER GOLD · 100% CUMPLIMIENTO", royal blue #0C59F2 rim light.',
+      });
+    } else if (componentFileName === 'EmprendedoresHero' || heroDoc.id === 'hero-servicios-emprendedores') {
+      slots.push({
+        id: 'warehouse-cutaway-picking',
+        name: 'Hub Friuli 1972 Cutaway 3D + Picking QR + DropOFF -20%',
+        type: 'card-asset',
+        slotBadge: 'Hub Logístico 3D',
+        description: 'Corte transversal 3D del almacén central de Friuli 1972 con estanterías en azul #0C59F2, tablet de picking QR y sello "DROPOFF -20% OFF".',
+        suggestedAspectRatio: '1:1',
+        suggestedPromptFocus: '3D isometric cutaway view of e-commerce fulfillment warehouse hub (Friuli 1972 Central Hub Mar del Plata). Heavy-duty industrial metal racking in electric blue #0C59F2 filled with inventory bins and labeled boxes, electric pallet jack, hovering translucent glass tablet displaying live QR picking interface, glowing yellow #FFF12E badge "DROPOFF -20% OFF".',
+      });
+    }
 
-    slots.push({
-      id: 'hud-dispatch-moto',
-      name: 'Tarjeta HUD de Despacho & Moto (Reemplazo HeroProceduralBackground)',
-      type: 'image-replacement',
-      slotBadge: 'Reemplazo de Fondo en Código',
-      description: 'Tarjeta HUD de 220px en la columna izquierda. Reemplaza el fondo procedimental plano por un asset visual cinematográfico de moto eléctrica, rider y telemetría GPS activa en Mar del Plata.',
-      targetCodeSnippet: hudSnippet,
-      suggestedAspectRatio: '16:9',
-      suggestedPromptFocus: 'Modern high-end urban delivery electric scooter stationed on clean wet asphalt outside the Friuli 1972 logistics dispatch hub in Mar del Plata, captured from a dynamic low three-quarter angle. Matte electric blue (#0C59F2) aerodynamic bodywork with glowing neon yellow (#FFF12E) rear cubic cargo box branded with bold optical white (#FFFFFF) typography reading "ENVÍOS DOSRUEDAS". Floating semi-transparent holographic GPS telemetry HUD with route coordinates in General Pueyrredón. Dual studio lighting with intense #0C59F2 key and #FFF12E neon rim glow, 50mm f/2.8 lens, cinematic volumetric depth, 16:9 aspect ratio.',
-    });
+    // Slot D: Procedural background replacement if present
+    if (proceduralVariant && !slots.some((s) => s.id === 'hud-dispatch-moto')) {
+      slots.push({
+        id: `procedural-replacement-${proceduralVariant}`,
+        name: `Reemplazo en Código: <HeroProceduralBackground variant="${proceduralVariant}">`,
+        type: 'image-replacement',
+        slotBadge: 'Reemplazo en Código',
+        description: `Sustituye el fondo procedural plano "${proceduralVariant}" por el asset visual de producción adaptado a este Hero.`,
+        suggestedAspectRatio: '16:9',
+        suggestedPromptFocus: heroDoc.prompt3DOptimized || heroDoc.prompt3D,
+      });
+    }
 
-    slots.push({
-      id: 'hero-full-composition',
-      name: 'Composición Completa ContactHero (Hero Mockup 3D)',
-      type: 'hero-full',
-      slotBadge: 'Mockup 3D Completo',
-      description: 'Render editorial 3D de la sección entera de contacto: titular monumental "¿Hablamos ahora?", tarjetas de canales de WhatsApp/Llamada en azul medianoche y formulario de cotización B2B.',
-      suggestedAspectRatio: '16:9',
-      suggestedPromptFocus: 'High-end 3D isometric asymmetric bento UI composition of the contact interface for Envíos DosRuedas floating above a dark studio backdrop. Layered frosted glass panels (bg-white/10) with crisp white (#FFFFFF) typography reading "¿HABLAMOS AHORA?", interactive contact channel cards in deep cobalt (#0C59F2) with glowing neon yellow (#FFF12E) badges, and realistic glass reflections. Soft ambient occlusion, electric blue volumetric key light with neon yellow rim accents, 50mm architectural framing, clean 16:9 aspect ratio.',
-    });
-
-    slots.push({
-      id: 'contact-channels-bento',
-      name: 'Tarjetas de Canales de Contacto Directo (Cards Bento)',
-      type: 'card-asset',
-      slotBadge: 'Módulo Bento',
-      description: 'Módulo lateral de 3 tarjetas de acceso rápido (WhatsApp Comercial, Llamada de Coordinación, Cotización B2B).',
-      suggestedAspectRatio: '4:3',
-      suggestedPromptFocus: 'Trio of floating 3D bento cards showcasing commercial communication channels in electric blue (#0C59F2) and pure white (#FFFFFF). Elevated glassmorphic surfaces with subtle frosted bevels, glowing neon yellow (#FFF12E) micro-icons for WhatsApp, priority telephone dispatch, and corporate quote calculator. Studio softbox illumination, metallic reflection on edges, f/4 aperture with sharp focal clarity across all modules, balanced 4:3 format.',
-    });
-
+    // Slot E: High-voltage Atmospheric canvas
     slots.push({
       id: 'background-atmosphere',
-      name: 'Lienzo Atmosférico / High-Voltage Glow Orbs',
+      name: `Lienzo Atmosférico / High-Voltage Glow Orbs (${heroDoc.section})`,
       type: 'background-atmosphere',
       slotBadge: 'Fondo de Sección',
-      description: 'Fondo ambiental de alta energía con orbes esféricos difusos de neón amarillo #FFF12E/25 y azul medianoche para generar profundidad.',
+      description: `Fondo ambiental de alta energía con orbes esféricos difusos de neón amarillo #FFF12E y azul institucional #0C59F2.`,
       suggestedAspectRatio: '21:9',
-      suggestedPromptFocus: 'Abstract high-voltage atmospheric studio backdrop with deep electric blue (#0C59F2) volumetric fog and diffused neon yellow (#FFF12E) spherical light orbs. Smooth dark gradient transitions toward deep navy (#021440) at top and bottom margins providing seamless negative space for UI overlays. Photonic glow dispersion, ultra-clean surface physics, zero noise, expansive 21:9 ultrawide composition.',
+      suggestedPromptFocus: `Abstract high-voltage atmospheric studio backdrop with deep electric blue (#0C59F2) volumetric fog and diffused neon yellow (#FFF12E) spherical light orbs. Dark gradient transitions toward deep navy (#021440), clean negative space for UI overlays, 21:9 ratio.`,
     });
   } else {
-    // Generic smart slots for other components
+    // 3. Fallback for non-hero components
     if (proceduralVariant) {
-      // Find the snippet around HeroProceduralBackground
       const procIdx = componentCode.indexOf('<HeroProceduralBackground');
       let targetSnippet = '';
       if (procIdx !== -1) {
@@ -306,11 +512,14 @@ export async function parseDocFile(fileName: string, content: string): Promise<W
         componentDesc = `Componente visual ${componentFileName} para la sección ${sectionType} de ${title}.`;
       }
 
+      const heroDoc = heroMap?.get(componentFileName.toLowerCase()) || heroMap?.get(sectionId);
+
       const { slots, proceduralVariant, rawSnippet } = extractVisualSlots(
         componentFileName,
         sectionType,
         componentCode,
-        title
+        title,
+        heroDoc
       );
 
       sections.push({
@@ -323,6 +532,7 @@ export async function parseDocFile(fileName: string, content: string): Promise<W
         proceduralVariant,
         rawSnippet,
         visualSlots: slots,
+        heroMigration: heroDoc,
       });
     }
 
@@ -334,7 +544,8 @@ export async function parseDocFile(fileName: string, content: string): Promise<W
         const compName = hMatch[1].replace('.tsx', '').trim();
         if (compName && compName !== 'Componentes del Nodo') {
           const sectionType = detectSectionType(compName, compName);
-          const { slots, proceduralVariant } = extractVisualSlots(compName, sectionType, '', title);
+          const heroDoc = heroMap?.get(compName.toLowerCase());
+          const { slots, proceduralVariant } = extractVisualSlots(compName, sectionType, '', title, heroDoc);
           sections.push({
             id: compName.toLowerCase(),
             name: compName.replace(/([A-Z])/g, ' $1').trim(),
@@ -343,6 +554,7 @@ export async function parseDocFile(fileName: string, content: string): Promise<W
             description: `Sección visual ${compName} de ${title}.`,
             proceduralVariant,
             visualSlots: slots,
+            heroMigration: heroDoc,
           });
         }
       }
@@ -373,6 +585,7 @@ export async function parseDocFile(fileName: string, content: string): Promise<W
 export const getAllWebPagesDocs = cache(async (): Promise<WebPageDoc[]> => {
   const docsDir = path.join(process.cwd(), 'docs', 'contenido');
   try {
+    const heroMap = await getHeroMigrationCatalog();
     const files = await fs.readdir(docsDir);
     const mdFiles = files.filter(f => f.endsWith('.md') && f !== 'INDEX.md');
 
@@ -407,7 +620,7 @@ export const getAllWebPagesDocs = cache(async (): Promise<WebPageDoc[]> => {
     const parsedDocs = await Promise.all(
       mdFiles.map(async (file) => {
         const content = await fs.readFile(path.join(docsDir, file), 'utf-8');
-        return parseDocFile(file, content);
+        return parseDocFile(file, content, heroMap);
       })
     );
 
@@ -446,5 +659,11 @@ export async function findWebSectionContext(pageId: string, sectionId: string, s
   if (!page || !section) return null;
 
   const slot = slotId ? section.visualSlots.find((s) => s.id === slotId) ?? null : null;
-  return { page, section, slot, codeSnippet: resolveCodeSnippet(section, slot) };
+  return {
+    page,
+    section,
+    slot,
+    codeSnippet: resolveCodeSnippet(section, slot),
+    heroMigration: section.heroMigration,
+  };
 }

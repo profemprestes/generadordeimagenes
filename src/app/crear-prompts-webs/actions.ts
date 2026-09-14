@@ -41,7 +41,7 @@ export async function optimizeWebSectionPromptAction(
       return { success: false, error: 'No se encontró la página o sección seleccionada en docs/contenido.' };
     }
 
-    const { page, section, slot, codeSnippet } = context;
+    const { page, section, slot, codeSnippet, heroMigration } = context;
     const result = await generateWebSectionPrompt({
       ...artDirection,
       pageTitle: page.title,
@@ -54,6 +54,20 @@ export async function optimizeWebSectionPromptAction(
       slotName: slotName || slot?.name || section.name,
       slotType: slot?.type,
       targetCodeSnippet: codeSnippet,
+      heroMigrationContext: heroMigration
+        ? {
+            heroId: heroMigration.id,
+            concept: heroMigration.concept,
+            generatedAsset: heroMigration.generatedAsset,
+            prompt3D: heroMigration.prompt3DOptimized || heroMigration.prompt3D,
+            negativePrompt: heroMigration.negativePrompt,
+            cameraAndRender: heroMigration.cameraAndRender,
+            badge: heroMigration.badge,
+            titleDisplay: heroMigration.titleDisplay,
+            subtitleLead: heroMigration.subtitleLead,
+            keyPillsOrKpis: heroMigration.keyPillsOrKpis,
+          }
+        : undefined,
     });
     return { success: true, data: result };
   } catch (err: unknown) {
