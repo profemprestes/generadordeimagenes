@@ -195,10 +195,10 @@ This component represents one of the 11 official Hero sections of Envíos DosRue
 {{/if}}
 
 HERO ADAPTATION RULES:
-1. When generating `promptEn`, synthesize the documented 3D concept into Prompt Architecture v2.0 (5 sequential layers: Subject, Mar del Plata staging, PBR materials, typography & branding, optics & lighting). Harmonize any legacy shades into the strict official triad (#0C59F2 Electric Blue, #FFF12E Neon Yellow, #FFFFFF Optical White, on dark #021440 navy backdrop).
-2. For `suggestedSettings`, set `suggestedFileName` to "{{heroMigrationContext.generatedAsset}}" (or with .webp extension) and use the recommended aspect ratio from the catalog.
-3. For `improvedCodeSnippet`, provide the exact TSX code for this Hero component, importing `Image` from 'next/image' and inserting the asset with Next.js 15 best practices (`fill`, `priority`, responsive `sizes`, dark gradient veil scrim for contrast, and hover micro-interaction).
-4. For `variants`, generate 3 alternative artistic variations directly derived from this specific hero's theme (e.g. macro prop detail, wide-angle environmental street scene in MDQ, or dynamic high-velocity telemetry perspective).
+1. When generating \`promptEn\`, synthesize the documented 3D concept into Prompt Architecture v2.0 (5 sequential layers: Subject, Mar del Plata staging, PBR materials, typography & branding, optics & lighting). Harmonize any legacy shades into the strict official triad (#0C59F2 Electric Blue, #FFF12E Neon Yellow, #FFFFFF Optical White, on dark #021440 navy backdrop).
+2. For \`suggestedSettings\`, set \`suggestedFileName\` to "{{heroMigrationContext.generatedAsset}}" (or with .webp extension) and use the recommended aspect ratio from the catalog.
+3. For \`improvedCodeSnippet\`, provide the exact TSX code for this Hero component, importing \`Image\` from 'next/image' and inserting the asset with Next.js 15 best practices (\`fill\`, \`priority\`, responsive \`sizes\`, dark gradient veil scrim for contrast, and hover micro-interaction).
+4. For \`variants\`, generate 3 alternative artistic variations directly derived from this specific hero's theme (e.g. macro prop detail, wide-angle environmental street scene in MDQ, or dynamic high-velocity telemetry perspective).
 </hero_migration_adaptation>
 {{/if}}
 
