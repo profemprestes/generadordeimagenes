@@ -446,6 +446,7 @@ export function WebPromptGenerator({ initialPagesDocs }: WebPromptGeneratorProps
                               <div className="p-2 rounded-xl bg-background border border-border shadow-xs text-primary">
                                 <Icon className="w-4 h-4 text-[#0C59F2]" />
                               </div>
+                              <div className="flex items-center gap-1.5">
                                 {section.heroMigration ? (
                                   <Badge className="text-[9px] bg-[#FFF12E] text-[#0C59F2] border-none font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(255,241,46,0.3)]">
                                     Hero 2026
