@@ -121,7 +121,7 @@ function extractVisualSlots(
       description: 'Tarjeta HUD de 220px en la columna izquierda. Reemplaza el fondo procedimental plano por un asset visual cinematográfico de moto eléctrica, rider y telemetría GPS activa en Mar del Plata.',
       targetCodeSnippet: hudSnippet,
       suggestedAspectRatio: '16:9',
-      suggestedPromptFocus: 'Central de despacho urbano en Friuli 1972 Mar del Plata, scooter eléctrico de reparto de alta gama con caja cúbica amarilla neón #FFF12E, rider con uniforme azul #0C59F2, mapa holográfico GPS con rutas activas en General Pueyrredón, iluminación de estudio de alta tensión con llanta brillante.',
+      suggestedPromptFocus: 'Modern high-end urban delivery electric scooter stationed on clean wet asphalt outside the Friuli 1972 logistics dispatch hub in Mar del Plata, captured from a dynamic low three-quarter angle. Matte electric blue (#0C59F2) aerodynamic bodywork with glowing neon yellow (#FFF12E) rear cubic cargo box branded with bold optical white (#FFFFFF) typography reading "ENVÍOS DOSRUEDAS". Floating semi-transparent holographic GPS telemetry HUD with route coordinates in General Pueyrredón. Dual studio lighting with intense #0C59F2 key and #FFF12E neon rim glow, 50mm f/2.8 lens, cinematic volumetric depth, 16:9 aspect ratio.',
     });
 
     slots.push({
@@ -131,7 +131,7 @@ function extractVisualSlots(
       slotBadge: 'Mockup 3D Completo',
       description: 'Render editorial 3D de la sección entera de contacto: titular monumental "¿Hablamos ahora?", tarjetas de canales de WhatsApp/Llamada en azul medianoche y formulario de cotización B2B.',
       suggestedAspectRatio: '16:9',
-      suggestedPromptFocus: 'Mockup UI 3D bento asimétrico de la pantalla de contacto de Envíos DosRuedas en display flotante con la tríada #0C59F2, #FFF12E y #FFFFFF, con micro-interacciones visuales.',
+      suggestedPromptFocus: 'High-end 3D isometric asymmetric bento UI composition of the contact interface for Envíos DosRuedas floating above a dark studio backdrop. Layered frosted glass panels (bg-white/10) with crisp white (#FFFFFF) typography reading "¿HABLAMOS AHORA?", interactive contact channel cards in deep cobalt (#0C59F2) with glowing neon yellow (#FFF12E) badges, and realistic glass reflections. Soft ambient occlusion, electric blue volumetric key light with neon yellow rim accents, 50mm architectural framing, clean 16:9 aspect ratio.',
     });
 
     slots.push({
@@ -141,7 +141,7 @@ function extractVisualSlots(
       slotBadge: 'Módulo Bento',
       description: 'Módulo lateral de 3 tarjetas de acceso rápido (WhatsApp Comercial, Llamada de Coordinación, Cotización B2B).',
       suggestedAspectRatio: '4:3',
-      suggestedPromptFocus: 'Trío de tarjetas bento 3D en azul eléctrico #0C59F2 con bordes traslúcidos, iconos luminosos en amarillo #FFF12E y flechas de interacción dinámicas.',
+      suggestedPromptFocus: 'Trio of floating 3D bento cards showcasing commercial communication channels in electric blue (#0C59F2) and pure white (#FFFFFF). Elevated glassmorphic surfaces with subtle frosted bevels, glowing neon yellow (#FFF12E) micro-icons for WhatsApp, priority telephone dispatch, and corporate quote calculator. Studio softbox illumination, metallic reflection on edges, f/4 aperture with sharp focal clarity across all modules, balanced 4:3 format.',
     });
 
     slots.push({
@@ -151,7 +151,7 @@ function extractVisualSlots(
       slotBadge: 'Fondo de Sección',
       description: 'Fondo ambiental de alta energía con orbes esféricos difusos de neón amarillo #FFF12E/25 y azul medianoche para generar profundidad.',
       suggestedAspectRatio: '21:9',
-      suggestedPromptFocus: 'Textura abstracta de iluminación de estudio fotográfico con orbes difusos de resplandor neón amarillo #FFF12E sobre azul institucional #0C59F2 y reflejos sutiles.',
+      suggestedPromptFocus: 'Abstract high-voltage atmospheric studio backdrop with deep electric blue (#0C59F2) volumetric fog and diffused neon yellow (#FFF12E) spherical light orbs. Smooth dark gradient transitions toward deep navy (#021440) at top and bottom margins providing seamless negative space for UI overlays. Photonic glow dispersion, ultra-clean surface physics, zero noise, expansive 21:9 ultrawide composition.',
     });
   } else {
     // Generic smart slots for other components
@@ -173,7 +173,7 @@ function extractVisualSlots(
         description: `Sustituye el fondo procedimental plano "${proceduralVariant}" por un render 3D o fotografía de producción integrada en el código TSX.`,
         targetCodeSnippet: targetSnippet || `<HeroProceduralBackground variant="${proceduralVariant}" />`,
         suggestedAspectRatio: '16:9',
-        suggestedPromptFocus: `Render 3D de logística urbana en Mar del Plata para la variante ${proceduralVariant}, con moto eléctrica, cajas de entrega amarillas #FFF12E e iluminación institucional #0C59F2.`,
+        suggestedPromptFocus: `Cinematic 3D render of rapid urban logistics in Mar del Plata tailored for the ${proceduralVariant} module. High-performance electric scooter with signature neon yellow (#FFF12E) cargo trunk and electric blue (#0C59F2) fairings, navigating modern coastal streets. Balanced studio lighting with #FFF12E edge rim highlights and deep contrast negative space for text legibility, 35mm lens, 16:9 ratio.`,
       });
     }
 
@@ -185,7 +185,7 @@ function extractVisualSlots(
         slotBadge: 'Mockup 3D Hero',
         description: `Render 3D completo de la sección ${componentFileName} en perspectiva isométrica o sobre dispositivo de alta gama.`,
         suggestedAspectRatio: '16:9',
-        suggestedPromptFocus: `Mockup UI 3D bento asimétrico de la cabecera de ${pageTitle}, con tarjetas flotantes en azul institucional #0C59F2 y acentos en amarillo #FFF12E.`,
+        suggestedPromptFocus: `Premium 3D isometric asymmetric bento mockup of ${pageTitle} header interface. Floating frosted glass panels in #0C59F2 electric blue and #FFFFFF optical white, accented by vivid #FFF12E neon indicators and typography. Clean studio softbox key light with specular edge highlights, pristine depth of field, 16:9 cinematic aspect ratio.`,
       });
     } else if (sectionType === 'bento' || sectionType === 'cards') {
       slots.push({
@@ -195,7 +195,7 @@ function extractVisualSlots(
         slotBadge: 'Grilla Bento',
         description: `Render 3D de las tarjetas bento asimétricas con profundidad y vidrio esmerilado.`,
         suggestedAspectRatio: '16:9',
-        suggestedPromptFocus: `Grilla bento 3D isómetrica con tarjetas en azul #0C59F2 y blanco óptico #FFFFFF con micro-detalles de telemetría y entrega.`,
+        suggestedPromptFocus: `Architectural 3D asymmetric bento grid display for ${componentFileName}. Individual cards featuring frosted glass finishes, bold #0C59F2 surface fills, glowing #FFF12E telemetry badges, and high-contrast #FFFFFF sans-serif typography. Overhead studio softbox lighting with crisp contact shadows, 16:9 composition.`,
       });
     } else {
       slots.push({
@@ -205,7 +205,7 @@ function extractVisualSlots(
         slotBadge: 'Mockup UI',
         description: `Composición visual representativa de la sección ${componentFileName}.`,
         suggestedAspectRatio: '16:9',
-        suggestedPromptFocus: `Composición visual de ${componentFileName} bajo la tríada oficial #0C59F2, #FFF12E y #FFFFFF.`,
+        suggestedPromptFocus: `Refined 3D visual composition of ${componentFileName} under the official Envíos DosRuedas color triad. High-voltage #0C59F2 electric blue foundational plane with #FFF12E neon accent rims and crisp #FFFFFF optical white text, clean studio optics, 16:9 aspect ratio.`,
       });
     }
 
@@ -216,7 +216,7 @@ function extractVisualSlots(
       slotBadge: 'Fondo de Sección',
       description: 'Lienzo de fondo con resplandores neón institucionales.',
       suggestedAspectRatio: '21:9',
-      suggestedPromptFocus: 'Fondo abstracto en azul eléctrico institucional #0C59F2 con reflejos de iluminación de estudio y acentos amarillos #FFF12E.',
+      suggestedPromptFocus: 'Abstract high-voltage atmospheric studio backdrop with deep electric blue (#0C59F2) volumetric fog and diffused neon yellow (#FFF12E) spherical light orbs. Clean negative space for overlaid React UI components, 21:9 ultrawide format.',
     });
   }
 
